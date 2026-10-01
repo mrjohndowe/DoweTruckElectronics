@@ -59,3 +59,19 @@ This simulates a driving scenario, showing automatic duty status transitions and
 ## License
 
 TBD
+
+# Future Expansion
+Because I'd make this as a framework, future accessories become much easier:
+- CB Radio
+- Dash Camera
+- Tablet GPS
+- Backup Camera
+- TPMS Monitor
+- Electronic Scale Pass
+- Weather Radio
+- Fleet Messaging
+- Qualcomm/Omnitracs terminal
+- Weigh station integration
+- Dash-mounted camera recorder
+
+![https://r2.fivemanage.com/X1rQph0trZnLIa0o3A2Z7/Ca42af1cNGRV.jpg](https://r2.fivemanage.com/X1rQph0trZnLIa0o3A2Z7/Ca42af1cNGRV.jpg)
