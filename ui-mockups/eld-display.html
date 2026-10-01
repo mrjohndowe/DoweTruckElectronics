@@ -108,6 +108,25 @@
             padding-bottom: 10px;
         }
 
+        .screen code {
+            color: white;
+            font-size: 13px;
+            margin-bottom: 15px;
+            display: block;
+            top: 275px;
+            left: 280px;
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-decoration-style: dotted;
+            text-decoration-color: #21c452;
+            text-underline-offset: 2px;
+            text-shadow: 0 0 5px #21c452;
+
+        }
+
         .info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -145,6 +164,28 @@
 
         .info-card .value.small {
             font-size: 14px;
+        }
+        .info-card .value.status {
+            font-size: 10px;
+            color: #a8aca8;
+            font-weight: 500;
+        }
+        .info-card .value.status .success {
+            color: #00ff00;
+        }
+        .info-card .value.status .warning {
+            color: #ffaa00;
+        }
+        .info-card .value.status .danger {
+            color: #ff4444;
+        }
+        .info-card .value.status .info {
+            color: #00aaff;
+        }
+        .info-card .value.status.arrival:hover {
+            font-size: 15px;
+            color: #00aaff;
+
         }
 
         .status-indicator {
@@ -376,14 +417,25 @@
             <!-- Home Screen -->
             <div class="screen active" id="home">
                 <h2>Home</h2>
+                <div class="label" style="color: #888; font-size: 14px; margin-bottom: 10px;">Vehicle & Driver Info</div>
                 <div class="info-grid">
                     <div class="info-card">
                         <div class="label">Driver</div>
-                        <div class="value">Jose Davila</div>
+                        <div class="value">John Dowe</div>
                     </div>
                     <div class="info-card">
                         <div class="label">Truck</div>
                         <div class="value">Peterbilt 389</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Pick-Up Location</div>
+                        <div class="value">Portland, OR</div>
+                        <div class="value status">Trailer Picked Up</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Drop-Off Location</div>
+                        <div class="value">Los Angeles, CA</div>
+                        <div class="value status arrival">On Time: 5 hrs to arrival</div>
                     </div>
                     <div class="info-card">
                         <div class="label">Trailer</div>
@@ -544,6 +596,14 @@
                         <div class="type" style="color: #ffaa00;">30-Minute Break Required</div>
                         <div class="time">Driving for 6h 23m without break</div>
                     </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h3 style="color: #888; font-size: 14px; margin-bottom: 10px;">Recent Violations</h3>
+                    <div class="violation-item" style="background: #3a3a3a; border-left-color: #ff4444;">
+                        <div class="type">Running Red Light</div>
+                        <div class="time">Occurred on 06/15/2026 at 14:32</div>
+                    </div>
+
                 </div>
             </div>
 
