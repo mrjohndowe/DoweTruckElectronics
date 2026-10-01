@@ -32,6 +32,8 @@ add_executable(DoweTruckElectronics
     src/telemetry/adapter/ScsTelemetryAdapter.cpp
     src/telemetry/scs/SharedMemory.cpp
     src/telemetry/scs/ScsTelemetryParser.cpp
+    src/radar/RadarSettings.cpp
+    src/radar/RadarEngine.cpp
 )
 
 target_include_directories(

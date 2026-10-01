@@ -2,11 +2,14 @@
 #include <iomanip>
 #include <thread>
 #include <chrono>
+#include <random>
 
 #include "telemetry/TelemetryManager.h"
 #include "telemetry/adapter/ScsTelemetryAdapter.h"
 #include "eld/EldEngine.h"
 #include "eld/DutyStatus.h"
+#include "radar/RadarEngine.h"
+#include "radar/RadarTypes.h"
 #include "shared/Logging.h"
 
 using namespace DoweTruckElectronics;
