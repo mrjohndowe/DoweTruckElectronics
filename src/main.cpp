@@ -1,9 +1,13 @@
 #include <iostream>
 #include <iomanip>
+#include <thread>
+#include <chrono>
 
-#include "telemetry/TelemetryState.h"
+#include "telemetry/TelemetryManager.h"
+#include "telemetry/adapter/ScsTelemetryAdapter.h"
 #include "eld/EldEngine.h"
 #include "eld/DutyStatus.h"
+#include "shared/Logging.h"
 
 using namespace DoweTruckElectronics;
 
@@ -34,48 +38,57 @@ static void PrintState(
 
 int main()
 {
-    TelemetryState telemetry;
-    telemetry.connected = true;
-    telemetry.engine_running = true;
+    Logger::set_level(LogLevel::Info);
 
+    Logger::info("Starting Dowe Truck Electronics System");
+
+    // Create telemetry adapter in simulation mode
+    auto adapter = std::make_unique<ScsTelemetryAdapter>();
+    adapter->enable_simulation_mode(true);
+
+    // Create telemetry manager
+    TelemetryManager telemetry_manager(std::move(adapter));
+
+    // Create ELD engine
     EldEngine eld;
 
-    // Simulate 60 seconds of driving.
-    telemetry.speed_mps = 25.0;
+    // Subscribe to connection events
+    telemetry_manager.events().connected_changed.subscribe(
+        [](bool connected)
+        {
+            if (connected)
+                Logger::info("Telemetry connected");
+            else
+                Logger::warning("Telemetry disconnected");
+        }
+    );
 
-    for (int i = 0; i < 60; ++i)
+    // Start telemetry
+    if (!telemetry_manager.start())
     {
-        telemetry.delta_seconds = 1.0;
+        Logger::error("Failed to start telemetry manager");
+        return 1;
+    }
 
+    Logger::info("Running for 30 seconds...");
+    Logger::info("Press Ctrl+C to exit early");
+
+    // Run for 30 seconds
+    for (int i = 0; i < 300; ++i)
+    {
+        TelemetryState telemetry = telemetry_manager.get_current_state();
         eld.update(telemetry);
 
         if (i % 10 == 0)
             PrintState(telemetry, eld);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
-    // Truck stops.
-    telemetry.speed_mps = 0.0;
+    Logger::info("Stopping telemetry manager");
+    telemetry_manager.stop();
 
-    for (int i = 0; i < 10; ++i)
-    {
-        telemetry.delta_seconds = 1.0;
-
-        eld.update(telemetry);
-
-        PrintState(telemetry, eld);
-    }
-
-    // Engine shuts down.
-    telemetry.engine_running = false;
-
-    for (int i = 0; i < 5; ++i)
-    {
-        telemetry.delta_seconds = 1.0;
-
-        eld.update(telemetry);
-
-        PrintState(telemetry, eld);
-    }
+    Logger::info("Shutdown complete");
 
     return 0;
 }
