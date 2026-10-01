@@ -40,6 +40,13 @@ DoweTruckElectronics/
 - Thread-safe telemetry state updates
 - Real-time telemetry processing loop
 
+### Phase 3: UI Mockups ✅
+- Interactive ELD tablet display mockup
+- Radar detector display mockup
+- Multiple screens and navigation
+- Real-time animations and state changes
+- Responsive HTML/CSS implementation
+
 ### Next Steps
 - Persistent log storage
 - Radar detection engine
@@ -63,6 +70,27 @@ Run the test harness to simulate ELD behavior:
 ```
 
 This simulates a driving scenario, showing automatic duty status transitions and HOS clock updates.
+
+## UI Mockups
+
+Interactive HTML/CSS mockups are available for previewing the ELD and radar detector interfaces:
+
+- **ELD Display**: Full-featured ELD tablet with Home, HOS, Duty Status, Logs, Inspection, Violations, Fuel, and Settings screens
+- **Radar Detector**: Multi-band radar detector with directional alerts, signal strength, and sensitivity controls
+
+To preview the mockups, open the HTML files in a web browser:
+
+- `ui-mockups\eld-display.html` - ELD tablet interface
+- `ui-mockups\radar-detector.html` - Radar detector interface
+
+Simply double-click the files or open them in your preferred web browser.
+
+The mockups include:
+- Interactive navigation between screens
+- Real-time status indicators
+- Animated alerts and notifications
+- Configurable settings toggles
+- Responsive design for different display sizes
 
 ## License
 

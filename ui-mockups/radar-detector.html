@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Detector Mockup - Dowe Truck Electronics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .radar-detector {
+            width: 600px;
+            height: 300px;
+            background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
+            border-radius: 15px;
+            border: 3px solid #333;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+        }
+
+        .radar-detector::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #444, transparent);
+        }
+
+        .detector-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .brand {
+            font-size: 14px;
+            font-weight: 700;
+            color: #666;
+            letter-spacing: 2px;
+        }
+
+        .mode {
+            font-size: 12px;
+            color: #00aaff;
+            font-weight: 600;
+            padding: 4px 12px;
+            background: rgba(0, 170, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .display-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .alert-display {
+            background: #000;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #333;
+        }
+
+        .alert-display.active {
+            border-color: #ff4444;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+        }
+
+        .band-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .band-letter {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ff4444;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.8);
+        }
+
+        .band-letter.k {
+            color: #ffaa00;
+            text-shadow: 0 0 20px rgba(255, 170, 0, 0.8);
+        }
+
+        .band-letter.ka {
+            color: #ff4444;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.8);
+        }
+
+        .band-letter.x {
+            color: #44ff44;
+            text-shadow: 0 0 20px rgba(68, 255, 68, 0.8);
+        }
+
+        .band-letter.laser {
+            color: #ff44ff;
+            text-shadow: 0 0 20px rgba(255, 68, 255, 0.8);
+        }
+
+        .frequency {
+            font-size: 18px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .signal-strength {
+            display: flex;
+            gap: 4px;
+            align-items: flex-end;
+        }
+
+        .strength-bar {
+            width: 8px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.1s;
+        }
+
+        .strength-bar.active {
+            background: #ff4444;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .strength-bar:nth-child(1) { height: 8px; }
+        .strength-bar:nth-child(2) { height: 12px; }
+        .strength-bar:nth-child(3) { height: 16px; }
+        .strength-bar:nth-child(4) { height: 20px; }
+        .strength-bar:nth-child(5) { height: 24px; }
+        .strength-bar:nth-child(6) { height: 28px; }
+        .strength-bar:nth-child(7) { height: 32px; }
+
+        .direction-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 10px;
+            background: #222;
+            border-radius: 8px;
+        }
+
+        .direction-arrow {
+            font-size: 24px;
+            color: #333;
+            transition: all 0.2s;
+        }
+
+        .direction-arrow.active {
+            color: #ff4444;
+            text-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
+            transform: scale(1.2);
+        }
+
+        .bogey-counter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: #222;
+            border-radius: 8px;
+        }
+
+        .bogey-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .bogey-count {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff4444;
+        }
+
+        .bogey-count.inactive {
+            color: #666;
+        }
+
+        .band-display {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: #222;
+            border-radius: 8px;
+        }
+
+        .band-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .band-letter-small {
+            font-size: 16px;
+            font-weight: 700;
+            color: #666;
+        }
+
+        .band-letter-small.active {
+            color: #ff4444;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .band-led {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+        }
+
+        .band-led.active {
+            background: #ff4444;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.8);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #333;
+            border: 2px solid #444;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            background: #444;
+            color: #fff;
+        }
+
+        .control-btn.muted {
+            background: #ff4444;
+            border-color: #ff6666;
+            color: #fff;
+        }
+
+        .control-btn.active {
+            background: #00aaff;
+            border-color: #33ccff;
+            color: #fff;
+        }
+
+        .detector-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+        }
+
+        .sensitivity {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .gps-status {
+            font-size: 11px;
+            color: #00ff00;
+        }
+
+        .voice-alert {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #ff4444;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            display: none;
+            border: 2px solid #ff4444;
+            box-shadow: 0 0 30px rgba(255, 68, 68, 0.5);
+        }
+
+        .voice-alert.show {
+            display: block;
+            animation: pulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .mode-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .mode-btn {
+            padding: 6px 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #888;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mode-btn:hover {
+            background: #444;
+        }
+
+        .mode-btn.active {
+            background: #00aaff;
+            border-color: #33ccff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="radar-detector">
+        <div class="detector-header">
+            <div class="brand">ESCORT</div>
+            <div class="mode-buttons">
+                <button class="mode-btn" onclick="setMode('highway')">HWY</button>
+                <button class="mode-btn active" onclick="setMode('auto')">AUTO</button>
+                <button class="mode-btn" onclick="setMode('city')">CITY</button>
+            </div>
+        </div>
+
+        <div class="display-area">
+            <div class="alert-display active" id="alertDisplay">
+                <div class="band-info">
+                    <div class="band-letter ka" id="bandLetter">KA</div>
+                    <div class="frequency" id="frequency">34.7 GHz</div>
+                </div>
+                <div class="signal-strength" id="signalStrength">
+                    <div class="strength-bar active"></div>
+                    <div class="strength-bar active"></div>
+                    <div class="strength-bar active"></div>
+                    <div class="strength-bar active"></div>
+                    <div class="strength-bar active"></div>
+                    <div class="strength-bar"></div>
+                    <div class="strength-bar"></div>
+                </div>
+            </div>
+
+            <div class="direction-display">
+                <div class="direction-arrow" id="arrowLeft">←</div>
+                <div class="direction-arrow active" id="arrowFront">↑</div>
+                <div class="direction-arrow" id="arrowRight">→</div>
+            </div>
+
+            <div class="bogey-counter">
+                <div class="bogey-label">Alerts</div>
+                <div class="bogey-count" id="bogeyCount">2</div>
+            </div>
+
+            <div class="band-display">
+                <div class="band-indicator">
+                    <div class="band-letter-small">X</div>
+                    <div class="band-led" id="ledX"></div>
+                </div>
+                <div class="band-indicator">
+                    <div class="band-letter-small active">K</div>
+                    <div class="band-led active" id="ledK"></div>
+                </div>
+                <div class="band-indicator">
+                    <div class="band-letter-small active">KA</div>
+                    <div class="band-led active" id="ledKa"></div>
+                </div>
+                <div class="band-indicator">
+                    <div class="band-letter-small">LASER</div>
+                    <div class="band-led" id="ledLaser"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="toggleMute()" id="muteBtn">MUTE</button>
+            <button class="control-btn" onclick="toggleDim()">DIM</button>
+            <button class="control-btn" onclick="toggleSensitivity()">SENS</button>
+            <button class="control-btn" onclick="togglePower()">PWR</button>
+        </div>
+
+        <div class="detector-footer">
+            <div class="sensitivity">Sensitivity: HIGH</div>
+            <div class="gps-status">GPS: LOCKED</div>
+        </div>
+
+        <div class="voice-alert" id="voiceAlert">KA BAND AHEAD</div>
+    </div>
+
+    <script>
+        let currentMode = 'auto';
+        let isMuted = false;
+        let isDimmed = false;
+        let currentSensitivity = 'high';
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function toggleMute() {
+            isMuted = !isMuted;
+            const btn = document.getElementById('muteBtn');
+            if (isMuted) {
+                btn.classList.add('muted');
+                btn.textContent = 'UNMUTE';
+            } else {
+                btn.classList.remove('muted');
+                btn.textContent = 'MUTE';
+            }
+        }
+
+        function toggleDim() {
+            isDimmed = !isDimmed;
+            const detector = document.querySelector('.radar-detector');
+            if (isDimmed) {
+                detector.style.opacity = '0.5';
+            } else {
+                detector.style.opacity = '1';
+            }
+        }
+
+        function toggleSensitivity() {
+            const sensitivities = ['low', 'medium', 'high'];
+            const currentIndex = sensitivities.indexOf(currentSensitivity);
+            currentSensitivity = sensitivities[(currentIndex + 1) % sensitivities.length];
+            document.querySelector('.sensitivity').textContent = 'Sensitivity: ' + currentSensitivity.toUpperCase();
+        }
+
+        function togglePower() {
+            const detector = document.querySelector('.radar-detector');
+            if (detector.style.display === 'none') {
+                detector.style.display = 'flex';
+            } else {
+                detector.style.display = 'none';
+            }
+        }
+
+        // Simulate radar alerts
+        function simulateAlert() {
+            const bands = ['X', 'K', 'KA', 'LASER'];
+            const frequencies = {
+                'X': '10.5 GHz',
+                'K': '24.1 GHz',
+                'KA': '34.7 GHz',
+                'LASER': '904 nm'
+            };
+
+            const band = bands[Math.floor(Math.random() * bands.length)];
+            const strength = Math.floor(Math.random() * 7) + 1;
+
+            // Update display
+            document.getElementById('bandLetter').textContent = band;
+            document.getElementById('bandLetter').className = 'band-letter ' + band.toLowerCase();
+            document.getElementById('frequency').textContent = frequencies[band];
+
+            // Update signal strength
+            const bars = document.querySelectorAll('.strength-bar');
+            bars.forEach((bar, index) => {
+                if (index < strength) {
+                    bar.classList.add('active');
+                } else {
+                    bar.classList.remove('active');
+                }
+            });
+
+            // Update direction
+            const directions = ['arrowLeft', 'arrowFront', 'arrowRight'];
+            const activeDirection = directions[Math.floor(Math.random() * directions.length)];
+            directions.forEach(dir => {
+                document.getElementById(dir).classList.remove('active');
+            });
+            document.getElementById(activeDirection).classList.add('active');
+
+            // Update bogey count
+            document.getElementById('bogeyCount').textContent = Math.floor(Math.random() * 3) + 1;
+
+            // Show voice alert
+            const voiceAlert = document.getElementById('voiceAlert');
+            voiceAlert.textContent = band + ' BAND AHEAD';
+            voiceAlert.classList.add('show');
+            setTimeout(() => {
+                voiceAlert.classList.remove('show');
+            }, 2000);
+        }
+
+        // Simulate periodic alerts
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                simulateAlert();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
