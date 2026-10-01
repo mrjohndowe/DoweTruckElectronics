@@ -3,10 +3,12 @@
 #include "../ITelemetrySource.h"
 #include "../../shared/Events.h"
 #include "../../shared/Logging.h"
+#include "../scs/ScsTelemetryParser.h"
 #include <chrono>
 #include <thread>
 #include <atomic>
 #include <mutex>
+#include <memory>
 
 namespace DoweTruckElectronics
 {
@@ -42,5 +44,7 @@ namespace DoweTruckElectronics
         TelemetryEvents m_events;
 
         std::chrono::steady_clock::time_point m_last_update_time;
+
+        std::unique_ptr<Scs::ScsTelemetryParser> m_scs_parser;
     };
 }

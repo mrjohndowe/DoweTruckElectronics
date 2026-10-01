@@ -1,0 +1,240 @@
+SiiNunit
+{
+    # Radar Detector Accessory
+    accessory_slot_data: .dowe_radar
+    {
+        name: "Dowe Radar Detector"
+        price: 350
+        unlock_level: 0
+
+        # Radar Detector Model
+        model: "model/radar/dowe_radar.pmd"
+        coll_mask: 1
+        mass: 0.3
+
+        # Material
+        material: "material/model/radar/dowe_radar.mat"
+
+        # UI for radar display
+        ui: "ui/radar_screen.sui"
+
+        # Animations
+        # Boot animation
+        animation: boot
+        {
+            type: "sequential"
+            duration: 1.5
+            nodes: 3
+            nodes[0]: power_led
+            {
+                type: "bool"
+                value: true
+            }
+            nodes[1]: display_brightness
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+            nodes[2]: button_illumination
+            {
+                type: "bool"
+                value: true
+            }
+        }
+
+        # Alert animation (Ka band)
+        animation: alert_ka
+        {
+            type: "sequential"
+            duration: 0.3
+            nodes: 2
+            nodes[0]: ka_led
+            {
+                type: "bool"
+                value: true
+            }
+            nodes[1]: signal_strength
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+        }
+
+        # Alert animation (K band)
+        animation: alert_k
+        {
+            type: "sequential"
+            duration: 0.3
+            nodes: 2
+            nodes[0]: k_led
+            {
+                type: "bool"
+                value: true
+            }
+            nodes[1]: signal_strength
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+        }
+
+        # Alert animation (X band)
+        animation: alert_x
+        {
+            type: "sequential"
+            duration: 0.3
+            nodes: 2
+            nodes[0]: x_led
+            {
+                type: "bool"
+                value: true
+            }
+            nodes[1]: signal_strength
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+        }
+
+        # Alert animation (Laser)
+        animation: alert_laser
+        {
+            type: "sequential"
+            duration: 0.1
+            nodes: 2
+            nodes[0]: laser_led
+            {
+                type: "bool"
+                value: true
+            }
+            nodes[1]: signal_strength
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+        }
+
+        # Direction arrow animation (front)
+        animation: arrow_front
+        {
+            type: "sequential"
+            duration: 0.2
+            nodes: 1
+            nodes[0]: arrow_front_brightness
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+        }
+
+        # Direction arrow animation (rear)
+        animation: arrow_rear
+        {
+            type: "sequential"
+            duration: 0.2
+            nodes: 1
+            nodes[0]: arrow_rear_brightness
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+        }
+
+        # Direction arrow animation (side)
+        animation: arrow_side
+        {
+            type: "sequential"
+            duration: 0.2
+            nodes: 1
+            nodes[0]: arrow_side_brightness
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+        }
+
+        # Mute animation
+        animation: mute
+        {
+            type: "sequential"
+            duration: 0.3
+            nodes: 1
+            nodes[0]: mute_led
+            {
+                type: "bool"
+                value: true
+            }
+        }
+
+        # Unmute animation
+        animation: unmute
+        {
+            type: "sequential"
+            duration: 0.3
+            nodes: 1
+            nodes[0]: mute_led
+            {
+                type: "bool"
+                value: false
+            }
+        }
+
+        # Screen dim animation
+        animation: screen_dim
+        {
+            type: "float"
+            name: "display_brightness"
+            to: 0.3
+            duration: 0.5
+            easing: "ease_in_out"
+        }
+
+        # Screen bright animation
+        animation: screen_bright
+        {
+            type: "float"
+            name: "display_brightness"
+            to: 1.0
+            duration: 0.5
+            easing: "ease_in_out"
+        }
+
+        # Mount positions
+        accessory_slot_data: .mount_windshield
+        {
+            slot_name: "slot_14"
+            offset: (0.0, 0.35, 0.45)
+            rotation: (0.0, 0.0, 0.0)
+        }
+
+        accessory_slot_data: .mount_dashboard
+        {
+            slot_name: "slot_11"
+            offset: (0.0, 0.15, 0.0)
+            rotation: (0.0, 0.0, 0.0)
+        }
+
+        accessory_slot_data: .mount_overhead
+        {
+            slot_name: "slot_13"
+            offset: (0.0, 0.1, 0.0)
+            rotation: (0.0, 0.0, 0.0)
+        }
+    }
+}

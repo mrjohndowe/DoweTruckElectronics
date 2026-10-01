@@ -1,0 +1,11 @@
+MOD ICON PLACEHOLDER
+
+This file should be replaced with an actual 512x512 pixel JPG image for the mod icon.
+
+Recommended icon design:
+- Blue background with electronics theme
+- ELD tablet and radar detector graphic
+- Text: "Dowe Truck Electronics"
+- Clean, professional appearance
+
+Convert this placeholder to a real JPG image before distributing the mod.

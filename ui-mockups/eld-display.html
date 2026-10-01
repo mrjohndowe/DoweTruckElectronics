@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELD Display Mockup - Dowe Truck Electronics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .eld-tablet {
+            width: 800px;
+            height: 600px;
+            background: #2d2d2d;
+            border-radius: 20px;
+            border: 4px solid #444;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .eld-header {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .eld-header h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .eld-header .time {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .eld-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #333;
+            border-bottom: 2px solid #444;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 12px 8px;
+            background: #333;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .nav-tab:hover {
+            background: #3a3a3a;
+            color: #fff;
+        }
+
+        .nav-tab.active {
+            background: #2d2d2d;
+            color: #00aaff;
+            border-bottom: 2px solid lime;
+        }
+
+        .screen {
+            flex: 1;
+            padding: 20px;
+            display: none;
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .screen h2 {
+            color: #00aaff;
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+        }
+
+        .screen code {
+            color: white;
+            font-size: 13px;
+            margin-bottom: 15px;
+            display: block;
+            top: 275px;
+            left: 280px;
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-decoration-style: dotted;
+            text-decoration-color: #21c452;
+            text-underline-offset: 2px;
+            text-shadow: 0 0 5px #21c452;
+
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background: #383838;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00aaff;
+        }
+
+        .info-card.warning {
+            border-left-color: #ffaa00;
+        }
+
+        .info-card.danger {
+            border-left-color: #ff4444;
+        }
+
+        .info-card .label {
+            color: #888;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-card .value {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .info-card .value.small {
+            font-size: 14px;
+        }
+        .info-card .value.status {
+            font-size: 10px;
+            color: #a8aca8;
+            font-weight: 500;
+        }
+        .info-card .value.status .success {
+            color: #00ff00;
+        }
+        .info-card .value.status .warning {
+            color: #ffaa00;
+        }
+        .info-card .value.status .danger {
+            color: #ff4444;
+        }
+        .info-card .value.status .info {
+            color: #00aaff;
+        }
+        .info-card .value.status.arrival:hover {
+            font-size: 15px;
+            color: #00aaff;
+
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-indicator.active {
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        .status-indicator.inactive {
+            background: #666;
+        }
+
+        .duty-status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .duty-btn {
+            padding: 15px;
+            background: #383838;
+            border: 2px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .duty-btn:hover {
+            background: #444;
+            border-color: rgb(0, 238, 255);
+        }
+
+        .duty-btn.active {
+            background: #0066cc;
+            border-color: rgba(0, 255, 0, 0.85);
+
+        }
+
+        .duty-btn.manual {
+            border-color: #ffaa00;
+        }
+
+        .log-entry {
+            background: #383838;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .log-entry .time {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .log-entry .status {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .log-entry .duration {
+            color: #00aaff;
+            font-size: 12px;
+        }
+
+        .inspection-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #383838;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .inspection-item .check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #00ff00;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .inspection-item .label {
+            color: #fff;
+            flex: 1;
+        }
+
+        .violation-item {
+            background: #4a2020;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid #ff4444;
+        }
+
+        .violation-item .type {
+            color: #ff4444;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .violation-item .time {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .fuel-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 10px;
+            background: #383838;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .fuel-row .value {
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .settings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #383838;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .settings-row .label {
+            color: #fff;
+        }
+
+        .settings-row .toggle {
+            width: 50px;
+            height: 26px;
+            background: #666;
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .settings-row .toggle.on {
+            background: #00aaff;
+        }
+
+        .settings-row .toggle::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.2s;
+        }
+
+        .settings-row .toggle.on::after {
+            left: 26px;
+        }
+
+        .eld-footer {
+            background: #222;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .current-status {
+            display: flex;
+            align-items: center;
+            color: #00ff00;
+            font-weight: 600;
+        }
+        .company-name {
+            position: relative;
+            left:-250px;
+            top:3px;
+            font-size: x-small;
+            font-style: italic;
+            color:cornsilk;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="eld-tablet">
+        <div class="eld-header">
+            <h1>Fleet Guard</h1><small class="company-name">Dowe Technologies</small>
+            <div class="time">10:42 AM</div>
+        </div>
+
+        <div class="eld-content">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showScreen('home')">Home</button>
+                <button class="nav-tab" onclick="showScreen('hos')">HOS</button>
+                <button class="nav-tab" onclick="showScreen('duty')">Duty</button>
+                <button class="nav-tab" onclick="showScreen('logs')">Logs</button>
+                <button class="nav-tab" onclick="showScreen('inspection')">Inspect</button>
+                <button class="nav-tab" onclick="showScreen('violations')">Violations</button>
+                <button class="nav-tab" onclick="showScreen('fuel')">Fuel</button>
+                <button class="nav-tab" onclick="showScreen('settings')">Settings</button>
+            </div>
+
+            <!-- Home Screen -->
+            <div class="screen active" id="home">
+                <h2>Home</h2>
+                <div class="label" style="color: #888; font-size: 14px; margin-bottom: 10px;">Vehicle & Driver Info</div>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="label">Driver</div>
+                        <div class="value">John Dowe</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Truck</div>
+                        <div class="value">Peterbilt 389</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Pick-Up Location</div>
+                        <div class="value">Portland, OR</div>
+                        <div class="value status">Trailer Picked Up</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Drop-Off Location</div>
+                        <div class="value">Los Angeles, CA</div>
+                        <div class="value status arrival">On Time: 5 hrs to arrival</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Trailer</div>
+                        <div class="value">Dry Van</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Status</div>
+                        <div class="value">
+                            <span class="status-indicator active"></span>
+                            DRIVING
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Current Speed</div>
+                        <div class="value">67 MPH</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Engine Hours</div>
+                        <div class="value">7.8 h</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Today's Mileage</div>
+                        <div class="value">413 mi</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Odometer</div>
+                        <div class="value small">284,532 mi</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOS Screen -->
+            <div class="screen" id="hos">
+                <h2>Hours of Service</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="label">Driving</div>
+                        <div class="value">7h 13m</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">On Duty</div>
+                        <div class="value">8h 10m</div>
+                    </div>
+                    <div class="info-card warning">
+                        <div class="label">Remaining Drive</div>
+                        <div class="value">3h 47m</div>
+                    </div>
+                    <div class="info-card warning">
+                        <div class="label">14 Hour Clock</div>
+                        <div class="value">5h 50m</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Cycle</div>
+                        <div class="value">58 / 70 h</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Since Break</div>
+                        <div class="value">6h 23m</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Duty Status Screen -->
+            <div class="screen" id="duty">
+                <h2>Duty Status</h2>
+                <div class="duty-status-grid">
+                    <button class="duty-btn">OFF DUTY</button>
+                    <button class="duty-btn">SLEEPER</button>
+                    <button class="duty-btn">ON DUTY</button>
+                    <button class="duty-btn active">DRIVING</button>
+                    <button class="duty-btn">PERSONAL</button>
+                    <button class="duty-btn">YARD MOVE</button>
+                </div>
+                <div class="info-card warning">
+                    <div class="label">Mode</div>
+                    <div class="value small">Automatic - Status changes based on truck movement</div>
+                </div>
+                <br>
+                <div class="info-card danger">
+                    <div class="label">Manual Override</div>
+                    <div class="value small">Click a status to manually change it</div>
+                </div>
+            </div>
+
+            <!-- Logs Screen -->
+            <div class="screen" id="logs">
+                <h2>Trip History</h2>
+                <div class="log-entry">
+                    <div class="time">08:15 AM</div>
+                    <div class="status">ON DUTY → DRIVING</div>
+                    <div class="duration">2h 27m</div>
+                </div>
+                <div class="log-entry">
+                    <div class="time">06:30 AM</div>
+                    <div class="status">OFF DUTY → ON DUTY</div>
+                    <div class="duration">45m</div>
+                </div>
+                <div class="log-entry">
+                    <div class="time">05:45 AM</div>
+                    <div class="status">DRIVING → OFF DUTY</div>
+                    <div class="duration">4h 32m</div>
+                </div>
+                <div class="log-entry">
+                    <div class="time">01:13 AM</div>
+                    <div class="status">ON DUTY → DRIVING</div>
+                    <div class="duration">3h 58m</div>
+                </div>
+                <div class="log-entry">
+                    <div class="time">09:15 PM</div>
+                    <div class="status">OFF DUTY → ON DUTY</div>
+                    <div class="duration">30m</div>
+                </div>
+            </div>
+
+            <!-- Inspection Screen -->
+            <div class="screen" id="inspection">
+                <h2>Pre-Trip Inspection</h2>
+                <div class="inspection-item">
+                    <div class="check">✓</div>
+                    <div class="label">Trailer</div>
+                </div>
+                <div class="inspection-item">
+                    <div class="check">✓</div>
+                    <div class="label">Lights</div>
+                </div>
+                <div class="inspection-item">
+                    <div class="check">✓</div>
+                    <div class="label">Brakes</div>
+                </div>
+                <div class="inspection-item">
+                    <div class="check">✓</div>
+                    <div class="label">Cargo</div>
+                </div>
+                <div class="inspection-item">
+                    <div class="check">✓</div>
+                    <div class="label">Tires</div>
+                </div>
+                <div class="inspection-item">
+                    <div class="check">✓</div>
+                    <div class="label">Mirrors</div>
+                </div>
+                <div class="inspection-item">
+                    <div class="check">✓</div>
+                    <div class="label">Global Position System</div>
+                </div>
+            </div>
+
+            <!-- Violations Screen -->
+            <div class="screen" id="violations">
+                <h2>Violations</h2>
+                <div class="info-card" style="border-left-color: #00ff00;">
+                    <div class="label">Status</div>
+                    <div class="value small">No current violations</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h3 style="color: #888; font-size: 14px; margin-bottom: 10px;">Potential Warnings</h3>
+                    <div class="violation-item" style="background: #3a3a3a; border-left-color: #ffaa00;">
+                        <div class="type" style="color: #ffaa00;">30-Minute Break Required</div>
+                        <div class="time">Driving for 6h 23m without break</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h3 style="color: #888; font-size: 14px; margin-bottom: 10px;">Recent Violations</h3>
+                    <div class="violation-item" style="background: #3a3a3a; border-left-color: #ff4444;">
+                        <div class="type">Running Red Light</div>
+                        <div class="time">Occurred on 06/15/2026 at 14:32</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Fuel Screen -->
+            <div class="screen" id="fuel">
+                <h2>Fuel Stops</h2>
+                <div class="fuel-row" style="background: #444; font-weight: 600;">
+                    <div class="value">Gallons</div>
+                    <div class="value">Price</div>
+                    <div class="value">Location</div>
+                    <div class="value">Odometer</div>
+                </div>
+                <div class="fuel-row">
+                    <div class="value">63.4</div>
+                    <div class="value">$3.45</div>
+                    <div class="value">Pilot - Albuquerque</div>
+                    <div class="value">284,120</div>
+                </div>
+                <div class="fuel-row">
+                    <div class="value">58.2</div>
+                    <div class="value">$3.52</div>
+                    <div class="value">Love's - Flagstaff</div>
+                    <div class="value">283,865</div>
+                </div>
+                <div class="fuel-row">
+                    <div class="value">71.0</div>
+                    <div class="value">$3.38</div>
+                    <div class="value">TA - Phoenix</div>
+                    <div class="value">283,492</div>
+                </div>
+            </div>
+
+            <!-- Settings Screen -->
+            <div class="screen" id="settings">
+                <h2>Settings</h2>
+                <div class="settings-row">
+                    <div class="label">Brightness</div>
+                    <div class="toggle on"></div>
+                </div>
+                <div class="settings-row">
+                    <div class="label">Volume</div>
+                    <div class="toggle on"></div>
+                </div>
+                <div class="settings-row">
+                    <div class="label">24 Hour Clock</div>
+                    <div class="toggle on"></div>
+                </div>
+                <div class="settings-row">
+                    <div class="label">Metric Units</div>
+                    <div class="toggle"></div>
+                </div>
+                <div class="settings-row">
+                    <div class="label">Automatic Logging</div>
+                    <div class="toggle on"></div>
+                </div>
+                <div class="settings-row">
+                    <div class="label">Voice Alerts</div>
+                    <div class="toggle on"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="eld-footer">
+            <div>Dowe Technologies Electronics v0.0.1</div>
+            <div class="current-status">
+                <span class="status-indicator active"></span>
+                Connected to ATS
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected screen
+            document.getElementById(screenId).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -3,13 +3,22 @@
 #include "DutyStatus.h"
 #include "HosClock.h"
 #include "../telemetry/TelemetryState.h"
+#include <memory>
 
 namespace DoweTruckElectronics
 {
+    namespace Persistence
+    {
+        class LogStorage;
+    }
+
     class EldEngine
     {
     public:
         EldEngine();
+        ~EldEngine() = default;
+
+        void set_log_storage(std::shared_ptr<Persistence::LogStorage> storage);
 
         void update(const TelemetryState& telemetry);
 
@@ -38,5 +47,9 @@ namespace DoweTruckElectronics
         bool m_manual_status = false;
 
         HosClock m_hos;
+
+        std::shared_ptr<Persistence::LogStorage> m_log_storage;
+        std::chrono::system_clock::time_point m_status_change_time;
+        double m_status_distance;
     };
 }

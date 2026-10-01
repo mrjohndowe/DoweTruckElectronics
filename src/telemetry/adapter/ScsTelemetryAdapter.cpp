@@ -7,8 +7,9 @@ namespace DoweTruckElectronics
 {
     ScsTelemetryAdapter::ScsTelemetryAdapter()
         : m_connected(false)
-        , m_simulation_mode(true)
+        , m_simulation_mode(false)
         , m_running(false)
+        , m_scs_parser(std::make_unique<Scs::ScsTelemetryParser>())
     {
         m_last_update_time = std::chrono::steady_clock::now();
     }
@@ -33,9 +34,22 @@ namespace DoweTruckElectronics
             return true;
         }
 
-        // TODO: Implement actual SCS SDK connection here
-        Logger::warning("SCS SDK connection not yet implemented");
-        return false;
+        // Try to connect to real SCS telemetry
+        if (m_scs_parser->connect())
+        {
+            m_connected = true;
+            Logger::info("SCS Telemetry Adapter connected (real SDK mode)");
+            m_events.connected_changed.emit(true);
+            return true;
+        }
+
+        Logger::warning("Failed to connect to SCS telemetry, falling back to simulation mode");
+        m_simulation_mode = true;
+        m_connected = true;
+        m_running = true;
+        m_simulation_thread = std::thread(&ScsTelemetryAdapter::simulation_thread, this);
+        m_events.connected_changed.emit(true);
+        return true;
     }
 
     void ScsTelemetryAdapter::disconnect()
@@ -48,6 +62,9 @@ namespace DoweTruckElectronics
 
         if (m_simulation_thread.joinable())
             m_simulation_thread.join();
+
+        if (m_scs_parser)
+            m_scs_parser->disconnect();
 
         Logger::info("SCS Telemetry Adapter disconnected");
         m_events.connected_changed.emit(false);
@@ -69,8 +86,15 @@ namespace DoweTruckElectronics
             return m_last_state;
         }
 
-        // TODO: Read from actual SCS shared memory
-        return TelemetryState{};
+        // Read from real SCS telemetry
+        if (m_scs_parser && m_scs_parser->is_connected())
+        {
+            return m_scs_parser->read_state();
+        }
+
+        // Fallback to simulation if parser fails
+        std::lock_guard<std::mutex> lock(m_mutex);
+        return m_last_state;
     }
 
     TelemetryEvents& ScsTelemetryAdapter::events() override

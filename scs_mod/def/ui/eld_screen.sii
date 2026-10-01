@@ -1,0 +1,136 @@
+SiiNunit
+{
+    # ELD Screen UI Definition
+    # This defines the in-game UI for the ELD tablet display
+
+    ui_template: .dowe_eld_screen
+    {
+        type: "display"
+        name: "Dowe ELD Screen"
+        width: 512
+        height: 288
+
+        # Screen background
+        background: (0.1, 0.1, 0.1, 1.0)
+
+        # Screen elements
+        element: .header
+        {
+            type: "text"
+            position: (10, 10)
+            size: (492, 30)
+            text: "Dowe Truck Electronics"
+            font: "font_regular"
+            color: (0.0, 0.8, 1.0, 1.0)
+            font_size: 16
+            alignment: "left"
+        }
+
+        element: .time_display
+        {
+            type: "text"
+            position: (400, 10)
+            size: (102, 30)
+            text: "$$time"
+            font: "font_regular"
+            color: (1.0, 1.0, 1.0, 1.0)
+            font_size: 16
+            alignment: "right"
+        }
+
+        element: .status_display
+        {
+            type: "text"
+            position: (10, 50)
+            size: (492, 40)
+            text: "Status: $$status"
+            font: "font_regular"
+            color: (0.0, 1.0, 0.0, 1.0)
+            font_size: 20
+            alignment: "left"
+        }
+
+        element: .speed_display
+        {
+            type: "text"
+            position: (10, 100)
+            size: (200, 40)
+            text: "Speed: $$speed mph"
+            font: "font_regular"
+            color: (1.0, 1.0, 1.0, 1.0)
+            font_size: 18
+            alignment: "left"
+        }
+
+        element: .drive_remaining
+        {
+            type: "text"
+            position: (10, 150)
+            size: (200, 40)
+            text: "Drive: $$drive_rem h"
+            font: "font_regular"
+            color: (1.0, 1.0, 1.0, 1.0)
+            font_size: 18
+            alignment: "left"
+        }
+
+        element: .shift_remaining
+        {
+            type: "text"
+            position: (10, 200)
+            size: (200, 40)
+            text: "Shift: $$shift_rem h"
+            font: "font_regular"
+            color: (1.0, 1.0, 1.0, 1.0)
+            font_size: 18
+            alignment: "left"
+        }
+
+        element: .odometer_display
+        {
+            type: "text"
+            position: (300, 100)
+            size: (202, 40)
+            text: "Odo: $$odometer mi"
+            font: "font_regular"
+            color: (1.0, 1.0, 1.0, 1.0)
+            font_size: 18
+            alignment: "right"
+        }
+
+        element: .engine_hours
+        {
+            type: "text"
+            position: (300, 150)
+            size: (202, 40)
+            text: "Engine: $$engine_hours h"
+            font: "font_regular"
+            color: (1.0, 1.0, 1.0, 1.0)
+            font_size: 18
+            alignment: "right"
+        }
+
+        element: .connection_status
+        {
+            type: "text"
+            position: (300, 200)
+            size: (202, 40)
+            text: "$$connection"
+            font: "font_regular"
+            color: (0.0, 1.0, 0.0, 1.0)
+            font_size: 18
+            alignment: "right"
+        }
+
+        # Screen brightness animation
+        animation: brightness
+        {
+            type: "float"
+            name: "screen_brightness"
+            from: 0.0
+            to: 1.0
+            duration: 2.0
+            easing: "ease_out"
+        }
+    }
+}
