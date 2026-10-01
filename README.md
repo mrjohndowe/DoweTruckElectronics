@@ -68,8 +68,19 @@ DoweTruckElectronics/
 - Bogey counter for multiple alerts
 - Thread-safe signal processing
 
+### Phase 6: Persistent Log Storage ✅
+- Log entry structures for status changes, violations, inspections, fuel stops
+- JSON serialization for all log types
+- Daily log rotation with automatic file management
+- Log storage manager with thread-safe operations
+- ELD engine integration for automatic logging
+- Daily log retrieval and date range queries
+- Trip management with start/end tracking
+- Violation acknowledgment system
+- Inspection checklist logging
+- Fuel stop tracking with cost calculation
+
 ### Next Steps
-- Persistent log storage
 - ATS mod integration (models, animations, UI)
 
 ## Building
@@ -199,6 +210,60 @@ The radar engine is integrated with the main application and will:
 - Display alerts through the UI mockup
 - Emit voice alerts when enabled
 - Track bogey count and signal strength
+
+## Persistent Log Storage
+
+The persistent log storage system saves all ELD data to disk for compliance and inspection purposes.
+
+### Log Types
+
+- **Log Entries**: Duty status changes with timestamps, duration, and distance
+- **Violations**: HOS violations with severity and acknowledgment tracking
+- **Inspections**: Pre-trip, post-trip, and DVIR inspections with checklist items
+- **Fuel Stops**: Fuel purchases with location, cost, and odometer data
+- **Trips**: Complete trip records with origin, destination, cargo, and delivery status
+
+### Storage Format
+
+- **JSON Format**: All logs are stored as human-readable JSON files
+- **Daily Rotation**: Each day's logs are stored in a separate file (YYYY-MM-DD.json)
+- **Directory Structure**: Logs are stored in `./logs/` subdirectory
+- **Automatic Saving**: Logs are saved automatically on shutdown
+
+### Features
+
+- **Automatic Logging**: ELD engine automatically logs all status changes
+- **Thread-Safe**: All storage operations are mutex-protected
+- **Query by Date**: Retrieve logs for specific dates or date ranges
+- **Violation Tracking**: Track and acknowledge HOS violations
+- **Trip Management**: Start and end trips with cargo tracking
+- **Inspection Checklists**: Complete inspection logging with item details
+- **Fuel Tracking**: Comprehensive fuel stop logging with cost calculation
+
+### File Structure
+
+```
+logs/
+├── 2026-10-01.json
+├── 2026-10-02.json
+└── 2026-10-03.json
+```
+
+Each daily log file contains:
+- Daily totals (driving hours, on-duty hours, off-duty hours, sleeper berth hours, distance)
+- All status change entries
+- Any violations that occurred
+- Inspection records
+- Fuel stop records
+
+### Usage
+
+The log storage system is automatically integrated with the ELD engine:
+- Status changes are automatically logged with timestamps and duration
+- Logs are saved to `./logs/` directory as JSON files
+- Daily rotation ensures manageable file sizes
+- Logs are saved automatically on application shutdown
+- Logs can be queried by date or date range programmatically
 
 ## License
 

@@ -3,6 +3,7 @@
 #include <thread>
 #include <chrono>
 #include <random>
+#include <memory>
 
 #include "telemetry/TelemetryManager.h"
 #include "telemetry/adapter/ScsTelemetryAdapter.h"
@@ -10,6 +11,7 @@
 #include "eld/DutyStatus.h"
 #include "radar/RadarEngine.h"
 #include "radar/RadarTypes.h"
+#include "persistence/LogStorage.h"
 #include "shared/Logging.h"
 
 using namespace DoweTruckElectronics;
@@ -60,6 +62,18 @@ int main()
 
     // Create radar engine
     Radar::RadarEngine radar;
+
+    // Create log storage
+    auto log_storage = std::make_shared<Persistence::LogStorage>(".");
+    if (!log_storage->initialize())
+    {
+        Logger::warning("Failed to initialize log storage, continuing without persistence");
+    }
+    else
+    {
+        eld.set_log_storage(log_storage);
+        Logger::info("Log storage initialized");
+    }
 
     // Subscribe to radar alerts
     radar.alert_triggered().subscribe(
@@ -134,6 +148,14 @@ int main()
 
     Logger::info("Stopping telemetry manager");
     telemetry_manager.stop();
+
+    // Save logs before shutdown
+    if (log_storage)
+    {
+        Logger::info("Saving logs...");
+        log_storage->save_current_day();
+        Logger::info("Logs saved successfully");
+    }
 
     Logger::info("Shutdown complete");
 
