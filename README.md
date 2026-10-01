@@ -47,6 +47,14 @@ DoweTruckElectronics/
 - Real-time animations and state changes
 - Responsive HTML/CSS implementation
 
+### Phase 4: SCS SDK Integration ✅
+- SCS telemetry data structure definitions
+- Cross-platform shared memory connection (Windows/macOS/Linux)
+- SCS telemetry parser with validation
+- Mapping of SCS data to internal TelemetryState
+- Automatic fallback to simulation mode when ATS is not running
+- Support for both ATS and ETS2 telemetry
+
 ### Next Steps
 - Persistent log storage
 - Radar detection engine
@@ -91,6 +99,53 @@ The mockups include:
 - Animated alerts and notifications
 - Configurable settings toggles
 - Responsive design for different display sizes
+
+## SCS SDK Integration
+
+This project integrates with the SCS Telemetry SDK to read real-time data from American Truck Simulator and Euro Truck Simulator 2.
+
+### Prerequisites
+
+To use real ATS/ETS2 telemetry, you need to install the SCS telemetry plugin:
+
+1. Download the [scs-sdk-plugin](https://github.com/truckermudgeon/scs-sdk-plugin/releases)
+2. Extract the plugin files
+3. Copy the plugin to your game's `plugins` folder:
+
+**Windows:**
+```
+C:\Program Files (x86)\Steam\steamapps\common\American Truck Simulator\bin\win_x64\plugins\
+```
+
+**macOS:**
+```
+/Applications/American Truck Simulator.app/Contents/MacOS/plugins/
+```
+
+**Linux:**
+```
+~/.steam/steam/steamapps/common/American\ Truck\ Simulator/bin/linux_x64/plugins/
+```
+
+### How It Works
+
+- The SCS plugin writes telemetry data to shared memory (`Local\SCSTelemetry` on Windows, `/SCSTelemetry` on Unix)
+- Our application reads this shared memory in real-time
+- The data is parsed and mapped to our internal `TelemetryState` structure
+- If ATS is not running or the plugin is not installed, the system automatically falls back to simulation mode
+
+**Note:** The adapter defaults to simulation mode. To use real telemetry, ensure ATS/ETS2 is running with the SCS plugin installed before starting the application.
+
+### Telemetry Data Mapped
+
+- Speed (km/h → m/s conversion)
+- Engine state (on/off)
+- Parking brake status
+- Odometer (km)
+- Trailer connection status
+- Navigation route distance
+- Game pause state
+- Rest stop/sleep detection
 
 ## License
 

@@ -42,9 +42,8 @@ int main()
 
     Logger::info("Starting Dowe Truck Electronics System");
 
-    // Create telemetry adapter in simulation mode
+    // Create telemetry adapter (will try real SDK first, fallback to simulation)
     auto adapter = std::make_unique<ScsTelemetryAdapter>();
-    adapter->enable_simulation_mode(true);
 
     // Create telemetry manager
     TelemetryManager telemetry_manager(std::move(adapter));
@@ -72,6 +71,7 @@ int main()
 
     Logger::info("Running for 30 seconds...");
     Logger::info("Press Ctrl+C to exit early");
+    Logger::info("Note: Start ATS/ETS2 with SCS telemetry plugin for real data");
 
     // Run for 30 seconds
     for (int i = 0; i < 300; ++i)
