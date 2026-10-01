@@ -1,0 +1,18 @@
+TEXTURE PLACEHOLDER
+
+This file should be replaced with actual .tobj texture files.
+
+Required textures for Radar Detector:
+- dowe_radar.tobj - Main diffuse texture
+- dowe_radar_n.tobj - Normal map
+- dowe_radar_ao.tobj - Ambient occlusion map
+
+The textures should include:
+- Radar detector housing
+- LED display elements
+- Control buttons
+- Directional arrows
+- Signal strength indicators
+- Proper UV mapping for the 3D model
+
+Convert this placeholder to real .tobj files using SCS Texture Tools before distributing the mod.

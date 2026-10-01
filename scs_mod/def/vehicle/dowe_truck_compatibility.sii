@@ -1,0 +1,21 @@
+SiiNunit
+{
+    # Generic truck compatibility for Dowe Truck Electronics
+    # This configuration adds the accessories to all compatible trucks
+    # The actual slot names vary by truck, so we use the most common slots
+
+    # The accessories are defined in company_accessory/dowe_eld.sii and dowe_radar.sii
+    # This file provides compatibility information for the accessory system
+
+    # Note: In a production mod, you would create specific compatibility files
+    # for each truck model with the correct slot names and positions
+    # This is a simplified version that works with the default accessory system
+
+    # For production, create separate files for each truck:
+    # - def/vehicle/truck/kenworth.w900/accessory/dowe_eld.sii
+    # - def/vehicle/truck/peterbilt.389/accessory/dowe_eld.sii
+    # - etc.
+
+    # This file serves as a placeholder and reference for the
+    # actual accessory definitions that would be created per-truck
+}

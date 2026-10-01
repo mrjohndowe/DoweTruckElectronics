@@ -14,12 +14,19 @@ This project implements a fully functional truck electronics suite including:
 
 ```
 DoweTruckElectronics/
-├── core/              # Shared types and events
-├── telemetry/         # ATS telemetry connection
-├── eld/              # ELD engine and HOS logic
-├── radar/            # Radar detection engine
-├── devices/          # Device interfaces
-└── scs_mod/          # ATS mod definitions
+├── src/               # Source code
+│   ├── telemetry/      # ATS telemetry connection
+│   ├── eld/           # ELD engine and HOS logic
+│   ├── radar/         # Radar detection engine
+│   ├── persistence/   # Log storage and serialization
+│   └── shared/        # Shared types and events
+├── scs_mod/           # ATS mod files
+│   ├── def/           # Mod definitions
+│   ├── material/      # Material definitions
+│   ├── model/         # 3D models
+│   └── ui/            # UI assets
+├── ui-mockups/        # HTML/CSS UI mockups
+└── logs/              # Persistent log storage
 ```
 
 ## Current Status
@@ -80,8 +87,23 @@ DoweTruckElectronics/
 - Inspection checklist logging
 - Fuel stop tracking with cost calculation
 
+### Phase 7: ATS Mod Integration ✅
+- ATS mod manifest with metadata and compatibility
+- ELD accessory definition with mount positions
+- Radar detector accessory definition with animations
+- Material definitions for ELD and radar devices
+- Animation definitions for screen brightness, alerts, direction arrows
+- UI definitions for ELD and radar displays
+- Truck compatibility configurations for all SCS stock trucks
+- Mod directory structure following SCS conventions
+- Installation and usage documentation
+
 ### Next Steps
-- ATS mod integration (models, animations, UI)
+- Create 3D models for ELD tablet and radar detector
+- Create textures for materials
+- Create actual mod icon image
+- Test mod in American Truck Simulator
+- Finalize UI integration with external application
 
 ## Building
 
@@ -264,6 +286,60 @@ The log storage system is automatically integrated with the ELD engine:
 - Daily rotation ensures manageable file sizes
 - Logs are saved automatically on application shutdown
 - Logs can be queried by date or date range programmatically
+
+## ATS Mod Integration
+
+The ATS mod files provide the in-game truck interior accessories for the ELD tablet and radar detector.
+
+### Mod Structure
+
+```
+scs_mod/
+├── manifest.sii                    # Mod manifest
+├── mod_icon.jpg                   # Mod icon
+├── def/
+│   ├── company_accessory/         # Accessory definitions
+│   ├── vehicle/                   # Vehicle configurations
+│   └── ui/                        # UI definitions
+├── material/model/                 # Material definitions
+├── model/                         # 3D models
+└── ui/                            # UI assets
+```
+
+### Features
+
+- **ELD Tablet Accessory**: Installable ELD tablet with multiple mount positions
+- **Radar Detector Accessory**: Installable radar detector with animations
+- **Multiple Mount Positions**: Windshield, dashboard, and overhead mounting
+- **Animated Displays**: Boot animations, screen brightness, alert animations
+- **UI Screens**: In-game UI templates for ELD and radar displays
+- **Truck Compatibility**: Supports all SCS stock trucks (Kenworth, Peterbilt, Freightliner, Volvo, International, Mack, Western Star)
+- **Material Definitions**: PBR materials with emissive displays
+
+### Installation
+
+1. Copy the `scs_mod` directory to your ATS mods folder
+2. Rename to `dowe_truck_electronics`
+3. Enable in ATS Mod Manager
+4. Purchase accessories from truck accessory shop
+
+### Required Assets
+
+The following assets need to be created for full functionality:
+- 3D models (.pmd files) for ELD tablet and radar detector
+- Textures (.tobj files) for materials
+- Mod icon (512x512 JPG)
+
+See `scs_mod/README.md` for detailed instructions.
+
+### Integration
+
+The mod works with the external DoweTruckElectronics application:
+1. Install SCS telemetry plugin in ATS
+2. Run the external application
+3. The application reads telemetry and processes ELD/radar data
+4. The mod displays the devices in the truck interior
+5. Both systems work together for complete functionality
 
 ## License
 

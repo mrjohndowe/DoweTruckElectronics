@@ -1,0 +1,25 @@
+SiiNunit
+{
+    mod_package_info: .dowe_truck_electronics
+    {
+        name: "Dowe Truck Electronics"
+        package_version: "0.1.0"
+        author: "Dowe Technologies"
+        email: "contact@dowetechnologies.com"
+        url: "https://github.com/dowetechnologies/dowe-truck-electronics"
+        description: "Comprehensive ELD and radar detector system for American Truck Simulator. Features FMCSA-compliant electronic logging device with automatic duty status detection, hours of service tracking, and multi-band radar detection with directional alerts."
+
+        icon: "mod_icon.jpg"
+
+        supported_game_versions: "1.50.*"
+        compatible_versions[]: "1.50"
+        compatible_versions[]: "1.49"
+        compatible_versions[]: "1.48"
+
+        # Only show in ATS
+        supported_game[]: "ats"
+
+        # Load priority
+        load_priority: 0
+    }
+}

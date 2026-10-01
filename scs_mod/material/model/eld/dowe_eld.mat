@@ -1,0 +1,41 @@
+material: "eut2.model.dowe_eld"
+{
+    texture[0]: "/material/model/eld/dowe_eld.tobj"
+    texture[1]: "/material/model/eld/dowe_eld_n.tobj"
+    texture[2]: "/material/model/eld/dowe_eld_ao.tobj"
+
+    # PBR material settings
+    # These are placeholder values - actual values depend on the textures
+    attribute[]: {
+        attribute[0]: "df0"
+        attribute[1]: "df0"
+        attribute[2]: "df0"
+        attribute[3]: "df0"
+        attribute[4]: "df0"
+        attribute[5]: "df0"
+        attribute[6]: "df0"
+        attribute[7]: "df0"
+        attribute[8]: "df0"
+        attribute[9]: "df0"
+        attribute[10]: "df0"
+        attribute[11]: "df0"
+        attribute[12]: "df0"
+        attribute[13]: "df0"
+        attribute[14]: "df0"
+        attribute[15]: "df0"
+    }
+
+    # Screen emission (self-illumination)
+    emissive: true
+    emissive_color: (0.8, 0.9, 1.0)
+    emissive_intensity: 1.0
+
+    # Reflection settings
+    reflectivity: 0.2
+    shininess: 0.8
+
+    # Screen specific settings
+    add_ambient: 0.3
+    add_diffuse: 0.2
+    add_specular: 0.1
+}
