@@ -1,5 +1,4 @@
-# Fleet Guard
-#### by Dowe Technologies
+# DoweTruckElectronics
 
 A comprehensive ELD (Electronic Logging Device) and radar detector system for American Truck Simulator.
 
@@ -56,9 +55,21 @@ DoweTruckElectronics/
 - Automatic fallback to simulation mode when ATS is not running
 - Support for both ATS and ETS2 telemetry
 
+### Phase 5: Radar Detection Engine ✅
+- Multi-band radar detection (X, K, Ka, Laser, POP, MRCD)
+- Directional detection (Front, Rear, Side)
+- Signal strength meter with decay
+- Sensitivity modes (Highway, Auto, City, No X)
+- Configurable band filters
+- Voice alert system with text-to-speech messages
+- Auto-mute at low speeds
+- Auto-dim based on ambient conditions
+- Settings management with event notifications
+- Bogey counter for multiple alerts
+- Thread-safe signal processing
+
 ### Next Steps
 - Persistent log storage
-- Radar detection engine
 - ATS mod integration (models, animations, UI)
 
 ## Building
@@ -147,6 +158,47 @@ C:\Program Files (x86)\Steam\steamapps\common\American Truck Simulator\bin\win_x
 - Navigation route distance
 - Game pause state
 - Rest stop/sleep detection
+
+## Radar Detection System
+
+The radar detection engine provides comprehensive multi-band radar detection with configurable sensitivity and directional alerts.
+
+### Supported Bands
+
+- **X Band**: 10.5 GHz (older police radar, high false alarm rate)
+- **K Band**: 24.1 GHz (common police radar)
+- **Ka Band**: 34.7 GHz (modern police radar, most common)
+- **Laser**: 904 nm (LIDAR speed detection)
+- **POP Mode**: Instant-on radar detection
+- **MRCD**: Photo radar detection (photo enforcement)
+
+### Sensitivity Modes
+
+- **Highway**: Maximum sensitivity for highway driving
+- **Auto**: Automatically adjusts sensitivity based on speed
+- **City**: Reduced sensitivity for urban environments
+- **No X**: Medium sensitivity with X band disabled
+
+### Features
+
+- **Directional Detection**: Front, Rear, and Side arrow indicators
+- **Signal Strength**: 7-level signal meter with real-time updates
+- **Bogey Counter**: Tracks multiple radar sources simultaneously
+- **Voice Alerts**: Text-to-speech announcements for detected bands
+- **Auto-Mute**: Automatically mutes alerts at low speeds
+- **Auto-Dim**: Reduces display brightness at night
+- **Band Filters**: Enable/disable individual radar bands
+- **Volume Control**: Adjustable alert volume
+- **Brightness Control**: Adjustable display brightness
+
+### Usage
+
+The radar engine is integrated with the main application and will:
+- Simulate random radar signals when in simulation mode
+- Process real radar data when integrated with ATS
+- Display alerts through the UI mockup
+- Emit voice alerts when enabled
+- Track bogey count and signal strength
 
 ## License
 
