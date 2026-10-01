@@ -1,0 +1,99 @@
+SiiNunit
+{
+    # ELD Tablet Accessory
+    accessory_slot_data: .dowe_eld
+    {
+        name: "Dowe ELD Tablet"
+        price: 450
+        unlock_level: 0
+
+        # ELD Model
+        model: "model/eld/dowe_eld.pmd"
+        coll_mask: 1
+        mass: 0.5
+
+        # Material
+        material: "material/model/eld/dowe_eld.mat"
+
+        # UI for ELD display
+        ui: "ui/eld_screen.sui"
+
+        # Animations
+        # Boot animation
+        animation: boot
+        {
+            type: "sequential"
+            duration: 2.0
+            nodes: 2
+            nodes[0]: screen_brightness
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+            nodes[1]: screen_power
+            {
+                type: "bool"
+                value: true
+            }
+        }
+
+        # Screen dim animation
+        animation: screen_dim
+        {
+            type: "float"
+            name: "screen_brightness"
+            to: 0.3
+            duration: 0.5
+            easing: "ease_in_out"
+        }
+
+        # Screen bright animation
+        animation: screen_bright
+        {
+            type: "float"
+            name: "screen_brightness"
+            to: 1.0
+            duration: 0.5
+            easing: "ease_in_out"
+        }
+
+        # Touch effect animation
+        animation: touch
+        {
+            type: "sequential"
+            duration: 0.2
+            nodes: 1
+            nodes[0]: touch_ripple
+            {
+                type: "float"
+                from: 0.0
+                to: 1.0
+                easing: "ease_out"
+            }
+        }
+
+        # Mount positions
+        accessory_slot_data: .mount_windshield
+        {
+            slot_name: "slot_14"
+            offset: (0.0, 0.3, 0.5)
+            rotation: (0.0, 0.0, 0.0)
+        }
+
+        accessory_slot_data: .mount_dashboard
+        {
+            slot_name: "slot_11"
+            offset: (0.0, 0.2, 0.0)
+            rotation: (0.0, 0.0, 0.0)
+        }
+
+        accessory_slot_data: .mount_overhead
+        {
+            slot_name: "slot_13"
+            offset: (0.0, 0.1, 0.0)
+            rotation: (0.0, 0.0, 0.0)
+        }
+    }
+}

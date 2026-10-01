@@ -1,0 +1,40 @@
+material: "eut2.model.dowe_radar"
+{
+    texture[0]: "/material/model/radar/dowe_radar.tobj"
+    texture[1]: "/material/model/radar/dowe_radar_n.tobj"
+    texture[2]: "/material/model/radar/dowe_radar_ao.tobj"
+
+    # PBR material settings
+    attribute[]: {
+        attribute[0]: "df0"
+        attribute[1]: "df0"
+        attribute[2]: "df0"
+        attribute[3]: "df0"
+        attribute[4]: "df0"
+        attribute[5]: "df0"
+        attribute[6]: "df0"
+        attribute[7]: "df0"
+        attribute[8]: "df0"
+        attribute[9]: "df0"
+        attribute[10]: "df0"
+        attribute[11]: "df0"
+        attribute[12]: "df0"
+        attribute[13]: "df0"
+        attribute[14]: "df0"
+        attribute[15]: "df0"
+    }
+
+    # LED emission for displays
+    emissive: true
+    emissive_color: (1.0, 0.8, 0.6)
+    emissive_intensity: 0.8
+
+    # Reflection settings
+    reflectivity: 0.3
+    shininess: 0.7
+
+    # Display specific settings
+    add_ambient: 0.4
+    add_diffuse: 0.3
+    add_specular: 0.2
+}

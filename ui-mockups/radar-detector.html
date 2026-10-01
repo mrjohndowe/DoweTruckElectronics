@@ -198,8 +198,27 @@
             color: #ff4444;
         }
 
+
+
         .bogey-count.inactive {
             color: #666;
+        }
+
+        .bogey-status {
+            font-size: 12px;
+            font-weight: 600;
+            color: #00ff00;
+            text-decoration: underline;
+        }
+        .bogey-status.inactive {
+            color: #666;
+        }
+        .bogey-status.alert {
+            color: #ff4444;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+
         }
 
         .band-display {
@@ -223,10 +242,33 @@
             color: #666;
         }
 
-        .band-letter-small.active {
+        .band-letter-small.x {
+            color: #44ff44;
+            text-shadow: 0 0 10px rgba(68, 255, 68, 0.5);
+            animation: pulse 0.5s ease-in-out infinite;
+        }
+        .band-letter-small.k {
+            color: #ffaa00;
+            text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+            animation: pulse 0.5s ease-in-out infinite;
+        }
+        .band-letter-small.ka {
             color: #ff4444;
             text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+            animation: pulse 0.5s ease-in-out infinite;
         }
+        .band-letter-small.laser {
+            color: #ff44ff;
+            text-shadow: 0 0 10px rgba(255, 68, 255, 0.5);
+            animation: pulse 0.5s ease-in-out infinite;
+        }
+        .band-letter-small.inactive {
+            color: #666;
+            text-shadow: none;
+            animation: none;
+        }
+
+
 
         .band-led {
             width: 8px;
@@ -238,6 +280,7 @@
         .band-led.active {
             background: #ff4444;
             box-shadow: 0 0 10px rgba(255, 68, 68, 0.8);
+            animation: pulse 0.5s ease-in-out infinite;
         }
 
         .controls {
@@ -269,9 +312,11 @@
         }
 
         .control-btn.muted {
-            background: #ff4444;
+            /* background: #ff4444;
             border-color: #ff6666;
-            color: #fff;
+            color: #fff; */
+            color:red;
+            /* font-size: 10px; */
         }
 
         .control-btn.active {
@@ -356,7 +401,7 @@
 <body>
     <div class="radar-detector">
         <div class="detector-header">
-            <div class="brand">ESCORT</div>
+            <div class="brand">DOWE TECHNOLOGIES - ESCORT</div>
             <div class="mode-buttons">
                 <button class="mode-btn" onclick="setMode('highway')">HWY</button>
                 <button class="mode-btn active" onclick="setMode('auto')">AUTO</button>
@@ -389,24 +434,25 @@
 
             <div class="bogey-counter">
                 <div class="bogey-label">Alerts</div>
-                <div class="bogey-count" id="bogeyCount">2</div>
+                <div class="bogey-status" id="bogeyStatus"> </div>
+                <div class="bogey-count" id="bogeyCount"> </div>
             </div>
 
             <div class="band-display">
                 <div class="band-indicator">
-                    <div class="band-letter-small">X</div>
+                    <div id="bandLetterX" class="band-letter-small">X</div>
                     <div class="band-led" id="ledX"></div>
                 </div>
                 <div class="band-indicator">
-                    <div class="band-letter-small active">K</div>
-                    <div class="band-led active" id="ledK"></div>
+                    <div id="bandLetterK" class="band-letter-small">K</div>
+                    <div class="band-led" id="ledK"></div>
                 </div>
                 <div class="band-indicator">
-                    <div class="band-letter-small active">KA</div>
-                    <div class="band-led active" id="ledKa"></div>
+                    <div id="bandLetterKa" class="band-letter-small">KA</div>
+                    <div class="band-led" id="ledKa"></div>
                 </div>
                 <div class="band-indicator">
-                    <div class="band-letter-small">LASER</div>
+                    <div class="band-letter-small " id="bandLetterLaser">LASER</div>
                     <div class="band-led" id="ledLaser"></div>
                 </div>
             </div>
@@ -430,7 +476,8 @@
     <script>
         let currentMode = 'auto';
         let isMuted = false;
-        let isDimmed = false;
+        let isPoweredOn = true;
+        let brightnessStatus = 'full';
         let currentSensitivity = 'high';
 
         function setMode(mode) {
@@ -446,7 +493,7 @@
             const btn = document.getElementById('muteBtn');
             if (isMuted) {
                 btn.classList.add('muted');
-                btn.textContent = 'UNMUTE';
+                btn.textContent = 'MUTE';
             } else {
                 btn.classList.remove('muted');
                 btn.textContent = 'MUTE';
@@ -454,9 +501,13 @@
         }
 
         function toggleDim() {
-            isDimmed = !isDimmed;
+            const brightness = ['full', 'medium', 'low'];
+            const currentIndex = brightness.indexOf(brightnessStatus);
+            brightnessStatus = brightness[(currentIndex + 1) % brightness.length];
             const detector = document.querySelector('.radar-detector');
-            if (isDimmed) {
+            if (brightnessStatus === 'low') {
+                detector.style.opacity = '0.2';
+            }else if (brightnessStatus === 'medium') {
                 detector.style.opacity = '0.5';
             } else {
                 detector.style.opacity = '1';
@@ -471,12 +522,20 @@
         }
 
         function togglePower() {
+            isPoweredOn = !isPoweredOn;
             const detector = document.querySelector('.radar-detector');
-            if (detector.style.display === 'none') {
+            if (isPoweredOn) {
                 detector.style.display = 'flex';
+                btn.classList.add('powered');
+                btn.textContent = 'PWR';
+
             } else {
                 detector.style.display = 'none';
+                btn.classList.remove('powered');
+                btn.textContent = 'PWR';
+
             }
+
         }
 
         // Simulate radar alerts
@@ -486,8 +545,9 @@
                 'X': '10.5 GHz',
                 'K': '24.1 GHz',
                 'KA': '34.7 GHz',
-                'LASER': '904 nm'
+                'LASER': '904 mi'
             };
+            const alertStatus = ['POLICE DETECTED', 'RED LIGHT CAMERA', 'SPEED CAMERA', 'TRAFFIC ENFORCEMENT'];
 
             const band = bands[Math.floor(Math.random() * bands.length)];
             const strength = Math.floor(Math.random() * 7) + 1;
@@ -518,8 +578,76 @@
             // Update bogey count
             document.getElementById('bogeyCount').textContent = Math.floor(Math.random() * 3) + 1;
 
+            const statusDisplay = document.getElementById('bogeyStatus');
+            statusDisplay.textContent = alertStatus[Math.floor(Math.random() * alertStatus.length)];
+            statusDisplay.classList.add('alert');
+            setTimeout(() => {
+                statusDisplay.classList.remove('alert');
+                statusDisplay.textContent = ' ';
+            }, 3000);
+
+
             // Show voice alert
             const voiceAlert = document.getElementById('voiceAlert');
+
+            const laserLED = document.getElementById('ledLaser');
+            const ledK = document.getElementById('ledK');
+            const ledKa = document.getElementById('ledKa');
+            const ledX = document.getElementById('ledX');
+
+            const KaLetter = document.getElementById('bandLetterKa');
+            const XLetter = document.getElementById('bandLetterX');
+            const KLetter = document.getElementById('bandLetterK');
+            const laserLetter = document.getElementById('bandLetterLaser');
+
+            if (band === 'LASER') {
+                laserLED.classList.add('active');
+                laserLetter.classList.add('laser');
+                ledK.classList.remove('active');
+                KLetter.classList.remove('k');
+                ledKa.classList.remove('active');
+                KaLetter.classList.remove('ka');
+                ledX.classList.remove('active');
+                XLetter.classList.remove('x');
+            } else if (band === 'K') {
+                ledK.classList.add('active');
+                KLetter.classList.add('k');
+                laserLED.classList.remove('active');
+                laserLetter.classList.remove('laser');
+                ledKa.classList.remove('active');
+                KaLetter.classList.remove('ka');
+                ledX.classList.remove('active');
+                XLetter.classList.remove('x');
+            } else if (band === 'KA') {
+                ledKa.classList.add('active');
+                KaLetter.classList.add('ka');
+                laserLED.classList.remove('active');
+                laserLetter.classList.remove('laser');
+                ledK.classList.remove('active');
+                KLetter.classList.remove('k');
+                ledX.classList.remove('active');
+                XLetter.classList.remove('x');
+            }else if (band === 'X') {
+                ledX.classList.add('active');
+                XLetter.classList.add('x');
+                laserLED.classList.remove('active');
+                laserLetter.classList.remove('laser');
+                ledK.classList.remove('active');
+                KLetter.classList.remove('k');
+                ledKa.classList.remove('active');
+                KaLetter.classList.remove('ka');
+            }
+            else {
+                laserLED.classList.remove('active');
+                laserLetter.classList.remove('laser');
+                ledK.classList.remove('active');
+                KLetter.classList.remove('k');
+                ledKa.classList.remove('active');
+                KaLetter.classList.remove('ka');
+                ledX.classList.remove('active');
+                XLetter.classList.remove('x');
+            }
+
             voiceAlert.textContent = band + ' BAND AHEAD';
             voiceAlert.classList.add('show');
             setTimeout(() => {

@@ -1,10 +1,20 @@
 #include "EldEngine.h"
+#include "../persistence/LogTypes.h"
+#include "../shared/Logging.h"
+#include <chrono>
 
 namespace DoweTruckElectronics
 {
     EldEngine::EldEngine()
+        : m_status_change_time(std::chrono::system_clock::now())
+        , m_status_distance(0.0)
     {
         m_hos.reset();
+    }
+
+    void EldEngine::set_log_storage(std::shared_ptr<Persistence::LogStorage> storage)
+    {
+        m_log_storage = storage;
     }
 
     void EldEngine::update(const TelemetryState& telemetry)
@@ -29,6 +39,12 @@ namespace DoweTruckElectronics
             driving,
             on_duty
         );
+
+        // Track distance during current status
+        if (driving)
+        {
+            m_status_distance += telemetry.speed_mps * telemetry.delta_seconds / 1000.0; // Convert to km
+        }
     }
 
     void EldEngine::determine_automatic_status(
@@ -60,16 +76,34 @@ namespace DoweTruckElectronics
         DutyStatus old_status,
         DutyStatus new_status)
     {
-        // A real event/log system will be connected here next.
-        //
-        // Example:
-        //
-        // 10:32:14
-        // ON DUTY -> DRIVING
-        //
-        // This will eventually create a permanent ELD log entry.
-        (void)old_status;
-        (void)new_status;
+        // Create log entry for status change
+        if (m_log_storage)
+        {
+            Persistence::LogEntry entry;
+            entry.timestamp = std::chrono::system_clock::now();
+            entry.from_status = old_status;
+            entry.to_status = new_status;
+
+            // Calculate duration of previous status
+            auto now = std::chrono::system_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::seconds>(
+                now - m_status_change_time).count();
+            entry.duration_seconds = static_cast<double>(duration);
+            entry.distance_km = m_status_distance;
+            entry.location = ""; // Would be filled from GPS
+            entry.notes = "";
+
+            m_log_storage->add_log_entry(entry);
+
+            Logger::info(std::string("Status change: ") +
+                DutyStatusName(old_status) + " -> " + DutyStatusName(new_status) +
+                " (" + std::to_string(entry.duration_seconds) + "s, " +
+                std::to_string(entry.distance_km) + " km)");
+        }
+
+        // Reset tracking for new status
+        m_status_change_time = std::chrono::system_clock::now();
+        m_status_distance = 0.0;
     }
 
     void EldEngine::set_manual_status(DutyStatus status)

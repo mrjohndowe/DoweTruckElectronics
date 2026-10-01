@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.24)
-project(DoweTruckElectronics VERSION 0.1.0 LANGUAGES CXX)
+project(DoweTruckElectronics VERSION 0.0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -32,6 +32,10 @@ add_executable(DoweTruckElectronics
     src/telemetry/adapter/ScsTelemetryAdapter.cpp
     src/telemetry/scs/SharedMemory.cpp
     src/telemetry/scs/ScsTelemetryParser.cpp
+    src/radar/RadarSettings.cpp
+    src/radar/RadarEngine.cpp
+    src/persistence/JsonWriter.cpp
+    src/persistence/LogStorage.cpp
 )
 
 target_include_directories(
@@ -43,3 +47,8 @@ target_link_libraries(
     DoweTruckElectronics
     PRIVATE Threads::Threads ${PLATFORM_LIBS}
 )
+
+# Link stdc++fs for filesystem support on older GCC versions
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9.0)
+    target_link_libraries(DoweTruckElectronics PRIVATE stdc++fs)
+endif()
