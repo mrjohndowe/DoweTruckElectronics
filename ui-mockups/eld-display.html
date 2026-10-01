@@ -86,7 +86,7 @@
         .nav-tab.active {
             background: #2d2d2d;
             color: #00aaff;
-            border-bottom: 2px solid #00aaff;
+            border-bottom: 2px solid lime;
         }
 
         .screen {
@@ -185,11 +185,13 @@
 
         .duty-btn:hover {
             background: #444;
+            border-color: rgb(0, 238, 255);
         }
 
         .duty-btn.active {
             background: #0066cc;
-            border-color: #00aaff;
+            border-color: rgba(0, 255, 0, 0.85);
+
         }
 
         .duty-btn.manual {
@@ -341,12 +343,21 @@
             color: #00ff00;
             font-weight: 600;
         }
+        .company-name {
+            position: relative;
+            left:-250px;
+            top:3px;
+            font-size: x-small;
+            font-style: italic;
+            color:cornsilk;
+
+        }
     </style>
 </head>
 <body>
     <div class="eld-tablet">
         <div class="eld-header">
-            <h1>Dowe Truck Electronics</h1>
+            <h1>Fleet Guard</h1><small class="company-name">Dowe Technologies</small>
             <div class="time">10:42 AM</div>
         </div>
 
@@ -450,6 +461,11 @@
                     <div class="label">Mode</div>
                     <div class="value small">Automatic - Status changes based on truck movement</div>
                 </div>
+                <br>
+                <div class="info-card danger">
+                    <div class="label">Manual Override</div>
+                    <div class="value small">Click a status to manually change it</div>
+                </div>
             </div>
 
             <!-- Logs Screen -->
@@ -508,6 +524,10 @@
                 <div class="inspection-item">
                     <div class="check">✓</div>
                     <div class="label">Mirrors</div>
+                </div>
+                <div class="inspection-item">
+                    <div class="check">✓</div>
+                    <div class="label">Global Position System</div>
                 </div>
             </div>
 
@@ -587,7 +607,7 @@
         </div>
 
         <div class="eld-footer">
-            <div>Dowe Truck Electronics v0.1.0</div>
+            <div>Dowe Technologies Electronics v0.0.1</div>
             <div class="current-status">
                 <span class="status-indicator active"></span>
                 Connected to ATS

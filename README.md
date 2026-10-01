@@ -1,4 +1,5 @@
-# DoweTruckElectronics
+# Fleet Guard
+#### by Dowe Technologies
 
 A comprehensive ELD (Electronic Logging Device) and radar detector system for American Truck Simulator.
 
