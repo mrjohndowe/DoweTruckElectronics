@@ -4,6 +4,7 @@
 #include "HosClock.h"
 #include "../telemetry/TelemetryState.h"
 #include <memory>
+#include <chrono>
 
 namespace DoweTruckElectronics
 {
@@ -12,6 +13,13 @@ namespace DoweTruckElectronics
         class LogStorage;
     }
 
+#ifdef ENABLE_SQLITE
+    namespace Persistence
+    {
+        class SqliteStorage;
+    }
+#endif
+
     class EldEngine
     {
     public:
@@ -19,6 +27,9 @@ namespace DoweTruckElectronics
         ~EldEngine() = default;
 
         void set_log_storage(std::shared_ptr<Persistence::LogStorage> storage);
+#ifdef ENABLE_SQLITE
+        void set_sqlite_storage(std::shared_ptr<Persistence::SqliteStorage> storage);
+#endif
 
         void update(const TelemetryState& telemetry);
 
@@ -49,6 +60,9 @@ namespace DoweTruckElectronics
         HosClock m_hos;
 
         std::shared_ptr<Persistence::LogStorage> m_log_storage;
+#ifdef ENABLE_SQLITE
+        std::shared_ptr<Persistence::SqliteStorage> m_sqlite_storage;
+#endif
         std::chrono::system_clock::time_point m_status_change_time;
         double m_status_distance;
     };

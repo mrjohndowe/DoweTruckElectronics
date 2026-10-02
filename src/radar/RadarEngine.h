@@ -31,8 +31,8 @@ namespace DoweTruckElectronics
             RadarSettingsManager& settings();
             const RadarSettingsManager& settings() const;
 
-            Events::Event<RadarAlert>& alert_triggered();
-            Events::Event<bool>& mute_changed();
+            DoweTruckElectronics::Event<RadarAlert>& alert_triggered();
+            DoweTruckElectronics::Event<bool>& mute_changed();
 
         private:
             void process_signals();
@@ -44,15 +44,15 @@ namespace DoweTruckElectronics
         private:
             std::vector<RadarSignal> m_signals;
             std::vector<RadarAlert> m_active_alerts;
-            std::mutex m_mutex;
+            mutable std::mutex m_mutex;
 
             bool m_muted;
             double m_current_speed;
 
             RadarSettingsManager m_settings;
 
-            Events::Event<RadarAlert> m_alert_triggered;
-            Events::Event<bool> m_mute_changed;
+            DoweTruckElectronics::Event<RadarAlert> m_alert_triggered;
+            DoweTruckElectronics::Event<bool> m_mute_changed;
         };
     }
 }
