@@ -316,6 +316,25 @@ scs_mod/
 - **Truck Compatibility**: Supports all SCS stock trucks (Kenworth, Peterbilt, Freightliner, Volvo, International, Mack, Western Star)
 - **Material Definitions**: PBR materials with emissive displays
 
+### 3D Models
+
+The mod requires 3D models for the ELD tablet and radar detector. Detailed specifications and modeling guides are provided:
+
+- **ELD Tablet Model**: See `scs_mod/model/eld/model_specifications.md`
+- **Radar Detector Model**: See `scs_mod/model/radar/model_specifications.md`
+- **Modeling Guide**: See `scs_mod/model/modeling_guide.md`
+
+The models need to be created using Blender with SCS Tools plugin. The specifications include:
+- Exact dimensions in SCS scale units
+- Component breakdown and details
+- Material assignments
+- UV mapping requirements
+- Poly count targets (~950 for ELD, ~1100 for radar)
+- LOD requirements
+- Animation bone setup
+
+**Note**: The .pmd files are currently placeholders with detailed instructions. They need to be created with Blender before the mod is fully functional.
+
 ### Installation
 
 1. Copy the `scs_mod` directory to your ATS mods folder

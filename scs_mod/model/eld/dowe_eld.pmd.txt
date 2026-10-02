@@ -1,0 +1,57 @@
+3D MODEL PLACEHOLDER
+
+This file should be replaced with an actual .pmd (SCS Pixel Model) file.
+
+MODEL: Dowe ELD Tablet
+FILE TYPE: .pmd (SCS Pixel Model)
+
+REQUIREMENTS:
+- Use Blender with SCS Blender Tools plugin
+- Create model according to specifications in model_specifications.md
+- Target poly count: ~950 polygons (keep under 2000)
+- Create LOD0, LOD1, LOD2 versions
+- Apply proper materials (see ../material/model/eld/dowe_eld.mat)
+- UV map for screen display area
+- Create normal map for details
+- Create ambient occlusion map
+
+MODELING STEPS:
+1. Open Blender with SCS Tools plugin
+2. Set scale to SCS units (1 unit = 1 cm approx)
+3. Create main body (200x120x25 units, rounded corners)
+4. Create screen display (180x100 units, recessed 2 units)
+5. Create bezel around screen (10 units wide)
+6. Add 3 buttons on right side (15x15 units each)
+7. Create mounting bracket arm (150x10 units)
+8. Create suction cup (50 units diameter, 5 units thick)
+9. Add ball joint at base of bracket
+10. Add power cable from bottom (5 units thick, 50 units long)
+11. Set pivot points for animation
+12. UV map the screen area
+13. Apply materials
+14. Export as .pmd file
+15. Create LOD1 and LOD2 versions
+
+MATERIAL ASSIGNMENTS:
+- Main body: mat_dowe_eld_body
+- Screen: mat_dowe_eld_screen
+- Buttons: mat_dowe_eld_buttons
+- Bracket: mat_dowe_eld_bracket
+
+ANIMATION BONES:
+- bone_body: Main device body
+- bone_bracket: Mounting bracket arm
+- bone_cup: Suction cup
+
+TEXTURE REQUIREMENTS:
+- dowe_eld.tobj - Diffuse texture
+- dowe_eld_n.tobj - Normal map
+- dowe_eld_ao.tobj - Ambient occlusion
+
+EXPORT SETTINGS:
+- SCS Tools .pmd export
+- Include collision mesh
+- Scale: 1.0
+- Use proper orientation for game mounting
+
+Convert this placeholder to a real .pmd file using Blender with SCS Tools before distributing the mod.
