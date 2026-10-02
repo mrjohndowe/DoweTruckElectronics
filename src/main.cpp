@@ -12,6 +12,9 @@
 #include "radar/RadarEngine.h"
 #include "radar/RadarTypes.h"
 #include "persistence/LogStorage.h"
+#ifdef ENABLE_SQLITE
+#include "persistence/SqliteStorage.h"
+#endif
 #include "shared/Logging.h"
 
 using namespace DoweTruckElectronics;
@@ -63,17 +66,31 @@ int main()
     // Create radar engine
     Radar::RadarEngine radar;
 
-    // Create log storage
-    auto log_storage = std::make_shared<Persistence::LogStorage>(".");
+    // Create log storage (JSON)
+    std::shared_ptr<Persistence::LogStorage> log_storage = std::make_shared<Persistence::LogStorage>(".");
     if (!log_storage->initialize())
     {
-        Logger::warning("Failed to initialize log storage, continuing without persistence");
+        Logger::warning("Failed to initialize JSON log storage, continuing without JSON persistence");
     }
     else
     {
         eld.set_log_storage(log_storage);
-        Logger::info("Log storage initialized");
+        Logger::info("JSON log storage initialized");
     }
+
+#ifdef ENABLE_SQLITE
+    // Create SQLite storage
+    std::shared_ptr<Persistence::SqliteStorage> sqlite_storage = std::make_shared<Persistence::SqliteStorage>("./logs/dowe_electronics.db");
+    if (!sqlite_storage->initialize())
+    {
+        Logger::warning("Failed to initialize SQLite storage, continuing without database persistence");
+    }
+    else
+    {
+        eld.set_sqlite_storage(sqlite_storage);
+        Logger::info("SQLite storage initialized");
+    }
+#endif
 
     // Subscribe to radar alerts
     radar.alert_triggered().subscribe(
@@ -152,10 +169,20 @@ int main()
     // Save logs before shutdown
     if (log_storage)
     {
-        Logger::info("Saving logs...");
+        Logger::info("Saving JSON logs...");
         log_storage->save_current_day();
-        Logger::info("Logs saved successfully");
+        Logger::info("JSON logs saved successfully");
     }
+
+#ifdef ENABLE_SQLITE
+    // Close SQLite database
+    if (sqlite_storage)
+    {
+        Logger::info("Closing SQLite database...");
+        sqlite_storage->close();
+        Logger::info("SQLite database closed successfully");
+    }
+#endif
 
     Logger::info("Shutdown complete");
 

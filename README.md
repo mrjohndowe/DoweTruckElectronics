@@ -9,6 +9,7 @@ This project implements a fully functional truck electronics suite including:
 - **ELD System**: FMCSA-compliant electronic logging device with automatic duty status detection, hours of service tracking, and violation monitoring
 - **Radar Detector**: Multi-band radar detection with directional alerts, signal strength meter, and configurable sensitivity modes
 - **ATS Integration**: Telemetry-based connection to American Truck Simulator for real-time truck state tracking
+- **Dual Storage**: JSON files for human-readable logs and SQLite database for efficient querying and statistics
 
 ## Architecture
 
@@ -99,13 +100,22 @@ DoweTruckElectronics/
 - Installation and usage documentation
 
 ### Next Steps
-- Create 3D models for ELD tablet and radar detector
+- Create 3D models for ELD tablet and radar detector (specifications provided)
 - Create textures for materials
 - Create actual mod icon image
-- Test mod in American Truck Simulator
-- Finalize UI integration with external application
+- Test mod in American Truck Simulator with created models
+- Add truck-specific configurations for additional trucks (T680, 579, etc.)
+- Refine mount positions based on in-game testing
 
 ## Building
+
+### Prerequisites
+- C++17 compatible compiler (GCC 7+, Clang 5+, MSVC 2017+)
+- CMake 3.24 or later
+- SQLite3 development library (usually included with OS)
+- Threads library (usually included with OS)
+
+### Build Instructions
 
 ```bash
 mkdir build
@@ -113,6 +123,26 @@ cd build
 cmake ..
 cmake --build .
 ```
+
+### Installing SQLite3
+
+**Ubuntu/Debian:**
+```bash
+sudo apt-get install libsqlite3-dev
+```
+
+**Fedora/RHEL:**
+```bash
+sudo dnf install sqlite-devel
+```
+
+**macOS:**
+```bash
+brew install sqlite
+```
+
+**Windows:**
+SQLite3 is included with the CMake configuration on Windows. If needed, download from https://www.sqlite.org/
 
 ## Testing
 
@@ -235,7 +265,7 @@ The radar engine is integrated with the main application and will:
 
 ## Persistent Log Storage
 
-The persistent log storage system saves all ELD data to disk for compliance and inspection purposes.
+The persistent log storage system saves all ELD data to disk for compliance and inspection purposes. The system supports dual storage: JSON files for human-readable logs and SQLite database for efficient querying and statistics.
 
 ### Log Types
 
@@ -245,33 +275,93 @@ The persistent log storage system saves all ELD data to disk for compliance and 
 - **Fuel Stops**: Fuel purchases with location, cost, and odometer data
 - **Trips**: Complete trip records with origin, destination, cargo, and delivery status
 
-### Storage Format
+### Storage Formats
 
-- **JSON Format**: All logs are stored as human-readable JSON files
-- **Daily Rotation**: Each day's logs are stored in a separate file (YYYY-MM-DD.json)
-- **Directory Structure**: Logs are stored in `./logs/` subdirectory
-- **Automatic Saving**: Logs are saved automatically on shutdown
+#### JSON Storage
+- **File Format**: JSON with pretty-printing
+- **File Naming**: `YYYY-MM-DD.json` for daily rotation
+- **Location**: `./logs/` directory (configurable)
+- **Advantages**: Human-readable, easy to inspect, portable
+
+#### SQLite Database
+- **File Format**: SQLite database file
+- **File Location**: `./logs/dowe_electronics.db`
+- **Schema**: Normalized tables with indexes for efficient querying
+- **Advantages**: Fast queries, aggregate statistics, complex filtering, ACID compliance
+
+### Database Schema
+
+The SQLite database includes the following tables:
+- `log_entries` - Duty status changes with timestamps and metadata
+- `violations` - HOS violations with acknowledgment tracking
+- `inspections` - Inspection records with checklist items
+- `inspection_items` - Individual inspection checklist items
+- `fuel_stops` - Fuel purchase records
+- `trips` - Trip records with origin, destination, and cargo
+
+### Query Methods
+
+#### SQLite-Specific Queries
+- `get_all_log_entries()` - Retrieve all log entries
+- `get_all_violations()` - Retrieve all violations
+- `get_all_trips()` - Retrieve all trips
+- `get_total_driving_hours()` - Calculate total driving hours
+- `get_total_distance_km()` - Calculate total distance traveled
+- `get_total_violations()` - Count total violations
+- `vacuum()` - Optimize database size
+- `check_integrity()` - Verify database integrity
+
+#### JSON & SQLite (Both)
+- `get_log_entries(date)` - Get log entries for a specific date
+- `get_violations(date)` - Get violations for a specific date
+- `get_inspections(date)` - Get inspections for a specific date
+- `get_fuel_stops(date)` - Get fuel stops for a specific date
+- `get_daily_log(date)` - Get complete daily log with all data
+- `get_logs_range(start, end)` - Get logs for a date range
+- `acknowledge_violation(timestamp)` - Mark violation as acknowledged
+- `start_trip(origin, cargo)` - Start a new trip
+- `end_trip(destination, delivered)` - End current trip
+- `get_current_trip()` - Get active trip details
 
 ### Features
 
-- **Automatic Logging**: ELD engine automatically logs all status changes
+- **Dual Storage**: Both JSON and SQLite for flexibility
+- **Automatic Logging**: ELD engine automatically logs all status changes to both storage backends
 - **Thread-Safe**: All storage operations are mutex-protected
-- **Query by Date**: Retrieve logs for specific dates or date ranges
+- **Daily Rotation**: JSON files are rotated daily
+- **Date Querying**: Retrieve logs by date or date range
 - **Violation Tracking**: Track and acknowledge HOS violations
 - **Trip Management**: Start and end trips with cargo tracking
 - **Inspection Checklists**: Complete inspection logging with item details
 - **Fuel Tracking**: Comprehensive fuel stop logging with cost calculation
+- **Statistics**: Built-in methods for totals and aggregations
+- **Automatic Saving**: Logs saved on application shutdown
+- **Daily Totals**: Automatic calculation of driving, on-duty, off-duty, and sleeper berth hours
+
+### Dependencies
+
+- **SQLite3**: Required for database storage (most systems include this)
+- **CMake**: Automatically finds SQLite3 using `find_package(SQLite3 REQUIRED)`
+
+### Usage
+
+Both storage backends are initialized in the main application:
+- JSON storage is always initialized (fallback if directory creation fails)
+- SQLite storage is initialized (fallback if database creation fails)
+- ELD engine logs to both storage backends simultaneously
+- Application gracefully continues if either storage backend fails
 
 ### File Structure
 
 ```
 logs/
-├── 2026-10-01.json
+├── 2026-10-01.json          # Daily JSON log
 ├── 2026-10-02.json
-└── 2026-10-03.json
+├── 2026-10-03.json
+└── dowe_electronics.db      # SQLite database
 ```
 
-Each daily log file contains:
+Each daily JSON log file contains:
 - Daily totals (driving hours, on-duty hours, off-duty hours, sleeper berth hours, distance)
 - All status change entries
 - Any violations that occurred
@@ -283,9 +373,11 @@ Each daily log file contains:
 The log storage system is automatically integrated with the ELD engine:
 - Status changes are automatically logged with timestamps and duration
 - Logs are saved to `./logs/` directory as JSON files
-- Daily rotation ensures manageable file sizes
+- SQLite database is stored as `./logs/dowe_electronics.db`
+- Daily rotation ensures manageable JSON file sizes
 - Logs are saved automatically on application shutdown
 - Logs can be queried by date or date range programmatically
+- SQLite provides efficient aggregate queries and statistics
 
 ## ATS Mod Integration
 
@@ -309,12 +401,30 @@ scs_mod/
 ### Features
 
 - **ELD Tablet Accessory**: Installable ELD tablet with multiple mount positions
-- **Radar Detector Accessory**: Installable radar detector with animations
+- **Radar Detector Accessory**: Installable radar detector with LED indicators
 - **Multiple Mount Positions**: Windshield, dashboard, and overhead mounting
-- **Animated Displays**: Boot animations, screen brightness, alert animations
-- **UI Screens**: In-game UI templates for ELD and radar displays
-- **Truck Compatibility**: Supports all SCS stock trucks (Kenworth, Peterbilt, Freightliner, Volvo, International, Mack, Western Star)
+- **Truck-Specific Configurations**: Customized for Kenworth W900, Peterbilt 389, Freightliner Cascadia, Volvo VNL
 - **Material Definitions**: PBR materials with emissive displays
+- **Extensible Design**: Easy to add support for additional trucks
+
+### 3D Models
+
+The mod requires 3D models for the ELD tablet and radar detector. Detailed specifications and modeling guides are provided:
+
+- **ELD Tablet Model**: See `scs_mod/model/eld/model_specifications.md`
+- **Radar Detector Model**: See `scs_mod/model/radar/model_specifications.md`
+- **Modeling Guide**: See `scs_mod/model/modeling_guide.md`
+
+The models need to be created using Blender with SCS Tools plugin. The specifications include:
+- Exact dimensions in SCS scale units
+- Component breakdown and details
+- Material assignments
+- UV mapping requirements
+- Poly count targets (~950 for ELD, ~1100 for radar)
+- LOD requirements
+- Animation bone setup
+
+**Note**: The .pmd files are currently placeholders with detailed instructions. They need to be created with Blender before the mod is fully functional.
 
 ### Installation
 

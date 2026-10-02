@@ -1,0 +1,68 @@
+3D MODEL PLACEHOLDER
+
+This file should be replaced with an actual .pmd (SCS Pixel Model) file.
+
+MODEL: Dowe Radar Detector
+FILE TYPE: .pmd (SCS Pixel Model)
+
+REQUIREMENTS:
+- Use Blender with SCS Blender Tools plugin
+- Create model according to specifications in model_specifications.md
+- Target poly count: ~1100 polygons (keep under 2000)
+- Create LOD0, LOD1, LOD2 versions
+- Apply proper materials (see ../material/model/radar/dowe_radar.mat)
+- UV map for display elements
+- Create normal map for details
+- Create ambient occlusion map
+
+MODELING STEPS:
+1. Open Blender with SCS Tools plugin
+2. Set scale to SCS units (1 unit = 1 cm approx)
+3. Create main housing (150x80x25 units, tapered top)
+4. Taper top at 15 degrees for viewing angle
+5. Create display panel (130x50 units, recessed 3 units)
+6. Add 4 band LED indicators (10x10 units each, vertical)
+7. Add 3 directional arrows (20x20 units each, triangular)
+8. Add 7-segment signal strength meter (8x4 units each, vertical)
+9. Add bogey counter display (20x12 units)
+10. Add 4 control buttons (12x12 units each, bottom)
+11. Create mounting bracket arm (120x8 units)
+12. Create suction cup (45 units diameter, 4 units thick)
+13. Add ball joint at base of bracket
+14. Add power cable from bottom right (4 units thick, 40 units long)
+15. Set pivot points for animation
+16. UV map the display area
+17. Apply materials
+18. Export as .pmd file
+19. Create LOD1 and LOD2 versions
+
+MATERIAL ASSIGNMENTS:
+- Housing: mat_dowe_radar_housing
+- Display: mat_dowe_radar_display
+- LEDs: mat_dowe_radar_leds
+- Buttons: mat_dowe_radar_buttons
+- Bracket: mat_dowe_radar_bracket
+
+ANIMATION BONES:
+- bone_body: Main device body
+- bone_bracket: Mounting bracket arm
+- bone_cup: Suction cup
+
+LED COLOR ASSIGNMENTS:
+- X Band LED: Green (#00ff00)
+- K Band LED: Yellow (#ffff00)
+- Ka Band LED: Red (#ff0000)
+- Laser LED: Magenta (#ff00ff)
+
+TEXTURE REQUIREMENTS:
+- dowe_radar.tobj - Diffuse texture
+- dowe_radar_n.tobj - Normal map
+- dowe_radar_ao.tobj - Ambient occlusion
+
+EXPORT SETTINGS:
+- SCS Tools .pmd export
+- Include collision mesh
+- Scale: 1.0
+- Use proper orientation for game mounting
+
+Convert this placeholder to a real .pmd file using Blender with SCS Tools before distributing the mod.

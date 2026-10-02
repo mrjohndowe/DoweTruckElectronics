@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(Threads REQUIRED)
+find_package(SQLite3 QUIET)
 
 # Platform-specific libraries
 if(UNIX AND NOT APPLE)
@@ -38,6 +39,15 @@ add_executable(DoweTruckElectronics
     src/persistence/LogStorage.cpp
 )
 
+# Add SQLite support if available
+if(SQLite3_FOUND)
+    target_sources(DoweTruckElectronics PRIVATE src/persistence/SqliteStorage.cpp)
+    target_compile_definitions(DoweTruckElectronics PRIVATE ENABLE_SQLITE)
+    message(STATUS "SQLite3 found - database support enabled")
+else()
+    message(STATUS "SQLite3 not found - database support disabled")
+endif()
+
 target_include_directories(
     DoweTruckElectronics
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -47,6 +57,11 @@ target_link_libraries(
     DoweTruckElectronics
     PRIVATE Threads::Threads ${PLATFORM_LIBS}
 )
+
+# Link SQLite3 if available
+if(SQLite3_FOUND)
+    target_link_libraries(DoweTruckElectronics PRIVATE SQLite3::SQLite3)
+endif()
 
 # Link stdc++fs for filesystem support on older GCC versions
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9.0)
