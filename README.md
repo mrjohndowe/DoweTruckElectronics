@@ -103,9 +103,9 @@ DoweTruckElectronics/
 - Create 3D models for ELD tablet and radar detector (specifications provided)
 - Create textures for materials
 - Create actual mod icon image
-- Test mod in American Truck Simulator
-- Finalize UI integration with external application
-- Test SQLite database queries and statistics
+- Test mod in American Truck Simulator with created models
+- Add truck-specific configurations for additional trucks (T680, 579, etc.)
+- Refine mount positions based on in-game testing
 
 ## Building
 
@@ -401,12 +401,11 @@ scs_mod/
 ### Features
 
 - **ELD Tablet Accessory**: Installable ELD tablet with multiple mount positions
-- **Radar Detector Accessory**: Installable radar detector with animations
+- **Radar Detector Accessory**: Installable radar detector with LED indicators
 - **Multiple Mount Positions**: Windshield, dashboard, and overhead mounting
-- **Animated Displays**: Boot animations, screen brightness, alert animations
-- **UI Screens**: In-game UI templates for ELD and radar displays
-- **Truck Compatibility**: Supports all SCS stock trucks (Kenworth, Peterbilt, Freightliner, Volvo, International, Mack, Western Star)
+- **Truck-Specific Configurations**: Customized for Kenworth W900, Peterbilt 389, Freightliner Cascadia, Volvo VNL
 - **Material Definitions**: PBR materials with emissive displays
+- **Extensible Design**: Easy to add support for additional trucks
 
 ### 3D Models
 

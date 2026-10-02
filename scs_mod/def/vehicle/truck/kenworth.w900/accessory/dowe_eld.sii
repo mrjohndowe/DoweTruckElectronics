@@ -1,7 +1,9 @@
 SiiNunit
 {
-    # ELD Tablet Accessory
-    accessory_slot_data: .dowe_eld
+    # Kenworth W900 ELD Tablet Accessory Configuration
+    # This file defines how the ELD tablet appears in the Kenworth W900 interior
+
+    accessory_slot_data: .dowe_eld.w900
     {
         name: "Dowe ELD Tablet"
         price: 450
@@ -15,26 +17,26 @@ SiiNunit
         # Material
         material: "material/model/eld/dowe_eld.mat"
 
-        # Note: Animations are defined in the model file (.pmd) using SCS animation system
-        # The external application will control screen brightness and states
-        # through UI hooks when implemented
+        # Mount positions for Kenworth W900
+        # These positions are approximate and may need adjustment based on actual interior
 
-        # Mount positions - these are placeholder positions
-        # Actual positions need to be adjusted per truck based on interior layout
+        # Windshield mount (top center of windshield)
         accessory_slot_data: .mount_windshield
         {
-            slot_name: "slot_14"
-            offset: (0.0, 0.3, 0.5)
+            slot_name: "slot_12"
+            offset: (0.0, 0.35, 0.45)
             rotation: (0.0, 0.0, 0.0)
         }
 
+        # Dashboard mount (center of dashboard)
         accessory_slot_data: .mount_dashboard
         {
             slot_name: "slot_11"
-            offset: (0.0, 0.2, 0.0)
+            offset: (0.0, 0.15, 0.0)
             rotation: (0.0, 0.0, 0.0)
         }
 
+        # Overhead console mount
         accessory_slot_data: .mount_overhead
         {
             slot_name: "slot_13"
