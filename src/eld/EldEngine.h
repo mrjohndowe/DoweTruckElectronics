@@ -10,6 +10,7 @@ namespace DoweTruckElectronics
     namespace Persistence
     {
         class LogStorage;
+        class SqliteStorage;
     }
 
     class EldEngine
@@ -19,6 +20,7 @@ namespace DoweTruckElectronics
         ~EldEngine() = default;
 
         void set_log_storage(std::shared_ptr<Persistence::LogStorage> storage);
+        void set_sqlite_storage(std::shared_ptr<Persistence::SqliteStorage> storage);
 
         void update(const TelemetryState& telemetry);
 
@@ -49,6 +51,7 @@ namespace DoweTruckElectronics
         HosClock m_hos;
 
         std::shared_ptr<Persistence::LogStorage> m_log_storage;
+        std::shared_ptr<Persistence::SqliteStorage> m_sqlite_storage;
         std::chrono::system_clock::time_point m_status_change_time;
         double m_status_distance;
     };

@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(Threads REQUIRED)
+find_package(SQLite3 REQUIRED)
 
 # Platform-specific libraries
 if(UNIX AND NOT APPLE)
@@ -36,6 +37,7 @@ add_executable(DoweTruckElectronics
     src/radar/RadarEngine.cpp
     src/persistence/JsonWriter.cpp
     src/persistence/LogStorage.cpp
+    src/persistence/SqliteStorage.cpp
 )
 
 target_include_directories(
@@ -45,7 +47,7 @@ target_include_directories(
 
 target_link_libraries(
     DoweTruckElectronics
-    PRIVATE Threads::Threads ${PLATFORM_LIBS}
+    PRIVATE Threads::Threads SQLite3::SQLite3 ${PLATFORM_LIBS}
 )
 
 # Link stdc++fs for filesystem support on older GCC versions

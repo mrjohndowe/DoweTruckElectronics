@@ -1,5 +1,6 @@
 #include "EldEngine.h"
 #include "../persistence/LogTypes.h"
+#include "../persistence/SqliteStorage.h"
 #include "../shared/Logging.h"
 #include <chrono>
 
@@ -15,6 +16,11 @@ namespace DoweTruckElectronics
     void EldEngine::set_log_storage(std::shared_ptr<Persistence::LogStorage> storage)
     {
         m_log_storage = storage;
+    }
+
+    void EldEngine::set_sqlite_storage(std::shared_ptr<Persistence::SqliteStorage> storage)
+    {
+        m_sqlite_storage = storage;
     }
 
     void EldEngine::update(const TelemetryState& telemetry)
@@ -76,30 +82,37 @@ namespace DoweTruckElectronics
         DutyStatus old_status,
         DutyStatus new_status)
     {
+        // Calculate duration of previous status
+        auto now = std::chrono::system_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::seconds>(
+            now - m_status_change_time).count();
+
         // Create log entry for status change
+        Persistence::LogEntry entry;
+        entry.timestamp = now;
+        entry.from_status = old_status;
+        entry.to_status = new_status;
+        entry.duration_seconds = static_cast<double>(duration);
+        entry.distance_km = m_status_distance;
+        entry.location = ""; // Would be filled from GPS
+        entry.notes = "";
+
+        // Log to JSON storage
         if (m_log_storage)
         {
-            Persistence::LogEntry entry;
-            entry.timestamp = std::chrono::system_clock::now();
-            entry.from_status = old_status;
-            entry.to_status = new_status;
-
-            // Calculate duration of previous status
-            auto now = std::chrono::system_clock::now();
-            auto duration = std::chrono::duration_cast<std::chrono::seconds>(
-                now - m_status_change_time).count();
-            entry.duration_seconds = static_cast<double>(duration);
-            entry.distance_km = m_status_distance;
-            entry.location = ""; // Would be filled from GPS
-            entry.notes = "";
-
             m_log_storage->add_log_entry(entry);
-
-            Logger::info(std::string("Status change: ") +
-                DutyStatusName(old_status) + " -> " + DutyStatusName(new_status) +
-                " (" + std::to_string(entry.duration_seconds) + "s, " +
-                std::to_string(entry.distance_km) + " km)");
         }
+
+        // Log to SQLite storage
+        if (m_sqlite_storage)
+        {
+            m_sqlite_storage->add_log_entry(entry);
+        }
+
+        Logger::info(std::string("Status change: ") +
+            DutyStatusName(old_status) + " -> " + DutyStatusName(new_status) +
+            " (" + std::to_string(entry.duration_seconds) + "s, " +
+            std::to_string(entry.distance_km) + " km)");
 
         // Reset tracking for new status
         m_status_change_time = std::chrono::system_clock::now();
