@@ -51,8 +51,19 @@ scs_mod/
 The following assets need to be created before the mod is fully functional:
 
 ### 3D Models
-- `model/eld/dowe_eld.pmd` - ELD tablet 3D model
-- `model/radar/dowe_radar.pmd` - Radar detector 3D model
+
+**Note**: Detailed specifications and modeling guides are provided for creating the models:
+
+- **ELD Tablet**: See `model/eld/model_specifications.md` for detailed specifications
+- **Radar Detector**: See `model/radar/model_specifications.md` for detailed specifications
+- **Modeling Guide**: See `model/modeling_guide.md` for step-by-step Blender instructions
+
+The .pmd files are currently placeholders with creation instructions. To create the models:
+1. Install Blender with SCS Tools plugin
+2. Follow the modeling guide for step-by-step instructions
+3. Use the specifications for exact dimensions and details
+4. Export as .pmd files
+5. Replace the placeholder .pmd.txt files with actual .pmd files
 
 ### Textures
 - `material/model/eld/dowe_eld.tobj` - ELD diffuse texture
@@ -62,8 +73,12 @@ The following assets need to be created before the mod is fully functional:
 - `material/model/radar/dowe_radar_n.tobj` - Radar normal map
 - `material/model/radar/dowe_radar_ao.tobj` - Radar ambient occlusion
 
+The .tobj files are currently placeholders with creation instructions. Use SCS Texture Tools to convert DDS textures to .tobj format.
+
 ### Icons
 - `mod_icon.jpg` - 512x512 pixel mod icon
+
+The mod_icon.jpg is currently a placeholder. Create a 512x512 JPG image for the mod icon.
 
 Use SCS Tools (Blender plugins, TOBJ editor) to create these assets.
 

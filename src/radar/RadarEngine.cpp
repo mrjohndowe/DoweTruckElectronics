@@ -1,4 +1,5 @@
 #include "RadarEngine.h"
+#include "../shared/Events.h"
 #include "../shared/Logging.h"
 #include <cmath>
 #include <sstream>
@@ -101,12 +102,12 @@ namespace DoweTruckElectronics
             return m_settings;
         }
 
-        Events::Event<RadarAlert>& RadarEngine::alert_triggered()
+        DoweTruckElectronics::Event<RadarAlert>& RadarEngine::alert_triggered()
         {
             return m_alert_triggered;
         }
 
-        Events::Event<bool>& RadarEngine::mute_changed()
+        DoweTruckElectronics::Event<bool>& RadarEngine::mute_changed()
         {
             return m_mute_changed;
         }

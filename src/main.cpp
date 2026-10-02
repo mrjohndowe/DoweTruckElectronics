@@ -12,7 +12,9 @@
 #include "radar/RadarEngine.h"
 #include "radar/RadarTypes.h"
 #include "persistence/LogStorage.h"
+#ifdef ENABLE_SQLITE
 #include "persistence/SqliteStorage.h"
+#endif
 #include "shared/Logging.h"
 
 using namespace DoweTruckElectronics;
@@ -76,6 +78,7 @@ int main()
         Logger::info("JSON log storage initialized");
     }
 
+#ifdef ENABLE_SQLITE
     // Create SQLite storage
     std::shared_ptr<Persistence::SqliteStorage> sqlite_storage = std::make_shared<Persistence::SqliteStorage>("./logs/dowe_electronics.db");
     if (!sqlite_storage->initialize())
@@ -87,6 +90,7 @@ int main()
         eld.set_sqlite_storage(sqlite_storage);
         Logger::info("SQLite storage initialized");
     }
+#endif
 
     // Subscribe to radar alerts
     radar.alert_triggered().subscribe(
@@ -170,6 +174,7 @@ int main()
         Logger::info("JSON logs saved successfully");
     }
 
+#ifdef ENABLE_SQLITE
     // Close SQLite database
     if (sqlite_storage)
     {
@@ -177,6 +182,7 @@ int main()
         sqlite_storage->close();
         Logger::info("SQLite database closed successfully");
     }
+#endif
 
     Logger::info("Shutdown complete");
 

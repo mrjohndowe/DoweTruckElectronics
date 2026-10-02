@@ -97,7 +97,7 @@ namespace DoweTruckElectronics
         return m_last_state;
     }
 
-    TelemetryEvents& ScsTelemetryAdapter::events() override
+    TelemetryEvents& ScsTelemetryAdapter::events()
     {
         return m_events;
     }

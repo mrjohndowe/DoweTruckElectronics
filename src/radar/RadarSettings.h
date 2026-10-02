@@ -58,14 +58,14 @@ namespace DoweTruckElectronics
 
             bool is_band_enabled(RadarBand band) const;
 
-            Events::Event<RadarSettings>& settings_changed();
+            DoweTruckElectronics::Event<RadarSettings>& settings_changed();
 
         private:
             void notify_settings_changed();
 
         private:
             RadarSettings m_settings;
-            Events::Event<RadarSettings> m_settings_changed;
+            DoweTruckElectronics::Event<RadarSettings> m_settings_changed;
         };
     }
 }

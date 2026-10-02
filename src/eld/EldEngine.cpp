@@ -1,6 +1,9 @@
 #include "EldEngine.h"
 #include "../persistence/LogTypes.h"
+#include "../persistence/LogStorage.h"
+#ifdef ENABLE_SQLITE
 #include "../persistence/SqliteStorage.h"
+#endif
 #include "../shared/Logging.h"
 #include <chrono>
 
@@ -18,10 +21,12 @@ namespace DoweTruckElectronics
         m_log_storage = storage;
     }
 
+#ifdef ENABLE_SQLITE
     void EldEngine::set_sqlite_storage(std::shared_ptr<Persistence::SqliteStorage> storage)
     {
         m_sqlite_storage = storage;
     }
+#endif
 
     void EldEngine::update(const TelemetryState& telemetry)
     {
@@ -103,11 +108,13 @@ namespace DoweTruckElectronics
             m_log_storage->add_log_entry(entry);
         }
 
+#ifdef ENABLE_SQLITE
         // Log to SQLite storage
         if (m_sqlite_storage)
         {
             m_sqlite_storage->add_log_entry(entry);
         }
+#endif
 
         Logger::info(std::string("Status change: ") +
             DutyStatusName(old_status) + " -> " + DutyStatusName(new_status) +

@@ -104,7 +104,7 @@ namespace DoweTruckElectronics
             }
         }
 
-        Events::Event<RadarSettings>& RadarSettingsManager::settings_changed()
+        DoweTruckElectronics::Event<RadarSettings>& RadarSettingsManager::settings_changed()
         {
             return m_settings_changed;
         }
