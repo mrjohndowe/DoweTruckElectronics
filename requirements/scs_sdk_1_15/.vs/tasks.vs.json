@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-telemetry_position",
+      "appliesTo": "examples/telemetry_position/telemetry_position.vcproj",
+      "type": "msbuild"
+    }
+  ]
+}

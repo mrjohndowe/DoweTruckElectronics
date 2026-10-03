@@ -107,6 +107,18 @@ DoweTruckElectronics/
 - Add truck-specific configurations for additional trucks (T680, 579, etc.)
 - Refine mount positions based on in-game testing
 
+## Roadmap
+
+For a detailed roadmap of planned features, milestones, and future enhancements, see [ROADMAP.md](ROADMAP.md).
+
+### Quick Status Overview
+- **Core Systems**: ✅ Complete (ELD, Radar, Telemetry, Persistence)
+- **ATS Mod Definitions**: ✅ Complete (4 trucks supported)
+- **3D Models**: ⏳ Specifications complete, models need creation
+- **Textures**: ⏳ Placeholders exist, actual textures needed
+- **In-Game Testing**: 🔄 Ready to test with SCS plugin
+- **Production Release**: ⏳ Target Q1 2028
+
 ## Building
 
 ### Prerequisites
