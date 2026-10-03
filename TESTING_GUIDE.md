@@ -24,8 +24,9 @@ The fastest way to test the system is in simulation mode, which doesn't require 
    ```
 
 3. **Observe the output**:
-   - The application will run for 30 seconds
+   - The application will run for 5 minutes (300 seconds)
    - You'll see real-time status updates
+   - Status will change automatically (DRIVING → SLEEPER BERTH → OFF DUTY cycles)
    - Radar alerts will be simulated periodically
    - Logs will be saved to the `logs/` directory
 
@@ -38,16 +39,31 @@ The fastest way to test the system is in simulation mode, which doesn't require 
    type logs\YYYY-MM-DD.json
    ```
 
+### Simulation Features
+The simulation now includes:
+- **5-minute runtime** (vs previous 30 seconds)
+- **Automatic status cycles**: Changes between DRIVING, SLEEPER BERTH, and OFF DUTY every 50 seconds
+- **Accumulated driving time**: You'll see non-zero driving hours
+- **Accumulated distance**: Distance will increase during DRIVING status
+- **Multiple log entries**: Each status change creates a log entry
+- **Realistic radar alerts**: Simulated at highway speeds
+
 ### Expected Output
 
 ```
 [INFO] Starting Dowe Truck Electronics System
 [INFO] JSON log storage initialized
 [INFO] Telemetry connected (or disconnected if simulation)
-[INFO] Running for 30 seconds...
+[INFO] Running for 5 minutes (300 seconds)...
 Speed: 0.0 m/s | Status: OFF_DUTY | Drive Remaining: 11.0 h | Shift Remaining: 14.0 h | Radar Alerts: 0
 Speed: 15.0 m/s | Status: DRIVING | Drive Remaining: 10.9 h | Shift Remaining: 13.9 h | Radar Alerts: 1
 [INFO] RADAR ALERT: Ka band detected
+[INFO] Simulation: Taking 30-minute break (Sleeper Berth)
+Speed: 0.0 m/s | Status: SLEEPER_BERTH | Drive Remaining: 10.8 h | Shift Remaining: 13.8 h | Radar Alerts: 0
+[INFO] Simulation: Returning to driving
+Speed: 20.0 m/s | Status: DRIVING | Drive Remaining: 10.7 h | Shift Remaining: 13.7 h | Radar Alerts: 2
+[INFO] Simulation: Taking rest break (Off Duty)
+Speed: 0.0 m/s | Status: OFF_DUTY | Drive Remaining: 10.6 h | Shift Remaining: 13.6 h | Radar Alerts: 0
 ...
 [INFO] Saving JSON logs...
 [INFO] Logs saved successfully
@@ -70,6 +86,7 @@ For full in-game testing, you'll need American Truck Simulator (ATS) or Euro Tru
    - Launch the game through Steam
    - Load your profile
    - Enter the game world (not just the menu)
+   - Start driving to generate telemetry data
 
 2. **Run DoweTruckElectronics**:
    ```bash
@@ -83,26 +100,31 @@ For full in-game testing, you'll need American Truck Simulator (ATS) or Euro Tru
 3. **Verify connection**:
    - Look for "Telemetry connected" in the console
    - If you see "Telemetry disconnected", the plugin may not be installed correctly
+   - The application will automatically fall back to simulation if not connected
 
 4. **Test ELD functionality**:
    - Start driving in the game
    - Watch the status change from OFF_DUTY to DRIVING
    - Stop the truck and watch status change to ON_DUTY
    - Turn off the engine and watch status change to OFF_DUTY
-   - Monitor HOS clocks decreasing
+   - Monitor HOS clocks decreasing in real-time
+   - Drive for 2-3 minutes to see hours accumulate
 
 5. **Test radar functionality**:
-   - Drive at speed (>5 m/s)
+   - Drive at highway speed (>5 m/s)
    - Watch for simulated radar alerts
    - Observe bogey counter updates
    - Check signal strength meter
+   - Verify alerts appear every 2 seconds at speed
 
 6. **Test manual status override**:
-   - (Future feature) Press keys to manually change duty status
+   - The simulation will automatically cycle through statuses every 50 seconds
+   - Watch for console messages: "Simulation: Taking 30-minute break"
+   - Verify HOS clocks adjust correctly
    - Verify status changes are logged
 
 7. **Exit the game** and **stop the application**:
-   - The application will run for 30 seconds automatically
+   - The application will run for 5 minutes automatically
    - Or press Ctrl+C to exit early
 
 8. **Check the logs**:
@@ -113,6 +135,12 @@ For full in-game testing, you'll need American Truck Simulator (ATS) or Euro Tru
    # Or on Windows
    type logs\YYYY-MM-DD.json
    ```
+
+9. **Verify realistic data**:
+   - Driving hours should be non-zero
+   - Distance should be non-zero
+   - Multiple log entries should exist
+   - Duration and distance should be reasonable for your drive
 
 ### Expected Behavior with Live Data
 

@@ -53,7 +53,9 @@ DoweTruckElectronics/
 - Radar detector display mockup
 - Multiple screens and navigation
 - Real-time animations and state changes
-- Responsive HTML/CSS implementation
+- React 19 + TypeScript + Vite + Tailwind CSS preview/demo implementation
+
+**Note**: These are demo/preview mockups for design validation and testing. The final UI will be implemented in-game through the ATS mod system using SCS UI integration when the mod is installed in American Truck Simulator.
 
 ### Phase 4: SCS SDK Integration ✅
 - SCS telemetry data structure definitions
@@ -166,26 +168,49 @@ Run the test harness to simulate ELD behavior:
 
 This simulates a driving scenario, showing automatic duty status transitions and HOS clock updates.
 
-## UI Mockups
+## UI Mockups (Preview/Demo)
 
-Interactive HTML/CSS mockups are available for previewing the ELD and radar detector interfaces:
+The UI mockups are demo/preview tools for design validation and testing purposes. They allow you to preview the ELD and radar device interfaces before implementing them in-game.
 
-- **ELD Display**: Full-featured ELD tablet with Home, HOS, Duty Status, Logs, Inspection, Violations, Fuel, and Settings screens
-- **Radar Detector**: Multi-band radar detector with directional alerts, signal strength, and sensitivity controls
+### Important Note
+These mockups are **not** the final product. The actual in-game UI will be implemented through the ATS mod system using SCS UI integration when the mod is installed in American Truck Simulator.
 
-To preview the mockups, open the HTML files in a web browser:
+### Preview Features
+- **React 19.2.6** with TypeScript for type safety
+- **Vite 7.3.6** for fast development
+- **Tailwind CSS 4.1.17** for modern styling
+- **Interactive Demos**: Live simulation of ELD and radar devices
+- **Real-time Updates**: Dynamic status changes and alerts
+- **Audio Support**: Voice alerts for radar detection
+- **Responsive Design**: Works on desktop and mobile
 
-- `ui-mockups\eld-display.html` - ELD tablet interface
-- `ui-mockups\radar-detector.html` - Radar detector interface
+### Running the Preview Demo
 
-Simply double-click the files or open them in your preferred web browser.
+```bash
+cd ui-mockups
+npm install
+npm run dev
+```
 
-The mockups include:
-- Interactive navigation between screens
-- Real-time status indicators
-- Animated alerts and notifications
-- Configurable settings toggles
-- Responsive design for different display sizes
+The development server will start at http://localhost:5173
+
+### Purpose
+- Design validation for ELD and radar interfaces
+- Feature demonstration and testing
+- User experience preview
+- Layout and navigation testing
+- Animation and interaction feedback
+
+### Previous HTML Files
+The original HTML mockups have been archived as `.OLD` files for reference.
+
+### Final Implementation
+The actual in-game UI will be:
+- Implemented through ATS mod UI definitions
+- Integrated with the external application via SCS telemetry
+- Displayed on the 3D models in the truck interior
+- Controlled by the C++ application state
+- Part of the complete ATS mod experience
 
 ## SCS SDK Integration
 
