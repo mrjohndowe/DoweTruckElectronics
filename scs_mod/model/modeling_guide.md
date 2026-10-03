@@ -8,7 +8,7 @@ This guide shows you exactly how to create the 3D models for the Fleet Guard ELD
 
 ❌ **Do NOT use Blender 4.0, 4.1, 4.2, or any newer version** - they will NOT work with SCS Tools!
 
-✅ **Download Blender 3.6 LTS here**: https://www.blender.org/download/lts/3-6/
+✅ **Download Blender 3.6 LTS here**: <https://www.blender.org/download/lts/3-6/>
 
 This is a known limitation of the SCS Tools plugin. If you try to use a newer version of Blender, the SCS Tools plugin will not install or will not work correctly.
 
@@ -19,20 +19,21 @@ This is a known limitation of the SCS Tools plugin. If you try to use a newer ve
 **IMPORTANT**: You must use Blender 3.6 - this is the only version that works with the latest SCS Tools plugin.
 
 1. **Blender 3.6** (free 3D software)
-   - Go to: https://www.blender.org/download/lts/3-6/
-   - Download Blender 3.6 LTS (Long Term Support)
-   - Click the big "Download Blender 3.6" button
-   - Install it like any other program
-   - Open Blender 3.6 when it's done installing
+
+   * Go to: <https://www.blender.org/download/lts/3-6/>
+   * Download Blender 3.6 LTS (Long Term Support)
+   * Click the big "Download Blender 3.6" button
+   * Install it like any other program
+   * Open Blender 3.6 when it's done installing
 
    ⚠️ **Do NOT use a newer version** (like 4.0, 4.1, 4.2, etc.) - they will NOT work with SCS Tools!
 
 2. **SCS Blender Tools Plugin** (required for exporting to ATS)
-   - Go to: https://mods.scssoft.com/
-   - Click "Tools" in the top menu
-   - Click "Blender Tools"
-   - Download the latest version
-   - Save it somewhere you can find it (like your Downloads folder)
+   * Go to: <https://mods.scssoft.com/>
+   * Click "Tools" in the top menu
+   * Click "Blender Tools"
+   * Download the latest version
+   * Save it somewhere you can find it (like your Downloads folder)
 
 ### Install the SCS Plugin
 
@@ -70,18 +71,20 @@ When Blender opens, there's a cube in the middle. We don't need it.
 The models you're making are based on the design preview in the `ui-mockups` folder. That website is just a design demo - your 3D model will be the actual thing that appears in the game.
 
 **Your model provides:**
-- The physical shape (housing, screen, buttons)
-- The colors and materials
-- The branding (Fleet Guard icon, Road Sentry labels)
+
+* The physical shape (housing, screen, buttons)
+* The colors and materials
+* The branding (Fleet Guard icon, Road Sentry labels)
 
 **The game software provides:**
-- The changing numbers (speed, driver info, HOS data)
-- The live status messages
-- The real-time data
+
+* The changing numbers (speed, driver info, HOS data)
+* The live status messages
+* The real-time data
 
 Don't try to put text like "John Doe" or "65 MPH" into your 3D model - the game will handle that.
 
----
+***
 
 # PART 1: Create the Fleet Guard ELD Tablet
 
@@ -109,8 +112,8 @@ Now let's round the corners:
 14. Click **Add Modifier**
 15. Click **Bevel**
 16. In the modifier settings:
-    - Change "Width" to: `0.05`
-    - Change "Segments" to: `3`
+    * Change "Width" to: `0.05`
+    * Change "Segments" to: `3`
 17. At the top of the modifier, click the **Apply** button (checkmark icon)
 
 ## Step 2: Create the Screen Display
@@ -124,9 +127,9 @@ Size it for the screen:
 
 5. Press **N** to open the properties panel
 6. Change Dimensions:
-   - X: `11.0`
-   - Y: `6.0`
-   - Z: `0.0`
+   * X: `11.0`
+   * Y: `6.0`
+   * Z: `0.0`
 7. Press **N** to close
 
 Position it in front of the body:
@@ -142,7 +145,9 @@ Add more detail to the screen:
 13. Right-click on the plane to select it
 14. Press **Tab** to enter Edit Mode (you'll see the dots/vertices)
 15. Press **Ctrl + 2** on your keyboard (this is the shortcut for Subdivide)
-   - **Alternative**: Right-click in the 3D view, click "Subdivide" in the menu that appears
+
+* **Alternative**: Right-click in the 3D view, click "Subdivide" in the menu that appears
+
 16. Press **Tab** to exit Edit Mode
 
 ## Step 3: Create the Bezel (Frame Around Screen)
@@ -151,9 +156,9 @@ Add more detail to the screen:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `11.8`
-   - Y: `7.0`
-   - Z: `0.0`
+   * X: `11.8`
+   * Y: `7.0`
+   * Z: `0.0`
 5. Press **N** to close
 
 Cut a hole for the screen:
@@ -163,8 +168,8 @@ Cut a hole for the screen:
 8. Click **Add Modifier**
 9. Click **Boolean**
 10. In the modifier settings:
-    - Click the dropdown that says "Difference" - make sure it says "Difference"
-    - Under "Object", click the dropdown and select the screen plane (probably called "Plane.001")
+    * Click the dropdown that says "Difference" - make sure it says "Difference"
+    * Under "Object", click the dropdown and select the screen plane (probably called "Plane")
 11. Click **Apply**
 
 Now delete the screen plane (we'll make a new one):
@@ -179,17 +184,17 @@ Now delete the screen plane (we'll make a new one):
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `11.0`
-   - Y: `0.7`
-   - Z: `0.0`
+   * X: `11.0`
+   * Y: `0.7`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position it at the top:
 
 6. Press **N**
 7. Under "Location", change:
-   - Y: `0.05`
-   - Z: `2.65` (this puts it at the top of the screen area)
+   * Y: `0.05`
+   * Z: `2.65` (this puts it at the top of the screen area)
 8. Press **N** to close
 
 ## Step 5: Create the Fleet Guard Icon
@@ -198,18 +203,18 @@ Position it at the top:
 2. Click **Mesh**
 3. Click **Cube**
 4. Press **N** and set Dimensions:
-   - X: `0.34`
-   - Y: `0.34`
-   - Z: `0.01`
+   * X: `0.34`
+   * Y: `0.34`
+   * Z: `0.01`
 5. Press **N** to close
 
 Position it in the top bar:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `-4.5` (to the left side)
-   - Y: `0.06` (slightly in front of top bar)
-   - Z: `2.65` (same height as top bar)
+   * X: `-4.5` (to the left side)
+   * Y: `0.06` (slightly in front of top bar)
+   * Z: `2.65` (same height as top bar)
 8. Press **N** to close
 
 Round the corners:
@@ -227,18 +232,18 @@ Round the corners:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `1.54`
-   - Y: `5.3`
-   - Z: `0.0`
+   * X: `1.54`
+   * Y: `5.3`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position it on the left:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `-4.73` (left side of screen)
-   - Y: `0.06`
-   - Z: `0.3` (below the top bar)
+   * X: `-4.73` (left side of screen)
+   * Y: `0.06`
+   * Z: `0.3` (below the top bar)
 8. Press **N** to close
 
 ## Step 7: Create Navigation Button Areas
@@ -249,18 +254,18 @@ We'll create 9 small rectangles for the buttons. You can duplicate the first one
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `1.54`
-   - Y: `0.41`
-   - Z: `0.0`
+   * X: `1.54`
+   * Y: `0.41`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position the first button:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `-4.73`
-   - Y: `0.07`
-   - Z: `2.0`
+   * X: `-4.73`
+   * Y: `0.07`
+   * Z: `2.0`
 8. Press **N** to close
 
 Duplicate for the other 8 buttons:
@@ -278,18 +283,18 @@ Duplicate for the other 8 buttons:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `1.54`
-   - Y: `0.5`
-   - Z: `0.0`
+   * X: `1.54`
+   * Y: `0.5`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position at bottom of sidebar:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `-4.73`
-   - Y: `0.07`
-   - Z: `-2.3`
+   * X: `-4.73`
+   * Y: `0.07`
+   * Z: `-2.3`
 8. Press **N** to close
 
 Create the avatar circle:
@@ -298,13 +303,13 @@ Create the avatar circle:
 10. Click **Mesh**
 11. Click **Cylinder**
 12. Press **N** and set Dimensions:
-    - X: `0.27`
-    - Y: `0.27`
-    - Z: `0.01`
+    * X: `0.27`
+    * Y: `0.27`
+    * Z: `0.01`
 13. Under "Location", change:
-    - X: `-4.73`
-    - Y: `0.08`
-    - Z: `-2.3`
+    * X: `-4.73`
+    * Y: `0.08`
+    * Z: `-2.3`
 14. Press **N** to close
 
 ## Step 9: Create the Status Bar
@@ -313,18 +318,18 @@ Create the avatar circle:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `9.0` (width minus sidebar)
-   - Y: `0.28`
-   - Z: `0.0`
+   * X: `9.0` (width minus sidebar)
+   * Y: `0.28`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position at bottom:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `2.0` (to the right of sidebar)
-   - Y: `0.07`
-   - Z: `-2.9`
+   * X: `2.0` (to the right of sidebar)
+   * Y: `0.07`
+   * Z: `-2.9`
 8. Press **N** to close
 
 ## Step 10: Create Physical Buttons (Optional)
@@ -335,18 +340,18 @@ If you want physical buttons on the side:
 2. Click **Mesh**
 3. Click **Cube**
 4. Press **N** and set Dimensions:
-   - X: `0.15`
-   - Y: `0.15`
-   - Z: `0.02`
+   * X: `0.15`
+   * Y: `0.15`
+   * Z: `0.02`
 5. Press **N** to close
 
 Position on right side:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `5.8`
-   - Y: `0.13`
-   - Z: `1.0`
+   * X: `5.8`
+   * Y: `0.13`
+   * Z: `1.0`
 8. Press **N** to close
 
 Round the button:
@@ -365,9 +370,9 @@ Duplicate for 2 more buttons (repeat the duplicate process from step 7).
 2. Click **Mesh**
 3. Click **Cylinder**
 4. Press **N** and set Dimensions:
-   - X: `0.15`
-   - Y: `1.5`
-   - Z: `0.1`
+   * X: `0.15`
+   * Y: `1.5`
+   * Z: `0.1`
 5. Press **N** to close
 
 Rotate it:
@@ -379,9 +384,9 @@ Position it:
 
 8. Press **N**
 9. Under "Location", change:
-   - X: `0`
-   - Y: `-0.13`
-   - Z: `-3.5`
+   * X: `0`
+   * Y: `-0.13`
+   * Z: `-3.5`
 10. Press **N** to close
 
 Add the ball joint:
@@ -390,13 +395,13 @@ Add the ball joint:
 12. Click **Mesh**
 13. Click **UV Sphere**
 14. Press **N** and set Dimensions:
-    - X: `0.2`
-    - Y: `0.2`
-    - Z: `0.2`
+    * X: `0.2`
+    * Y: `0.2`
+    * Z: `0.2`
 15. Under "Location", change:
-    - X: `0`
-    - Y: `-0.88`
-    - Z: `-3.5`
+    * X: `0`
+    * Y: `-0.88`
+    * Z: `-3.5`
 16. Press **N** to close
 
 ## Step 12: Create the Suction Cup
@@ -405,18 +410,18 @@ Add the ball joint:
 2. Click **Mesh**
 3. Click **Cylinder**
 4. Press **N** and set Dimensions:
-   - X: `0.5`
-   - Y: `0.05`
-   - Z: `0.5`
+   * X: `0.5`
+   * Y: `0.05`
+   * Z: `0.5`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `-1.63`
-   - Z: `-3.5`
+   * X: `0`
+   * Y: `-1.63`
+   * Z: `-3.5`
 8. Press **N** to close
 
 ## Step 13: Create the Cable
@@ -444,9 +449,9 @@ Position it:
 
 13. Press **N**
 14. Under "Location", change:
-    - X: `3.0`
-    - Y: `-0.13`
-    - Z: `-3.5`
+    * X: `3.0`
+    * Y: `-0.13`
+    * Z: `-3.5`
 15. Press **N** to close
 
 ## Step 14: Apply Materials
@@ -574,9 +579,9 @@ Repeat for the suction cup:
 2. Click **Export**
 3. Click **SCS (.pmd)**
 4. In the file browser:
-   - Navigate to your project folder
-   - Go to: `scs_mod/model/eld/`
-   - In the "File Name" box, type: `dowe_eld.pmd`
+   * Navigate to your project folder
+   * Go to: `scs_mod/model/eld/`
+   * In the "File Name" box, type: `dowe_eld.pmd`
 5. Click the **Export SCS .pmd** button
 
 ## Step 18: Create LOD Versions (Optional but Recommended)
@@ -603,7 +608,7 @@ LOD = Level of Detail (simpler versions for far away)
 6. Simplify to just the basic body shape
 7. Follow Step 17 to export as: `dowe_eld_lod2.pmd`
 
----
+***
 
 # PART 2: Create the Road Sentry Radar Detector
 
@@ -613,9 +618,9 @@ LOD = Level of Detail (simpler versions for far away)
 2. Click **Mesh**
 3. Click **Cube**
 4. Press **N** and set Dimensions:
-   - X: `7.6`
-   - Y: `0.85`
-   - Z: `0.3`
+   * X: `7.6`
+   * Y: `0.85`
+   * Z: `0.3`
 5. Press **N** to close
 
 Round the corners:
@@ -633,18 +638,18 @@ Round the corners:
 2. Click **Mesh**
 3. Click **Cube**
 4. Press **N** and set Dimensions:
-   - X: `5.7`
-   - Y: `0.08`
-   - Z: `0.02`
+   * X: `5.7`
+   * Y: `0.08`
+   * Z: `0.02`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `0.17`
-   - Z: `0.15`
+   * X: `0`
+   * Y: `0.17`
+   * Z: `0.15`
 8. Press **N** to close
 
 ## Step 3: Create the Brand Row
@@ -653,18 +658,18 @@ Position it:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `7.2`
-   - Y: `0.25`
-   - Z: `0.0`
+   * X: `7.2`
+   * Y: `0.25`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `0.13`
-   - Z: `0.1`
+   * X: `0`
+   * Y: `0.13`
+   * Z: `0.1`
 8. Press **N** to close
 
 Create mode buttons (3 small cubes):
@@ -673,18 +678,18 @@ Create mode buttons (3 small cubes):
 10. Click **Mesh**
 11. Click **Cube**
 12. Press **N** and set Dimensions:
-    - X: `0.1`
-    - Y: `0.1`
-    - Z: `0.02`
+    * X: `0.1`
+    * Y: `0.1`
+    * Z: `0.02`
 13. Press **N** to close
 
 Position first button:
 
 14. Press **N**
 15. Under "Location", change:
-    - X: `-0.15`
-    - Y: `0.14`
-    - Z: `0.1`
+    * X: `-0.15`
+    * Y: `0.14`
+    * Z: `0.1`
 16. Press **N** to close
 
 Duplicate for 2 more buttons:
@@ -701,18 +706,18 @@ Duplicate for 2 more buttons:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `7.2`
-   - Y: `2.45`
-   - Z: `0.0`
+   * X: `7.2`
+   * Y: `2.45`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `0.13`
-   - Z: `-0.1`
+   * X: `0`
+   * Y: `0.13`
+   * Z: `-0.1`
 8. Press **N** to close
 
 ## Step 5: Create the Display Panel (Behind Glass)
@@ -721,18 +726,18 @@ Position it:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `7.0`
-   - Y: `2.4`
-   - Z: `0.0`
+   * X: `7.0`
+   * Y: `2.4`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `0.12`
-   - Z: `-0.1`
+   * X: `0`
+   * Y: `0.12`
+   * Z: `-0.1`
 8. Press **N** to close
 
 ## Step 6: Create Signal Strength Meter (7 Segments)
@@ -741,18 +746,18 @@ Position it:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `0.08`
-   - Y: `0.15`
-   - Z: `0.0`
+   * X: `0.08`
+   * Y: `0.15`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position first segment:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `2.5`
-   - Y: `0.14`
-   - Z: `0.1`
+   * X: `2.5`
+   * Y: `0.14`
+   * Z: `0.1`
 8. Press **N** to close
 
 Duplicate for 6 more segments:
@@ -773,18 +778,18 @@ Duplicate for 6 more segments:
 6. Right-click and delete 2 vertices to make a triangle
 7. Press **Tab** to exit Edit Mode
 8. Press **N** and set Dimensions:
-   - X: `0.2`
-   - Y: `0.2`
-   - Z: `0.0`
+   * X: `0.2`
+   * Y: `0.2`
+   * Z: `0.0`
 9. Press **N** to close
 
 Position left arrow:
 
 10. Press **N**
 11. Under "Location", change:
-    - X: `-1.0`
-    - Y: `0.14`
-    - Z: `0.0`
+    * X: `-1.0`
+    * Y: `0.14`
+    * Z: `0.0`
 12. Under "Rotation", change X to: `90`
 13. Press **N** to close
 
@@ -803,18 +808,18 @@ Duplicate for front and right arrows:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `7.0`
-   - Y: `0.2`
-   - Z: `0.0`
+   * X: `7.0`
+   * Y: `0.2`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `0.14`
-   - Z: `-1.0`
+   * X: `0`
+   * Y: `0.14`
+   * Z: `-1.0`
 8. Press **N** to close
 
 ## Step 9: Create the Speed Display Row
@@ -823,18 +828,18 @@ Position it:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `7.0`
-   - Y: `0.3`
-   - Z: `0.0`
+   * X: `7.0`
+   * Y: `0.3`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `0.14`
-   - Z: `-1.3`
+   * X: `0`
+   * Y: `0.14`
+   * Z: `-1.3`
 8. Press **N** to close
 
 ## Step 10: Create Control Buttons (5 Buttons)
@@ -843,18 +848,18 @@ Position it:
 2. Click **Mesh**
 3. Click **Cube**
 4. Press **N** and set Dimensions:
-   - X: `0.12`
-   - Y: `0.12`
-   - Z: `0.02`
+   * X: `0.12`
+   * Y: `0.12`
+   * Z: `0.02`
 5. Press **N** to close
 
 Position first button:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `-0.2`
-   - Y: `0.13`
-   - Z: `-0.5`
+   * X: `-0.2`
+   * Y: `0.13`
+   * Z: `-0.5`
 8. Press **N** to close
 
 Round it:
@@ -879,18 +884,18 @@ Duplicate for 4 more buttons:
 2. Click **Mesh**
 3. Click **Plane**
 4. Press **N** and set Dimensions:
-   - X: `7.0`
-   - Y: `0.15`
-   - Z: `0.0`
+   * X: `7.0`
+   * Y: `0.15`
+   * Z: `0.0`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `0.13`
-   - Z: `-0.7`
+   * X: `0`
+   * Y: `0.13`
+   * Z: `-0.7`
 8. Press **N** to close
 
 ## Step 12: Create the Mounting Bracket
@@ -899,9 +904,9 @@ Position it:
 2. Click **Mesh**
 3. Click **Cylinder**
 4. Press **N** and set Dimensions:
-   - X: `0.12`
-   - Y: `1.2`
-   - Z: `0.08`
+   * X: `0.12`
+   * Y: `1.2`
+   * Z: `0.08`
 5. Press **N** to close
 
 Rotate it:
@@ -913,9 +918,9 @@ Position it:
 
 8. Press **N**
 9. Under "Location", change:
-   - X: `0`
-   - Y: `-0.15`
-   - Z: `-0.43`
+   * X: `0`
+   * Y: `-0.15`
+   * Z: `-0.43`
 10. Press **N** to close
 
 Add ball joint:
@@ -924,13 +929,13 @@ Add ball joint:
 12. Click **Mesh**
 13. Click **UV Sphere**
 14. Press **N** and set Dimensions:
-    - X: `0.15`
-    - Y: `0.15`
-    - Z: `0.15`
+    * X: `0.15`
+    * Y: `0.15`
+    * Z: `0.15`
 15. Under "Location", change:
-    - X: `0`
-    - Y: `-0.75`
-    - Z: `-0.43`
+    * X: `0`
+    * Y: `-0.75`
+    * Z: `-0.43`
 16. Press **N** to close
 
 ## Step 13: Create the Suction Cup
@@ -939,18 +944,18 @@ Add ball joint:
 2. Click **Mesh**
 3. Click **Cylinder**
 4. Press **N** and set Dimensions:
-   - X: `0.45`
-   - Y: `0.04`
-   - Z: `0.45`
+   * X: `0.45`
+   * Y: `0.04`
+   * Z: `0.45`
 5. Press **N** to close
 
 Position it:
 
 6. Press **N**
 7. Under "Location", change:
-   - X: `0`
-   - Y: `-1.33`
-   - Z: `-0.43`
+   * X: `0`
+   * Y: `-1.33`
+   * Z: `-0.43`
 8. Press **N** to close
 
 ## Step 14: Create the Cable
@@ -974,9 +979,9 @@ Position it:
 
 12. Press **N**
 13. Under "Location", change:
-    - X: `2.5`
-    - Y: `-0.15`
-    - Z: `-0.43`
+    * X: `2.5`
+    * Y: `-0.15`
+    * Z: `-0.43`
 14. Press **N** to close
 
 ## Step 15: Apply Materials
@@ -1024,7 +1029,7 @@ Create the display panel material:
 
 Create the X band LED material (green):
 
-30. Click **+ New`
+30. Click \*\*+ New\`
 31. Set Base Color to: Green (#67e889)
 32. Scroll down to "Emission"
 33. Check the box next to "Emission"
@@ -1035,7 +1040,7 @@ Create the X band LED material (green):
 
 Create the K band LED material (yellow):
 
-38. Click **+ New`
+38. Click \*\*+ New\`
 39. Set Base Color to: Yellow (#ffb23e)
 40. Scroll down to "Emission"
 41. Check the box next to "Emission"
@@ -1045,7 +1050,7 @@ Create the K band LED material (yellow):
 
 Create the Ka band LED material (red):
 
-45. Click **+ New`
+45. Click \*\*+ New\`
 46. Set Base Color to: Red (#ff554d)
 47. Scroll down to "Emission"
 48. Check the box next to "Emission"
@@ -1055,7 +1060,7 @@ Create the Ka band LED material (red):
 
 Create the Laser LED material (magenta):
 
-52. Click **+ New`
+52. Click \*\*+ New\`
 53. Set Base Color to: Magenta (#d766ff)
 54. Scroll down to "Emission"
 55. Check the box next to "Emission"
@@ -1065,7 +1070,7 @@ Create the Laser LED material (magenta):
 
 Create the arrows material:
 
-59. Click **+ New`
+59. Click \*\*+ New\`
 60. Set Base Color to: White (#e5f6fb)
 61. Scroll down to "Emission"
 62. Check the box next to "Emission"
@@ -1077,7 +1082,7 @@ Create the arrows material:
 
 Create the buttons material:
 
-68. Click **+ New`
+68. Click \*\*+ New\`
 69. Set Base Color to: Dark Brown (#51432f)
 70. Rename to: `mat_dowe_radar_buttons`
 71. Click all 5 control buttons to select them
@@ -1085,7 +1090,7 @@ Create the buttons material:
 
 Create the bracket material:
 
-73. Click **+ New`
+73. Click \*\*+ New\`
 74. Set Base Color to: Black (#1a1a1a)
 75. Rename to: `mat_dowe_radar_bracket`
 76. Click the bracket arm and ball joint to select them
@@ -1103,7 +1108,7 @@ Create the suction cup material:
 
 Create the cable material:
 
-85. Click **+ New`
+85. Click \*\*+ New\`
 86. Set Base Color to: Black (#1a1a1a)
 87. Rename to: `mat_dowe_radar_cable`
 88. Click the cable to select it
@@ -1136,65 +1141,71 @@ Repeat for bracket and suction cup.
 
 Follow the same process as the ELD to create LOD1 and LOD2 versions, simplifying the model each time.
 
----
+***
 
 # Troubleshooting
 
 ## "I can't find the menu you mentioned"
-- Make sure you're in the correct workspace (look at the tabs at the top)
-- Some menus are only available in certain modes (Object Mode vs Edit Mode)
-- Press **Tab** to switch between Object Mode and Edit Mode
+
+* Make sure you're in the correct workspace (look at the tabs at the top)
+* Some menus are only available in certain modes (Object Mode vs Edit Mode)
+* Press **Tab** to switch between Object Mode and Edit Mode
 
 ## "My model looks wrong in the game"
-- Check that you used the exact dimensions provided
-- Make sure you applied all modifiers before exporting
-- Verify the materials are assigned correctly
-- Check that the pivot points are set correctly
+
+* Check that you used the exact dimensions provided
+* Make sure you applied all modifiers before exporting
+* Verify the materials are assigned correctly
+* Check that the pivot points are set correctly
 
 ## "I can't export to .pmd"
-- Make sure the SCS Blender Tools plugin is installed and enabled
-- **IMPORTANT**: Make sure you're using Blender 3.6 (NOT 4.0 or newer!)
-- Try restarting Blender
-- Check that the SCS Tools addon is checked in Preferences > Add-ons
+
+* Make sure the SCS Blender Tools plugin is installed and enabled
+* **IMPORTANT**: Make sure you're using Blender 3.6 (NOT 4.0 or newer!)
+* Try restarting Blender
+* Check that the SCS Tools addon is checked in Preferences > Add-ons
 
 ## "SCS Tools won't install"
-- Make sure you downloaded the correct version from mods.scssoft.com
-- Make sure you're using Blender 3.6
-- Try unzipping the download first, then install the .zip file inside
+
+* Make sure you downloaded the correct version from mods.scssoft.com
+* Make sure you're using Blender 3.6
+* Try unzipping the download first, then install the .zip file inside
 
 ## "I'm using Blender 4.0/4.1/4.2 and it doesn't work"
-- You need to uninstall Blender 4.x and install Blender 3.6 instead
-- Go to: https://www.blender.org/download/lts/3-6/
-- SCS Tools only works with Blender 3.6
-- This is a known limitation of the SCS Tools plugin
+
+* You need to uninstall Blender 4.x and install Blender 3.6 instead
+* Go to: <https://www.blender.org/download/lts/3-6/>
+* SCS Tools only works with Blender 3.6
+* This is a known limitation of the SCS Tools plugin
 
 ## "The colors don't look right"
-- Double-check the hex codes provided
-- Make sure emission is enabled for screens and LEDs
-- Check that materials are assigned to the correct objects
 
----
+* Double-check the hex codes provided
+* Make sure emission is enabled for screens and LEDs
+* Check that materials are assigned to the correct objects
+
+***
 
 # Final Checklist
 
 Before you're done, make sure you:
 
-- [ ] Installed Blender and SCS Tools plugin
-- [ ] Created the ELD tablet with all parts
-- [ ] Created the radar detector with all parts
-- [ ] Applied all materials with correct colors
-- [ ] UV mapped the display areas
-- [ ] Set pivot points correctly
-- [ ] Exported both models as .pmd files
-- [ ] (Optional) Created LOD versions
-- [ ] Saved your Blender files for future editing
+* [ ] Installed Blender and SCS Tools plugin
+* [ ] Created the ELD tablet with all parts
+* [ ] Created the radar detector with all parts
+* [ ] Applied all materials with correct colors
+* [ ] UV mapped the display areas
+* [ ] Set pivot points correctly
+* [ ] Exported both models as .pmd files
+* [ ] (Optional) Created LOD versions
+* [ ] Saved your Blender files for future editing
 
----
+***
 
 # Need Help?
 
-- **SCS Modding Wiki**: https://modding.scssoft.com/wiki
-- **SCS Forum**: https://forum.scssoft.com/
-- **Blender Manual**: https://docs.blender.org/manual/en/latest/
+* **SCS Modding Wiki**: <https://modding.scssoft.com/wiki>
+* **SCS Forum**: <https://forum.scssoft.com/>
+* **Blender Manual**: <https://docs.blender.org/manual/en/latest/>
 
 Good luck with your modeling!
