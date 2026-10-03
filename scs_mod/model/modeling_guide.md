@@ -52,7 +52,8 @@ This is a known limitation of the SCS Tools plugin. If you try to use a newer ve
 2. Click the tab that looks like a triangle or cone (this is the Scene Properties tab - it's next to the red material ball icon)
 3. Scroll down until you see a section called "Units"
 4. Under "Unit System", click the dropdown and select **Metric**
-5. In the top-right corner of the 3D view, you'll see shading buttons - click the one that looks like a sphere (Material Preview)
+5. In the top-right corner of the 3D view, you'll see 4 circular buttons next to each other
+6. Click the **third circle from the left** (this is Material Preview - it has a blue/gray circle inside)
 
 **Note**: In older Blender versions, Units was in Preferences. In Blender 3.6, it's in the Scene Properties panel on the right.
 
