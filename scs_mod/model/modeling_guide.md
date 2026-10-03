@@ -141,9 +141,9 @@ Add more detail to the screen:
 
 13. Right-click on the plane to select it
 14. Press **Tab** to enter Edit Mode (you'll see the dots/vertices)
-15. In the top menu, click **Mesh**
-16. Click **Subdivide**
-17. Press **Tab** to exit Edit Mode
+15. Press **Ctrl + 2** on your keyboard (this is the shortcut for Subdivide)
+   - **Alternative**: Right-click in the 3D view, click "Subdivide" in the menu that appears
+16. Press **Tab** to exit Edit Mode
 
 ## Step 3: Create the Bezel (Frame Around Screen)
 
