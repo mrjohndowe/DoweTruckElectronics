@@ -22,10 +22,10 @@ type Notice = { title: string; body: string; tone?: "warning" | "info"; action?:
 type FuelRow = { id: number; cells: string[] };
 
 const bandData: Record<AlertBand, { frequency: string; color: string; voice: string; spoken: string }> = {
-  X: { frequency: "10.525 GHz", color: "#67e889", voice: "X band ahead", spoken: "X band ahead" },
-  K: { frequency: "24.150 GHz", color: "#ffb23e", voice: "K band ahead", spoken: "K band ahead" },
-  KA: { frequency: "34.700 GHz", color: "#ff554d", voice: "KA band ahead", spoken: "K A band ahead" },
-  LASER: { frequency: "904 nm", color: "#d766ff", voice: "Laser alert", spoken: "Laser alert" },
+  X: { frequency: "10.525 GHz", color: "#67e889", voice: "CHP CRuiser", spoken: "C H P Cruiser" },
+  K: { frequency: "24.150 GHz", color: "#ffb23e", voice: "speedTrap", spoken: "Speed Trap Alert" },
+  KA: { frequency: "34.700 GHz", color: "#ff554d", voice: "WorkZone", spoken: "Work Zone Area ... Slow Down" },
+  LASER: { frequency: "904 nm", color: "#d766ff", voice: "Weight Station Zone", spoken: "Weight Station Zone Standby..." },
 };
 
 const directionLabel: Record<Direction, string> = { left: "LEFT", front: "AHEAD", right: "RIGHT" };
@@ -37,7 +37,7 @@ const tabs: { id: EldTab; label: string }[] = [
   { id: "duty", label: "Duty" },
   { id: "inspect", label: "Inspect" },
   { id: "home", label: "Info" },
-  { id: "hos", label: "HOS" },  
+  { id: "hos", label: "HOS" },
   { id: "logs", label: "Trip log" },
   { id: "violations", label: "Fines" },
   { id: "fuel", label: "Fuel" },
