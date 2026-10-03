@@ -8,15 +8,26 @@ The SCS Telemetry Plugin is an official plugin from SCS Software that exposes ga
 
 ## Download the Plugin
 
-### Official Source
-Download the latest version from the SCS Software modding wiki:
-- https://modding.scssoft.com/wiki/Documentation_of_Tools_and_File_Formats/Telemetry
+### Official SCS SDK (Recommended)
+The official SCS SDK includes the telemetry plugin with full documentation and examples:
+- **Download**: https://download.eurotrucksimulator2.com/scs_sdk_1_15.zip
+- **Version**: 1.15 (stable)
+- **Platforms**: Windows, Linux, macOS
+- **Documentation**: https://modding.scssoft.com/wiki/Documentation/Engine/SDK/Telemetry
 
-### Direct Download Links
-- Windows: https://github.com/RenCloud/scs-telemetry/releases
-- Linux/macOS: Available in the same repository
+This is the official source from SCS Software and is recommended over community forks.
 
-**Note**: As of this writing, the plugin is maintained by the community. Always download from trusted sources.
+### Community Alternatives
+If you prefer community-maintained versions with additional features:
+- **RenCloud/scs-sdk-plugin**: https://github.com/RenCloud/scs-sdk-plugin (shared memory implementation)
+- **truckermudgeon/scs-sdk-plugin**: https://github.com/truckermudgeon/scs-sdk-plugin (maintained fork)
+- **scs-sdk-crates (Rust)**: https://github.com/AptS-1547/scs-sdk-crates (Rust implementation)
+
+### Download Instructions (Official SDK)
+1. Download the official SDK: https://download.eurotrucksimulator2.com/scs_sdk_1_15.zip
+2. Extract the archive
+3. Navigate to the telemetry plugin directory
+4. The plugin files are located in the appropriate platform subdirectory
 
 ## Installation Instructions
 
@@ -200,7 +211,9 @@ Refer to the plugin documentation for specific configuration options.
 - **SCS Modding Wiki**: https://modding.scssoft.com/
 - **SCS Forum**: https://forum.scssoft.com/
 - **Telemetry Documentation**: https://modding.scssoft.com/wiki/Documentation_of_Tools_and_File_Formats/Telemetry
-- **GitHub Repository**: https://github.com/RenCloud/scs-telemetry
+- **Plugin Repository**: https://github.com/RenCloud/scs-sdk-plugin
+- **Alternative Plugin**: https://github.com/truckermudgeon/scs-sdk-plugin
+- **Rust Implementation**: https://github.com/drysius/scs-telemetry-rs
 
 ## Safety and Security
 
