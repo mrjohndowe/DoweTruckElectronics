@@ -1,4 +1,4 @@
-name: Deploy Demo Pages to  GitHub Pages
+name: Deploy Demo Pages to GitHub Pages
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: node
           cache: npm
           cache-dependency-path: ui-mockups/package-lock.json
 
@@ -44,7 +44,7 @@ jobs:
         run: npm run build
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ui-mockups/dist
 
