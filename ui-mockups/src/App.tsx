@@ -1050,7 +1050,7 @@ function EldApp({ driver, settings, radar, radarEvents, telemetry, simEvents, li
   onLogout: () => void;
 }) {
   const [activeTab, setActiveTab] = useState<EldTab>("duty");
-  const [duty, setDuty] = useState("OFF DUTY");
+  const [duty, setDuty] = useState("DRIVING");
   const [answers, setAnswers] = useState<Answers>({});
   const [inspection, setInspection] = useState<InspectionState>(freshInspection);
   const [certified, setCertified] = useState(false);
