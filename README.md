@@ -444,32 +444,103 @@ scs_mod/
 - **Material Definitions**: PBR materials with emissive displays
 - **Extensible Design**: Easy to add support for additional trucks
 
-### 3D Models
+### 3D Models (YOU NEED TO CREATE THESE)
 
-The mod requires 3D models for the Fleet Guard ELD tablet and Road Sentry radar detector. Detailed specifications and modeling guides are provided:
+The mod needs 3D models for the ELD tablet and radar detector.
 
-- **Fleet Guard ELD Model**: See `scs_mod/model/eld/model_specifications.md` (updated with tablet design, top bar, sidebar navigation, Fleet Guard icon)
-- **Road Sentry Radar Model**: See `scs_mod/model/radar/model_specifications.md` (updated with modern housing, ridge, display layout, night mode)
-- **Modeling Guide**: See `scs_mod/model/modeling_guide.md` (updated with new design references and runtime boundary)
+**Good news**: There's a beginner-friendly guide that shows you exactly what to do.
 
-**Design Reference**: The model specifications are based on the UI mockup designs in `ui-mockups/src/App.tsx` and `ui-mockups/src/index.css`. The React/Tailwind website is a demo/preview tool for design validation, not the final in-game product.
+**Open this file**: `scs_mod/model/modeling_guide.md`
 
-**Important Distinction**:
-- The .pmd model provides the physical hardware appearance (geometry, materials, static branding)
-- The external application provides runtime data (speed, frequency, driver info, HOS data, location, status)
-- Dynamic values should NOT be baked into the model - they remain software-driven through telemetry or UI overlays
+This guide tells you:
+- Exactly which buttons to click in Blender
+- What numbers to type in
+- How to create each part of the models
+- How to export them
 
-The models need to be created using Blender with SCS Tools plugin. The specifications include:
-- Exact dimensions in SCS scale units
-- Component breakdown and details
-- Material assignments with emissive properties
-- UV mapping requirements
-- Poly count targets (~1100 for ELD, ~1130 for radar)
-- LOD requirements
-- Animation bone setup
-- Night mode considerations
+**No Blender experience needed** - it's written for complete beginners.
 
-**Note**: The .pmd files are currently placeholders with detailed instructions. They need to be created with Blender before the mod is fully functional.
+---
+
+## Quick Start for Creating Models
+
+### Step 1: Download Blender (Free)
+1. Go to: https://www.blender.org/download/
+2. Click "Download Blender"
+3. Install it like any other program
+
+### Step 2: Install the SCS Plugin
+1. Open Blender
+2. Click **Edit** > **Preferences...**
+3. Click **Add-ons** on the left
+4. Click **Install...**
+5. Download SCS Tools from: https://mods.scssoft.com/ (click Tools > Blender Tools)
+6. Select the downloaded file and click **Install Add-on**
+7. Check the box next to "SCS Tools"
+
+### Step 3: Follow the Beginner Guide
+1. Open: `scs_mod/model/modeling_guide.md`
+2. Read "Before You Start" section
+3. Follow "PART 1" to create the ELD tablet
+4. Follow "PART 2" to create the radar detector
+
+### Step 4: Export Your Models
+The guide will show you how to export as .pmd files.
+
+### Step 5: Replace the Placeholders
+- Put your new `dowe_eld.pmd` in: `scs_mod/model/eld/`
+- Put your new `dowe_radar.pmd` in: `scs_mod/model/radar/`
+- Delete the `.pmd.txt` files (they're just instructions)
+
+---
+
+## What the Models Should Look Like
+
+### Fleet Guard ELD Tablet
+- Tablet shape (like an iPad)
+- Blue bar at top with "FLEET GUARD"
+- Navigation bar on left side
+- Screen in middle
+- Mounting bracket with suction cup
+
+### Road Sentry Radar Detector
+- Compact device
+- Dark metallic housing
+- Glass display
+- 5 buttons at bottom (MUTE, VOICE, DIM, SENS, PWR)
+- Signal bars and arrows
+- Mounting bracket with suction cup
+
+---
+
+## Important: What NOT to Put in the Model
+
+Your 3D model should have the SHAPE and COLORS, but NOT the text.
+
+❌ DON'T put in the model:
+- Driver names (like "John Doe")
+- Speed numbers (like "65 MPH")
+- HOS times
+- Location text
+- Any changing numbers
+
+✅ DO put in the model:
+- The physical shape
+- The colors
+- The button shapes
+- The mounting bracket
+
+The game software will handle the changing text and numbers automatically.
+
+---
+
+## Additional Resources
+
+If you want more detailed technical specifications:
+- **ELD Specs**: `scs_mod/model/eld/model_specifications.md`
+- **Radar Specs**: `scs_mod/model/radar/model_specifications.md`
+
+But you don't need these if you're following the beginner guide - it has everything you need.
 
 ### Installation
 
