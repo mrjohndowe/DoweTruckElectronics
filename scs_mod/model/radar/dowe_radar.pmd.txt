@@ -8,6 +8,14 @@ This file needs to be replaced with a real .pmd (SCS Pixel Model) file.
 
 You need to create a 3D model of the Road Sentry radar detector using Blender.
 
+### IMPORTANT: Use Blender 3.6
+
+You MUST use Blender 3.6 - this is the only version that works with SCS Tools.
+
+❌ **Do NOT use Blender 4.0, 4.1, 4.2, or newer** - they will NOT work!
+
+✅ **Download Blender 3.6 here**: https://www.blender.org/download/lts/3-6/
+
 ### Step-by-Step Instructions
 
 1. Open the modeling guide:

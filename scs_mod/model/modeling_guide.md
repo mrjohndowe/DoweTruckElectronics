@@ -2,15 +2,30 @@
 
 This guide shows you exactly how to create the 3D models for the Fleet Guard ELD tablet and Road Sentry radar detector using Blender. Every step is written out clearly - no previous Blender experience needed.
 
+## ⚠️ CRITICAL: Use Blender 3.6 Only
+
+**You MUST use Blender 3.6** - this is the only version that works with the latest SCS Tools plugin.
+
+❌ **Do NOT use Blender 4.0, 4.1, 4.2, or any newer version** - they will NOT work with SCS Tools!
+
+✅ **Download Blender 3.6 LTS here**: https://www.blender.org/download/lts/3-6/
+
+This is a known limitation of the SCS Tools plugin. If you try to use a newer version of Blender, the SCS Tools plugin will not install or will not work correctly.
+
 ## Before You Start
 
 ### What You Need to Download
 
-1. **Blender** (free 3D software)
-   - Go to: https://www.blender.org/download/
-   - Click the big "Download Blender" button
+**IMPORTANT**: You must use Blender 3.6 - this is the only version that works with the latest SCS Tools plugin.
+
+1. **Blender 3.6** (free 3D software)
+   - Go to: https://www.blender.org/download/lts/3-6/
+   - Download Blender 3.6 LTS (Long Term Support)
+   - Click the big "Download Blender 3.6" button
    - Install it like any other program
-   - Open Blender when it's done installing
+   - Open Blender 3.6 when it's done installing
+
+   ⚠️ **Do NOT use a newer version** (like 4.0, 4.1, 4.2, etc.) - they will NOT work with SCS Tools!
 
 2. **SCS Blender Tools Plugin** (required for exporting to ATS)
    - Go to: https://mods.scssoft.com/
@@ -1136,8 +1151,20 @@ Follow the same process as the ELD to create LOD1 and LOD2 versions, simplifying
 
 ## "I can't export to .pmd"
 - Make sure the SCS Blender Tools plugin is installed and enabled
-- Check that you're using a compatible Blender version (2.93+ recommended)
+- **IMPORTANT**: Make sure you're using Blender 3.6 (NOT 4.0 or newer!)
 - Try restarting Blender
+- Check that the SCS Tools addon is checked in Preferences > Add-ons
+
+## "SCS Tools won't install"
+- Make sure you downloaded the correct version from mods.scssoft.com
+- Make sure you're using Blender 3.6
+- Try unzipping the download first, then install the .zip file inside
+
+## "I'm using Blender 4.0/4.1/4.2 and it doesn't work"
+- You need to uninstall Blender 4.x and install Blender 3.6 instead
+- Go to: https://www.blender.org/download/lts/3-6/
+- SCS Tools only works with Blender 3.6
+- This is a known limitation of the SCS Tools plugin
 
 ## "The colors don't look right"
 - Double-check the hex codes provided

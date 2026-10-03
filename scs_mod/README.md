@@ -81,10 +81,13 @@ This guide tells you:
 
 ## Quick Start for Creating Models
 
-### Step 1: Download Blender
-1. Go to: https://www.blender.org/download/
-2. Click "Download Blender"
-3. Install it
+### Step 1: Download Blender 3.6
+1. Go to: https://www.blender.org/download/lts/3-6/
+2. Download Blender 3.6 LTS
+3. Click "Download Blender 3.6"
+4. Install it
+
+⚠️ **IMPORTANT**: You MUST use Blender 3.6 - do NOT use Blender 4.0 or newer! SCS Tools only works with Blender 3.6.
 
 ### Step 2: Install the SCS Plugin
 1. Open Blender
