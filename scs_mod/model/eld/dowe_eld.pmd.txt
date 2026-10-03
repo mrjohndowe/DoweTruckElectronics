@@ -2,56 +2,89 @@
 
 This file should be replaced with an actual .pmd (SCS Pixel Model) file.
 
-MODEL: Dowe ELD Tablet
+MODEL: Fleet Guard ELD Tablet
 FILE TYPE: .pmd (SCS Pixel Model)
+
+DESIGN REFERENCE:
+- Based on UI mockup preview: ui-mockups/src/App.tsx and ui-mockups/src/index.css
+- The React/Tailwind website is a demo/preview tool, not the final in-game product
+- This model should implement the physical form and appearance shown in that design
+- Dynamic values (driver info, HOS data, etc.) should remain software-driven
 
 REQUIREMENTS:
 - Use Blender with SCS Blender Tools plugin
 - Create model according to specifications in model_specifications.md
-- Target poly count: ~950 polygons (keep under 2000)
+- Target poly count: ~1100 polygons (keep under 2000)
 - Create LOD0, LOD1, LOD2 versions
 - Apply proper materials (see ../material/model/eld/dowe_eld.mat)
-- UV map for screen display area
+- UV map for screen display area (top bar, sidebar, content, status bar)
 - Create normal map for details
 - Create ambient occlusion map
 
 MODELING STEPS:
 1. Open Blender with SCS Tools plugin
 2. Set scale to SCS units (1 unit = 1 cm approx)
-3. Create main body (200x120x25 units, rounded corners)
-4. Create screen display (180x100 units, recessed 2 units)
+3. Create main body (11.8 x 7.0 x 0.25 units, rounded corners)
+4. Create screen display area (11.0 x 6.0 units, recessed 2 units)
 5. Create bezel around screen (10 units wide)
-6. Add 3 buttons on right side (15x15 units each)
-7. Create mounting bracket arm (150x10 units)
-8. Create suction cup (50 units diameter, 5 units thick)
-9. Add ball joint at base of bracket
-10. Add power cable from bottom (5 units thick, 50 units long)
-11. Set pivot points for animation
-12. UV map the screen area
-13. Apply materials
-14. Export as .pmd file
-15. Create LOD1 and LOD2 versions
+6. Create top bar (blue #0879ad, 0.7 units height) - key branding element
+7. Create Fleet Guard icon (34 x 34 unit square with FG text)
+8. Create navigation sidebar (1.54 units width, dark blue-gray #10242e)
+9. Create 9 navigation button areas (touch areas, not physical buttons)
+10. Create driver section at bottom of sidebar
+11. Create content area (remaining screen space)
+12. Create status bar at bottom (0.28 units height)
+13. Add physical buttons on right side (optional, 3 buttons)
+14. Create mounting bracket arm (150x10 units)
+15. Create suction cup (50 units diameter, 5 units thick)
+16. Add ball joint at base of bracket
+17. Add power cable from bottom (5 units thick, 50 units long)
+18. Set pivot points for animation
+19. UV map the screen area (top bar, sidebar, content, status bar)
+20. Apply materials
+21. Export as .pmd file
+22. Create LOD1 and LOD2 versions
 
 MATERIAL ASSIGNMENTS:
-- Main body: mat_dowe_eld_body
-- Screen: mat_dowe_eld_screen
-- Buttons: mat_dowe_eld_buttons
-- Bracket: mat_dowe_eld_bracket
+- Main body: mat_dowe_eld_body (dark gray plastic)
+- Screen: mat_dowe_eld_screen (light gray, emissive)
+- Bezel: mat_dowe_eld_bezel (dark gray)
+- Top bar: mat_dowe_eld_topbar (blue #0879ad, emissive)
+- Sidebar: mat_dowe_eld_sidebar (dark blue-gray)
+- Buttons: mat_dowe_eld_buttons (dark gray with LED)
+- Bracket: mat_dowe_eld_bracket (black)
 
 ANIMATION BONES:
 - bone_body: Main device body
 - bone_bracket: Mounting bracket arm
 - bone_cup: Suction cup
 
+ANIMATION REQUIREMENTS:
+- power_on: Screen emissive fades in
+- power_off: Screen emissive fades out
+- bright_100, bright_58, bright_25: Screen brightness levels
+- button_press: Visual feedback on button press
+- led_on/led_off: LED indicator states
+- bracket_tilt/rotate: Bracket adjustment
+
 TEXTURE REQUIREMENTS:
 - dowe_eld.tobj - Diffuse texture
 - dowe_eld_n.tobj - Normal map
 - dowe_eld_ao.tobj - Ambient occlusion
+- Fleet Guard icon texture
 
 EXPORT SETTINGS:
 - SCS Tools .pmd export
 - Include collision mesh
 - Scale: 1.0
 - Use proper orientation for game mounting
+
+IMPORTANT NOTES:
+- The top bar blue color (#0879ad) is a key Fleet Guard branding element
+- The sidebar navigation is a key UI pattern
+- Physical buttons are optional - the design is primarily touchscreen
+- Dynamic text values (driver info, HOS, trip logs, etc.) should NOT be baked into the model
+- These values will be controlled by the external application through telemetry or UI overlays
+- The model provides the physical hardware appearance, the software provides runtime data
 
 Convert this placeholder to a real .pmd file using Blender with SCS Tools before distributing the mod.

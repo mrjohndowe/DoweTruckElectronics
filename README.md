@@ -446,20 +446,28 @@ scs_mod/
 
 ### 3D Models
 
-The mod requires 3D models for the ELD tablet and radar detector. Detailed specifications and modeling guides are provided:
+The mod requires 3D models for the Fleet Guard ELD tablet and Road Sentry radar detector. Detailed specifications and modeling guides are provided:
 
-- **ELD Tablet Model**: See `scs_mod/model/eld/model_specifications.md`
-- **Radar Detector Model**: See `scs_mod/model/radar/model_specifications.md`
-- **Modeling Guide**: See `scs_mod/model/modeling_guide.md`
+- **Fleet Guard ELD Model**: See `scs_mod/model/eld/model_specifications.md` (updated with tablet design, top bar, sidebar navigation, Fleet Guard icon)
+- **Road Sentry Radar Model**: See `scs_mod/model/radar/model_specifications.md` (updated with modern housing, ridge, display layout, night mode)
+- **Modeling Guide**: See `scs_mod/model/modeling_guide.md` (updated with new design references and runtime boundary)
+
+**Design Reference**: The model specifications are based on the UI mockup designs in `ui-mockups/src/App.tsx` and `ui-mockups/src/index.css`. The React/Tailwind website is a demo/preview tool for design validation, not the final in-game product.
+
+**Important Distinction**:
+- The .pmd model provides the physical hardware appearance (geometry, materials, static branding)
+- The external application provides runtime data (speed, frequency, driver info, HOS data, location, status)
+- Dynamic values should NOT be baked into the model - they remain software-driven through telemetry or UI overlays
 
 The models need to be created using Blender with SCS Tools plugin. The specifications include:
 - Exact dimensions in SCS scale units
 - Component breakdown and details
-- Material assignments
+- Material assignments with emissive properties
 - UV mapping requirements
-- Poly count targets (~950 for ELD, ~1100 for radar)
+- Poly count targets (~1100 for ELD, ~1130 for radar)
 - LOD requirements
 - Animation bone setup
+- Night mode considerations
 
 **Note**: The .pmd files are currently placeholders with detailed instructions. They need to be created with Blender before the mod is fully functional.
 

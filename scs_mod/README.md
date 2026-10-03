@@ -64,11 +64,17 @@ The following assets need to be created before the mod is fully functional:
 
 ### 3D Models
 
-**Note**: Detailed specifications and modeling guides are provided for creating the models:
+**Design Reference**: The model specifications are based on the UI mockup designs in `ui-mockups/src/App.tsx` and `ui-mockups/src/index.css`. The React/Tailwind website is a demo/preview tool for design validation, not the final in-game product.
 
-- **ELD Tablet**: See `model/eld/model_specifications.md` for detailed specifications
-- **Radar Detector**: See `model/radar/model_specifications.md` for detailed specifications
-- **Modeling Guide**: See `model/modeling_guide.md` for step-by-step Blender instructions
+**Model Specifications**:
+- **Fleet Guard ELD**: See `model/eld/model_specifications.md` for detailed specifications (updated with tablet design, top bar, sidebar navigation, Fleet Guard icon)
+- **Road Sentry Radar**: See `model/radar/model_specifications.md` for detailed specifications (updated with modern housing, ridge, display layout, night mode)
+- **Modeling Guide**: See `model/modeling_guide.md` for step-by-step Blender instructions (updated with new design references)
+
+**Important Distinction**:
+- The .pmd model provides the physical hardware appearance (geometry, materials, static branding)
+- The external application provides runtime data (speed, frequency, driver info, HOS data, location, status)
+- Dynamic values should NOT be baked into the model - they remain software-driven through telemetry or UI overlays
 
 The .pmd files are currently placeholders with creation instructions. To create the models:
 1. Install Blender with SCS Tools plugin
