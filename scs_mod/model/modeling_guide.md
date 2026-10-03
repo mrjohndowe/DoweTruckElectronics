@@ -48,12 +48,13 @@ This is a known limitation of the SCS Tools plugin. If you try to use a newer ve
 
 ### Set Up Blender for SCS Models
 
-1. In the top menu, click **Edit**
-2. Click **Preferences...**
-3. On the left side, click **Units**
+1. Look at the right side of the Blender window - you'll see a panel with tabs
+2. Click the tab that looks like a triangle or cone (this is the Scene Properties tab - it's next to the red material ball icon)
+3. Scroll down until you see a section called "Units"
 4. Under "Unit System", click the dropdown and select **Metric**
-5. Close the Preferences window
-6. In the top-right corner of the 3D view, you'll see shading buttons - click the one that looks like a sphere (Material Preview)
+5. In the top-right corner of the 3D view, you'll see shading buttons - click the one that looks like a sphere (Material Preview)
+
+**Note**: In older Blender versions, Units was in Preferences. In Blender 3.6, it's in the Scene Properties panel on the right.
 
 ### Delete the Default Cube
 
