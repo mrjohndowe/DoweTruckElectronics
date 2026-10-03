@@ -22,10 +22,10 @@ type Notice = { title: string; body: string; tone?: "warning" | "info"; action?:
 type FuelRow = { id: number; cells: string[] };
 
 const bandData: Record<AlertBand, { frequency: string; color: string; voice: string; spoken: string }> = {
-  X: { frequency: "10.525 GHz", color: "#67e889", voice: "CHP CRuiser", spoken: "C H P Cruiser" },
-  K: { frequency: "24.150 GHz", color: "#ffb23e", voice: "speedTrap", spoken: "Speed Trap Alert" },
-  KA: { frequency: "34.700 GHz", color: "#ff554d", voice: "WorkZone", spoken: "Work Zone Area ... Slow Down" },
-  LASER: { frequency: "904 nm", color: "#d766ff", voice: "Weight Station Zone", spoken: "Weight Station Zone Standby..." },
+  X: { frequency: "10.525 GHz", color: "#67e889", voice: "Police Alert", spoken: "Police Reported Ahead" },
+  K: { frequency: "24.150 GHz", color: "#ffb23e", voice: "Speed Trap", spoken: "Speed Trap Alert" },
+  KA: { frequency: "34.700 GHz", color: "#ff554d", voice: "Work Zone", spoken: "Work Zone Area ... Slow Down" },
+  LASER: { frequency: "904 nm", color: "#d766ff", voice: "Weigh Station", spoken: "Weigh Station Zone ... Standby..." },
 };
 
 const directionLabel: Record<Direction, string> = { left: "LEFT", front: "AHEAD", right: "RIGHT" };
