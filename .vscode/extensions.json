@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "twxs.cmake",
+        "cheshirekow.cmake-format",
+        "go2sh.cmake-integration-vscode",
+        "ms-vscode.cpptools-extension-pack"
+    ]
+}

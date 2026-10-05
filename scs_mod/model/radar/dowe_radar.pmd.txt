@@ -1,68 +1,101 @@
-3D MODEL PLACEHOLDER
+⚠️ THIS IS A PLACEHOLDER FILE ⚠️
 
-This file should be replaced with an actual .pmd (SCS Pixel Model) file.
+This file needs to be replaced with a real .pmd (SCS Pixel Model) file.
 
-MODEL: Dowe Radar Detector
-FILE TYPE: .pmd (SCS Pixel Model)
+---
 
-REQUIREMENTS:
-- Use Blender with SCS Blender Tools plugin
-- Create model according to specifications in model_specifications.md
-- Target poly count: ~1100 polygons (keep under 2000)
-- Create LOD0, LOD1, LOD2 versions
-- Apply proper materials (see ../material/model/radar/dowe_radar.mat)
-- UV map for display elements
-- Create normal map for details
-- Create ambient occlusion map
+## What You Need to Do
 
-MODELING STEPS:
-1. Open Blender with SCS Tools plugin
-2. Set scale to SCS units (1 unit = 1 cm approx)
-3. Create main housing (150x80x25 units, tapered top)
-4. Taper top at 15 degrees for viewing angle
-5. Create display panel (130x50 units, recessed 3 units)
-6. Add 4 band LED indicators (10x10 units each, vertical)
-7. Add 3 directional arrows (20x20 units each, triangular)
-8. Add 7-segment signal strength meter (8x4 units each, vertical)
-9. Add bogey counter display (20x12 units)
-10. Add 4 control buttons (12x12 units each, bottom)
-11. Create mounting bracket arm (120x8 units)
-12. Create suction cup (45 units diameter, 4 units thick)
-13. Add ball joint at base of bracket
-14. Add power cable from bottom right (4 units thick, 40 units long)
-15. Set pivot points for animation
-16. UV map the display area
-17. Apply materials
-18. Export as .pmd file
-19. Create LOD1 and LOD2 versions
+You need to create a 3D model of the Road Sentry radar detector using Blender.
 
-MATERIAL ASSIGNMENTS:
-- Housing: mat_dowe_radar_housing
-- Display: mat_dowe_radar_display
-- LEDs: mat_dowe_radar_leds
-- Buttons: mat_dowe_radar_buttons
-- Bracket: mat_dowe_radar_bracket
+### IMPORTANT: Use Blender 3.6
 
-ANIMATION BONES:
-- bone_body: Main device body
-- bone_bracket: Mounting bracket arm
-- bone_cup: Suction cup
+You MUST use Blender 3.6 - this is the only version that works with SCS Tools.
 
-LED COLOR ASSIGNMENTS:
-- X Band LED: Green (#00ff00)
-- K Band LED: Yellow (#ffff00)
-- Ka Band LED: Red (#ff0000)
-- Laser LED: Magenta (#ff00ff)
+❌ **Do NOT use Blender 4.0, 4.1, 4.2, or newer** - they will NOT work!
 
-TEXTURE REQUIREMENTS:
-- dowe_radar.tobj - Diffuse texture
-- dowe_radar_n.tobj - Normal map
-- dowe_radar_ao.tobj - Ambient occlusion
+✅ **Download Blender 3.6 here**: https://www.blender.org/download/lts/3-6/
 
-EXPORT SETTINGS:
-- SCS Tools .pmd export
-- Include collision mesh
-- Scale: 1.0
-- Use proper orientation for game mounting
+### Step-by-Step Instructions
 
-Convert this placeholder to a real .pmd file using Blender with SCS Tools before distributing the mod.
+1. Open the modeling guide:
+   - Go to: `scs_mod/model/modeling_guide.md`
+   - Read "PART 2: Create the Road Sentry Radar Detector"
+   - Follow every step exactly
+
+2. The guide will tell you:
+   - Exactly what buttons to click in Blender
+   - What numbers to type in
+   - How to create each part of the model
+   - How to add colors and materials
+   - How to export the model
+
+3. When you're done:
+   - You'll have a file called `dowe_radar.pmd`
+   - Replace THIS file with that file
+   - Delete this .txt file
+
+---
+
+## What This Model Should Look Like
+
+Based on the design preview in `ui-mockups/src/App.tsx`:
+
+- A compact radar detector device
+- Dark metallic housing
+- Raised ridge at the top
+- Glass display in the middle
+- 5 buttons at the bottom (MUTE, VOICE, DIM, SENS, PWR)
+- Signal strength bars
+- Directional arrows (left, front, right)
+- Mounting bracket with suction cup
+
+---
+
+## Important: Don't Put Text in the Model
+
+The model should have the SHAPE and COLORS, but NOT the text.
+
+❌ DON'T put in the model:
+- Speed numbers (like "65 MPH")
+- Frequency numbers (like "34.700 GHz")
+- Location text (like "I-5 S / OR")
+- Alert text (like "CHP CRUISER")
+- Any changing numbers
+
+✅ DO put in the model:
+- The physical shape
+- The colors (dark housing, red/green/yellow LEDs)
+- The button shapes
+- The arrow shapes
+- The signal bar shapes
+- The mounting bracket
+
+The game software will handle the changing text and numbers.
+
+---
+
+## If You Get Stuck
+
+- Read the modeling guide: `scs_mod/model/modeling_guide.md`
+- It's written for beginners - no Blender experience needed
+- Every step tells you exactly what to click and what to type
+
+---
+
+## After You Create the Model
+
+1. Your new file is called: `dowe_radar.pmd`
+2. Put it in this folder: `scs_mod/model/radar/`
+3. Delete this file: `dowe_radar.pmd.txt`
+4. Done!
+
+---
+
+## Quick Reference
+
+- **Model Name**: Road Sentry Radar Detector
+- **File Type**: .pmd (SCS Pixel Model)
+- **Dimensions**: 7.6 x 0.85 x 0.3 units
+- **Key Colors**: Dark housing, colored LEDs (green/yellow/red/magenta)
+- **Instructions**: See `modeling_guide.md` PART 2

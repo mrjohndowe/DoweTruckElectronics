@@ -121,7 +121,7 @@ int main()
         return 1;
     }
 
-    Logger::info("Running for 30 seconds...");
+    Logger::info("Running for 5 minutes (300 seconds)...");
     Logger::info("Press Ctrl+C to exit early");
     Logger::info("Note: Start ATS/ETS2 with SCS telemetry plugin for real data");
 
@@ -132,14 +132,41 @@ int main()
     std::uniform_real_distribution<> strength_dist(0.1, 1.0);
     std::uniform_int_distribution<> direction_dist(0, 2); // Front, Rear, Side
 
-    // Run for 30 seconds
-    for (int i = 0; i < 300; ++i)
+    // Run for 5 minutes (3000 iterations at 100ms each)
+    for (int i = 0; i < 3000; ++i)
     {
         TelemetryState telemetry = telemetry_manager.get_current_state();
         eld.update(telemetry);
 
         // Update radar with current speed
         radar.update(0.1, telemetry.speed_mps);
+
+        // Simulate realistic driving pattern with status changes
+        // Every 500 iterations (50 seconds), change status manually
+        if (i % 500 == 0 && i > 0)
+        {
+            static int status_cycle = 0;
+            switch (status_cycle % 4)
+            {
+            case 0:
+                Logger::info("Simulation: Taking 30-minute break (Sleeper Berth)");
+                eld.set_manual_status(DutyStatus::SleeperBerth);
+                break;
+            case 1:
+                Logger::info("Simulation: Returning to driving");
+                eld.clear_manual_status();
+                break;
+            case 2:
+                Logger::info("Simulation: Taking rest break (Off Duty)");
+                eld.set_manual_status(DutyStatus::OffDuty);
+                break;
+            case 3:
+                Logger::info("Simulation: Returning to driving");
+                eld.clear_manual_status();
+                break;
+            }
+            status_cycle++;
+        }
 
         // Simulate random radar signals
         if (i % 20 == 0 && telemetry.speed_mps > 5.0)

@@ -53,7 +53,9 @@ DoweTruckElectronics/
 - Radar detector display mockup
 - Multiple screens and navigation
 - Real-time animations and state changes
-- Responsive HTML/CSS implementation
+- React 19 + TypeScript + Vite + Tailwind CSS preview/demo implementation
+
+**Note**: These are demo/preview mockups for design validation and testing. The final UI will be implemented in-game through the ATS mod system using SCS UI integration when the mod is installed in American Truck Simulator.
 
 ### Phase 4: SCS SDK Integration ✅
 - SCS telemetry data structure definitions
@@ -166,26 +168,49 @@ Run the test harness to simulate ELD behavior:
 
 This simulates a driving scenario, showing automatic duty status transitions and HOS clock updates.
 
-## UI Mockups
+## UI Mockups (Preview/Demo)
 
-Interactive HTML/CSS mockups are available for previewing the ELD and radar detector interfaces:
+The UI mockups are demo/preview tools for design validation and testing purposes. They allow you to preview the ELD and radar device interfaces before implementing them in-game.
 
-- **ELD Display**: Full-featured ELD tablet with Home, HOS, Duty Status, Logs, Inspection, Violations, Fuel, and Settings screens
-- **Radar Detector**: Multi-band radar detector with directional alerts, signal strength, and sensitivity controls
+### Important Note
+These mockups are **not** the final product. The actual in-game UI will be implemented through the ATS mod system using SCS UI integration when the mod is installed in American Truck Simulator.
 
-To preview the mockups, open the HTML files in a web browser:
+### Preview Features
+- **React 19.2.6** with TypeScript for type safety
+- **Vite 7.3.6** for fast development
+- **Tailwind CSS 4.1.17** for modern styling
+- **Interactive Demos**: Live simulation of ELD and radar devices
+- **Real-time Updates**: Dynamic status changes and alerts
+- **Audio Support**: Voice alerts for radar detection
+- **Responsive Design**: Works on desktop and mobile
 
-- `ui-mockups\eld-display.html` - ELD tablet interface
-- `ui-mockups\radar-detector.html` - Radar detector interface
+### Running the Preview Demo
 
-Simply double-click the files or open them in your preferred web browser.
+```bash
+cd ui-mockups
+npm install
+npm run dev
+```
 
-The mockups include:
-- Interactive navigation between screens
-- Real-time status indicators
-- Animated alerts and notifications
-- Configurable settings toggles
-- Responsive design for different display sizes
+The development server will start at http://localhost:5173
+
+### Purpose
+- Design validation for ELD and radar interfaces
+- Feature demonstration and testing
+- User experience preview
+- Layout and navigation testing
+- Animation and interaction feedback
+
+### Previous HTML Files
+The original HTML mockups have been archived as `.OLD` files for reference.
+
+### Final Implementation
+The actual in-game UI will be:
+- Implemented through ATS mod UI definitions
+- Integrated with the external application via SCS telemetry
+- Displayed on the 3D models in the truck interior
+- Controlled by the C++ application state
+- Part of the complete ATS mod experience
 
 ## SCS SDK Integration
 
@@ -201,7 +226,7 @@ To use real ATS/ETS2 telemetry, you need to install the SCS telemetry plugin:
 
 **Windows:**
 ```
-C:\Program Files (x86)\Steam\steamapps\common\American Truck Simulator\bin\win_x64\plugins\
+Steam > steamapps > common > American Truck Simulator > bin > win_x64 > plugins > scs-telemetry.dll
 ```
 
 **macOS:**
@@ -419,24 +444,106 @@ scs_mod/
 - **Material Definitions**: PBR materials with emissive displays
 - **Extensible Design**: Easy to add support for additional trucks
 
-### 3D Models
+### 3D Models (YOU NEED TO CREATE THESE)
 
-The mod requires 3D models for the ELD tablet and radar detector. Detailed specifications and modeling guides are provided:
+The mod needs 3D models for the ELD tablet and radar detector.
 
-- **ELD Tablet Model**: See `scs_mod/model/eld/model_specifications.md`
-- **Radar Detector Model**: See `scs_mod/model/radar/model_specifications.md`
-- **Modeling Guide**: See `scs_mod/model/modeling_guide.md`
+**Good news**: There's a beginner-friendly guide that shows you exactly what to do.
 
-The models need to be created using Blender with SCS Tools plugin. The specifications include:
-- Exact dimensions in SCS scale units
-- Component breakdown and details
-- Material assignments
-- UV mapping requirements
-- Poly count targets (~950 for ELD, ~1100 for radar)
-- LOD requirements
-- Animation bone setup
+**Open this file**: `scs_mod/model/modeling_guide.md`
 
-**Note**: The .pmd files are currently placeholders with detailed instructions. They need to be created with Blender before the mod is fully functional.
+This guide tells you:
+- Exactly which buttons to click in Blender
+- What numbers to type in
+- How to create each part of the models
+- How to export them
+
+**No Blender experience needed** - it's written for complete beginners.
+
+---
+
+## Quick Start for Creating Models
+
+### Step 1: Download Blender 3.6 (Free)
+1. Go to: https://www.blender.org/download/lts/3-6/
+2. Download Blender 3.6 LTS
+3. Click "Download Blender 3.6"
+4. Install it like any other program
+
+⚠️ **IMPORTANT**: You MUST use Blender 3.6 - do NOT use Blender 4.0 or newer! SCS Tools only works with Blender 3.6.
+
+### Step 2: Install the SCS Plugin
+1. Open Blender
+2. Click **Edit** > **Preferences...**
+3. Click **Add-ons** on the left
+4. Click **Install...**
+5. Download SCS Tools from: https://mods.scssoft.com/ (click Tools > Blender Tools)
+6. Select the downloaded file and click **Install Add-on**
+7. Check the box next to "SCS Tools"
+
+### Step 3: Follow the Beginner Guide
+1. Open: `scs_mod/model/modeling_guide.md`
+2. Read "Before You Start" section
+3. Follow "PART 1" to create the ELD tablet
+4. Follow "PART 2" to create the radar detector
+
+### Step 4: Export Your Models
+The guide will show you how to export as .pmd files.
+
+### Step 5: Replace the Placeholders
+- Put your new `dowe_eld.pmd` in: `scs_mod/model/eld/`
+- Put your new `dowe_radar.pmd` in: `scs_mod/model/radar/`
+- Delete the `.pmd.txt` files (they're just instructions)
+
+---
+
+## What the Models Should Look Like
+
+### Fleet Guard ELD Tablet
+- Tablet shape (like an iPad)
+- Blue bar at top with "FLEET GUARD"
+- Navigation bar on left side
+- Screen in middle
+- Mounting bracket with suction cup
+
+### Road Sentry Radar Detector
+- Compact device
+- Dark metallic housing
+- Glass display
+- 5 buttons at bottom (MUTE, VOICE, DIM, SENS, PWR)
+- Signal bars and arrows
+- Mounting bracket with suction cup
+
+---
+
+## Important: What NOT to Put in the Model
+
+Your 3D model should have the SHAPE and COLORS, but NOT the text.
+
+❌ DON'T put in the model:
+- Driver names (like "John Doe")
+- Speed numbers (like "65 MPH")
+- HOS times
+- Location text
+- Any changing numbers
+
+✅ DO put in the model:
+- The physical shape
+- The colors
+- The button shapes
+- The mounting bracket
+
+The game software will handle the changing text and numbers automatically.
+
+---
+
+## Additional Resources
+
+If you want more detailed technical specifications:
+- **ELD Specs**: `scs_mod/model/eld/model_specifications.md`
+- **Radar Specs**: `scs_mod/model/radar/model_specifications.md`
+
+But you don't need these if you're following the beginner guide - it has everything you need.
 
 ### Installation
 

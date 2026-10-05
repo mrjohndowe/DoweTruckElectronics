@@ -60,22 +60,97 @@ scs_mod/
 
 ## Required Assets
 
-The following assets need to be created before the mod is fully functional:
+The following assets need to be created before the mod is fully functional.
 
-### 3D Models
+### 3D Models (YOU NEED TO CREATE THESE)
 
-**Note**: Detailed specifications and modeling guides are provided for creating the models:
+**Good news**: There's a beginner-friendly guide that shows you exactly what to do in Blender, step by step.
 
-- **ELD Tablet**: See `model/eld/model_specifications.md` for detailed specifications
-- **Radar Detector**: See `model/radar/model_specifications.md` for detailed specifications
-- **Modeling Guide**: See `model/modeling_guide.md` for step-by-step Blender instructions
+**Open this file**: `model/modeling_guide.md`
 
-The .pmd files are currently placeholders with creation instructions. To create the models:
-1. Install Blender with SCS Tools plugin
-2. Follow the modeling guide for step-by-step instructions
-3. Use the specifications for exact dimensions and details
-4. Export as .pmd files
-5. Replace the placeholder .pmd.txt files with actual .pmd files
+This guide tells you:
+- Exactly which buttons to click
+- What numbers to type in
+- How to create the ELD tablet
+- How to create the radar detector
+- How to export the models
+
+**No Blender experience needed** - the guide is written for complete beginners.
+
+---
+
+## Quick Start for Creating Models
+
+### Step 1: Download Blender 3.6
+1. Go to: https://www.blender.org/download/lts/3-6/
+2. Download Blender 3.6 LTS
+3. Click "Download Blender 3.6"
+4. Install it
+
+⚠️ **IMPORTANT**: You MUST use Blender 3.6 - do NOT use Blender 4.0 or newer! SCS Tools only works with Blender 3.6.
+
+### Step 2: Install the SCS Plugin
+1. Open Blender
+2. Click **Edit** > **Preferences...**
+3. Click **Add-ons** on the left
+4. Click **Install...**
+5. Download SCS Tools from: https://mods.scssoft.com/ (Tools > Blender Tools)
+6. Select the downloaded file and click **Install Add-on**
+7. Check the box next to "SCS Tools"
+
+### Step 3: Follow the Guide
+1. Open: `model/modeling_guide.md`
+2. Read "Before You Start" section
+3. Follow "PART 1" to create the ELD tablet
+4. Follow "PART 2" to create the radar detector
+
+### Step 4: Export Your Models
+The guide will show you how to export as .pmd files.
+
+### Step 5: Replace the Placeholders
+- Put your new `dowe_eld.pmd` in: `model/eld/`
+- Put your new `dowe_radar.pmd` in: `model/radar/`
+- Delete the `.pmd.txt` files (they're just instructions)
+
+---
+
+## What the Models Should Look Like
+
+### Fleet Guard ELD Tablet
+- Tablet shape (like an iPad)
+- Blue bar at top
+- Navigation bar on left
+- Screen in middle
+- Mounting bracket
+
+### Road Sentry Radar Detector
+- Compact device
+- Dark housing
+- Glass display
+- 5 buttons at bottom
+- Signal bars and arrows
+- Mounting bracket
+
+---
+
+## Important: What NOT to Put in the Model
+
+Your 3D model should have the SHAPE and COLORS, but NOT the text.
+
+❌ DON'T put in the model:
+- Driver names
+- Speed numbers
+- HOS times
+- Location text
+- Any changing numbers
+
+✅ DO put in the model:
+- The physical shape
+- The colors
+- The button shapes
+- The mounting bracket
+
+The game software will handle the changing text and numbers automatically.
 
 ### Textures
 - `material/model/eld/dowe_eld.tobj` - ELD diffuse texture
