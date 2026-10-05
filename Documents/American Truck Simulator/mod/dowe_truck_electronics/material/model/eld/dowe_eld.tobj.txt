@@ -1,0 +1,17 @@
+TEXTURE PLACEHOLDER
+
+This file should be replaced with actual .tobj texture files.
+
+Required textures for ELD:
+- dowe_eld.tobj - Main diffuse texture
+- dowe_eld_n.tobj - Normal map
+- dowe_eld_ao.tobj - Ambient occlusion map
+
+The textures should include:
+- Tablet device with realistic materials
+- Dark gray/black plastic casing
+- Screen with display elements
+- Mounting bracket details
+- Proper UV mapping for the 3D model
+
+Convert this placeholder to real .tobj files using SCS Texture Tools before distributing the mod.

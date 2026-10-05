@@ -1,0 +1,98 @@
+⚠️ THIS IS A PLACEHOLDER FILE ⚠️
+
+This file needs to be replaced with a real .pmd (SCS Pixel Model) file.
+
+---
+
+## What You Need to Do
+
+You need to create a 3D model of the Fleet Guard ELD tablet using Blender.
+
+### IMPORTANT: Use Blender 3.6
+
+You MUST use Blender 3.6 - this is the only version that works with SCS Tools.
+
+❌ **Do NOT use Blender 4.0, 4.1, 4.2, or newer** - they will NOT work!
+
+✅ **Download Blender 3.6 here**: https://www.blender.org/download/lts/3-6/
+
+### Step-by-Step Instructions
+
+1. Open the modeling guide:
+   - Go to: `scs_mod/model/modeling_guide.md`
+   - Read "PART 1: Create the Fleet Guard ELD Tablet"
+   - Follow every step exactly
+
+2. The guide will tell you:
+   - Exactly what buttons to click in Blender
+   - What numbers to type in
+   - How to create each part of the model
+   - How to add colors and materials
+   - How to export the model
+
+3. When you're done:
+   - You'll have a file called `dowe_eld.pmd`
+   - Replace THIS file with that file
+   - Delete this .txt file
+
+---
+
+## What This Model Should Look Like
+
+Based on the design preview in `ui-mockups/src/App.tsx`:
+
+- A tablet-style device (like an iPad)
+- Blue bar at the top with "FLEET GUARD" text
+- Navigation bar on the left side
+- Screen area in the middle
+- Status bar at the bottom
+- Mounting bracket with suction cup
+
+---
+
+## Important: Don't Put Text in the Model
+
+The model should have the SHAPE and COLORS, but NOT the text.
+
+❌ DON'T put in the model:
+- Driver names (like "John Doe")
+- Speed numbers (like "65 MPH")
+- HOS times
+- Location text
+- Any changing numbers
+
+✅ DO put in the model:
+- The physical shape
+- The colors (blue top bar, dark sidebar, etc.)
+- The Fleet Guard icon shape
+- The button shapes
+- The mounting bracket
+
+The game software will handle the changing text and numbers.
+
+---
+
+## If You Get Stuck
+
+- Read the modeling guide: `scs_mod/model/modeling_guide.md`
+- It's written for beginners - no Blender experience needed
+- Every step tells you exactly what to click and what to type
+
+---
+
+## After You Create the Model
+
+1. Your new file is called: `dowe_eld.pmd`
+2. Put it in this folder: `scs_mod/model/eld/`
+3. Delete this file: `dowe_eld.pmd.txt`
+4. Done!
+
+---
+
+## Quick Reference
+
+- **Model Name**: Fleet Guard ELD Tablet
+- **File Type**: .pmd (SCS Pixel Model)
+- **Dimensions**: 11.8 x 7.0 x 0.25 units
+- **Key Color**: Blue top bar (#0879ad)
+- **Instructions**: See `modeling_guide.md` PART 1

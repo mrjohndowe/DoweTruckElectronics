@@ -51,8 +51,11 @@ namespace DoweTruckElectronics
             on_duty
         );
 
-        // Track distance during current status
-        if (driving)
+        // Track distance whenever the truck is moving, regardless of duty status
+        // This is important for:
+        // - Accurate odometer tracking
+        // - Detecting violations (driving while in off-duty/sleeper status)
+        if (telemetry.speed_mps > 0.0)
         {
             m_status_distance += telemetry.speed_mps * telemetry.delta_seconds / 1000.0; // Convert to km
         }

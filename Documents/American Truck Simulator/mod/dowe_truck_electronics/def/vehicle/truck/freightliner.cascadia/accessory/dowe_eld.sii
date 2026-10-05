@@ -1,0 +1,47 @@
+SiiNunit
+{
+    # Freightliner Cascadia ELD Tablet Accessory Configuration
+    # This file defines how the ELD tablet appears in the Freightliner Cascadia interior
+
+    accessory_slot_data: .dowe_eld.cascadia
+    {
+        name: "Dowe ELD Tablet"
+        price: 450
+        unlock_level: 0
+
+        # ELD Model
+        model: "model/eld/dowe_eld.pmd"
+        coll_mask: 1
+        mass: 0.5
+
+        # Material
+        material: "material/model/eld/dowe_eld.mat"
+
+        # Mount positions for Freightliner Cascadia
+        # These positions are approximate and may need adjustment based on actual interior
+
+        # Windshield mount (top center of windshield)
+        accessory_slot_data: .mount_windshield
+        {
+            slot_name: "slot_12"
+            offset: (0.0, 0.35, 0.45)
+            rotation: (0.0, 0.0, 0.0)
+        }
+
+        # Dashboard mount (center of dashboard)
+        accessory_slot_data: .mount_dashboard
+        {
+            slot_name: "slot_11"
+            offset: (0.0, 0.15, 0.0)
+            rotation: (0.0, 0.0, 0.0)
+        }
+
+        # Overhead console mount
+        accessory_slot_data: .mount_overhead
+        {
+            slot_name: "slot_13"
+            offset: (0.0, 0.1, 0.0)
+            rotation: (0.0, 0.0, 0.0)
+        }
+    }
+}

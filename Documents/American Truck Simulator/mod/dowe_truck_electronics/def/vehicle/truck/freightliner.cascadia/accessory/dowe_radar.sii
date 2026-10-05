@@ -1,0 +1,47 @@
+SiiNunit
+{
+    # Freightliner Cascadia Radar Detector Accessory Configuration
+    # This file defines how the radar detector appears in the Freightliner Cascadia interior
+
+    accessory_slot_data: .dowe_radar.cascadia
+    {
+        name: "Dowe Radar Detector"
+        price: 350
+        unlock_level: 0
+
+        # Radar Detector Model
+        model: "model/radar/dowe_radar.pmd"
+        coll_mask: 1
+        mass: 0.3
+
+        # Material
+        material: "material/model/radar/dowe_radar.mat"
+
+        # Mount positions for Freightliner Cascadia
+        # These positions are approximate and may need adjustment based on actual interior
+
+        # Windshield mount (top center of windshield)
+        accessory_slot_data: .mount_windshield
+        {
+            slot_name: "slot_12"
+            offset: (0.0, 0.4, 0.5)
+            rotation: (0.0, 0.0, 0.0)
+        }
+
+        # Dashboard mount (center of dashboard)
+        accessory_slot_data: .mount_dashboard
+        {
+            slot_name: "slot_11"
+            offset: (0.0, 0.2, 0.0)
+            rotation: (0.0, 0.0, 0.0)
+        }
+
+        # Overhead console mount
+        accessory_slot_data: .mount_overhead
+        {
+            slot_name: "slot_13"
+            offset: (0.0, 0.1, 0.0)
+            rotation: (0.0, 0.0, 0.0)
+        }
+    }
+}

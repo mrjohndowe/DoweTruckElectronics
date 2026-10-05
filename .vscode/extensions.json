@@ -3,6 +3,7 @@
         "twxs.cmake",
         "cheshirekow.cmake-format",
         "go2sh.cmake-integration-vscode",
-        "ms-vscode.cpptools-extension-pack"
+        "ms-vscode.cpptools-extension-pack",
+        "mrjohndowe.markdown-made-easy"
     ]
 }

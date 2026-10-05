@@ -1,0 +1,41 @@
+SiiNunit
+{
+    # Truck compatibility for Dowe Truck Electronics
+    # This file provides reference information for the accessory system
+
+    # The accessories are defined in:
+    # - def/company_accessory/dowe_eld.sii (generic ELD accessory)
+    # - def/company_accessory/dowe_radar.sii (generic radar accessory)
+    # - def/vehicle/truck/[truck_name]/accessory/dowe_eld.sii (truck-specific ELD)
+    # - def/vehicle/truck/[truck_name]/accessory/dowe_radar.sii (truck-specific radar)
+
+    # Truck-specific configurations have been created for:
+    # - Kenworth W900 (kenworth.w900)
+    # - Peterbilt 389 (peterbilt.389)
+    # - Freightliner Cascadia (freightliner.cascadia)
+    # - Volvo VNL (volvo.vnl)
+
+    # Additional trucks that can be added:
+    # - International LoneStar (intl.lonestar)
+    # - International LT (intl.lt)
+    # - Mack Anthem (mack.anthem)
+    # - Western Star 49X (ws_49x)
+    # - Western Star 5700XE (ws_5700xe)
+
+    # Note: The slot names (slot_11, slot_12, slot_13) are generic SCS accessory slots.
+    # Actual slot names may vary by truck model and need to be verified against
+    # the truck's accessory slot definitions in the base game files.
+
+    # Mount positions are approximate and should be adjusted based on:
+    # - Actual truck interior layout
+    # - Desired placement (windshield, dashboard, overhead)
+    # - Driver visibility and ergonomics
+    # - Real-world mounting locations for ELD and radar detectors
+
+    # To add support for additional trucks:
+    # 1. Create directory: def/vehicle/truck/[truck_name]/accessory/
+    # 2. Copy existing configuration files
+    # 3. Adjust slot names for the specific truck
+    # 4. Adjust offset and rotation for proper placement
+    # 5. Test in-game and refine positions
+}
