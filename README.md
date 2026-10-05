@@ -226,7 +226,7 @@ To use real ATS/ETS2 telemetry, you need to install the SCS telemetry plugin:
 
 **Windows:**
 ```
-C:\Program Files (x86)\Steam\steamapps\common\American Truck Simulator\bin\win_x64\plugins\
+Steam > steamapps > common > American Truck Simulator > bin > win_x64 > plugins > scs-telemetry.dll
 ```
 
 **macOS:**
