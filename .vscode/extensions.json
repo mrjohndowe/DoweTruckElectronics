@@ -4,6 +4,9 @@
         "cheshirekow.cmake-format",
         "go2sh.cmake-integration-vscode",
         "ms-vscode.cpptools-extension-pack",
-        "mrjohndowe.markdown-made-easy"
+        "mrjohndowe.markdown-made-easy",
+        "holooooo.markdown-kanban",
+        "saltand.yet-another-commit-message-generator",
+        "devlife.devlife-assistant"
     ]
 }
